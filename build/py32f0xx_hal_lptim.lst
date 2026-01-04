@@ -1,0 +1,1493 @@
+ARM GAS  /tmp/cc0zbLM9.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"py32f0xx_hal_lptim.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c"
+  18              		.section	.text.HAL_LPTIM_MspInit,"ax",%progbits
+  19              		.align	1
+  20              		.weak	HAL_LPTIM_MspInit
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	HAL_LPTIM_MspInit:
+  26              	.LVL0:
+  27              	.LFB57:
+   1:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+   2:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ******************************************************************************
+   3:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @file    py32f0xx_hal_lptim.c
+   4:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief   LPTIM HAL module driver.
+   6:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          This file provides firmware functions to manage the following
+   7:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          functionalities of the Low Power Timer (LPTIM) peripheral:
+   8:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *           + Initialization and de-initialization functions.
+   9:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *           + Start/Stop operation functions in polling mode.
+  10:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *           + Start/Stop operation functions in interrupt mode.
+  11:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *           + Reading operation functions.
+  12:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *           + Peripheral State functions.
+  13:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *
+  14:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   @verbatim
+  15:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+  16:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****                      ##### How to use this driver #####
+  17:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+  18:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     [..]
+  19:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       The LPTIM HAL driver can be used as follows:
+  20:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  21:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (#)Initialize the LPTIM low level resources by implementing the
+  22:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****         HAL_LPTIM_MspInit():
+  23:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) Enable the LPTIM interface clock using __HAL_RCC_LPTIMx_CLK_ENABLE().
+  24:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) In case of using interrupts (e.g. HAL_LPTIM_PWM_Start_IT()):
+  25:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****              (+++) Configure the LPTIM interrupt priority using HAL_NVIC_SetPriority().
+  26:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****              (+++) Enable the LPTIM IRQ handler using HAL_NVIC_EnableIRQ().
+  27:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****              (+++) In LPTIM IRQ handler, call HAL_LPTIM_IRQHandler().
+  28:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  29:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (#)Initialize the LPTIM HAL using HAL_LPTIM_Init(). This function
+  30:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          configures mainly:
+  31:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) The instance: LPTIM1 or LPTIM2.
+ARM GAS  /tmp/cc0zbLM9.s 			page 2
+
+
+  32:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) Clock: the counter clock.
+  33:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****              (+++) Source   : it can be either the ULPTIM input (IN1) or one of
+  34:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****                               the internal clock; (APB, LSE, LSI or HSI).
+  35:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****              (+++) Prescaler: select the clock divider.
+  36:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (#)Six modes are available:
+  37:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  38:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) PWM Mode: To generate a PWM signal with specified period and pulse,
+  39:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          call HAL_LPTIM_PWM_Start() or HAL_LPTIM_PWM_Start_IT() for interruption
+  40:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          mode.
+  41:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  42:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) One Pulse Mode: To generate pulse with specified width in response
+  43:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          to a stimulus, call HAL_LPTIM_OnePulse_Start() or
+  44:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          HAL_LPTIM_OnePulse_Start_IT() for interruption mode.
+  45:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  46:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) Set once Mode: In this mode, the output changes the level (from
+  47:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          low level to high level if the output polarity is configured high, else
+  48:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          the opposite) when a compare match occurs. To start this mode, call
+  49:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          HAL_LPTIM_SetOnce_Start() or HAL_LPTIM_SetOnce_Start_IT() for
+  50:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          interruption mode.
+  51:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  52:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) Encoder Mode: To use the encoder interface call
+  53:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          HAL_LPTIM_Encoder_Start() or HAL_LPTIM_Encoder_Start_IT() for
+  54:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          interruption mode. Only available for LPTIM1 instance.
+  55:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  56:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) Time out Mode: an active edge on one selected trigger input rests
+  57:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          the counter. The first trigger event will start the timer, any
+  58:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          successive trigger event will reset the counter and the timer will
+  59:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          restart. To start this mode call HAL_LPTIM_TimeOut_Start_IT() or
+  60:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          HAL_LPTIM_TimeOut_Start_IT() for interruption mode.
+  61:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  62:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          (++) Counter Mode: counter can be used to count external events on
+  63:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          the LPTIM Input1 or it can be used to count internal clock cycles.
+  64:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          To start this mode, call HAL_LPTIM_Counter_Start() or
+  65:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****          HAL_LPTIM_Counter_Start_IT() for interruption mode.
+  66:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  67:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  68:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (#) User can stop any process by calling the corresponding API:
+  69:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****           HAL_LPTIM_Xxx_Stop() or HAL_LPTIM_Xxx_Stop_IT() if the process is
+  70:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****           already started in interruption mode.
+  71:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  72:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (#) De-initialize the LPTIM peripheral using HAL_LPTIM_DeInit().
+  73:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  74:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     *** Callback registration ***
+  75:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   =============================================
+  76:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+  77:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   The compilation define  USE_HAL_LPTIM_REGISTER_CALLBACKS when set to 1
+  78:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   allows the user to configure dynamically the driver callbacks.
+  79:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+  80:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   Use Function @ref HAL_LPTIM_RegisterCallback() to register a callback.
+  81:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   @ref HAL_LPTIM_RegisterCallback() takes as parameters the HAL peripheral handle,
+  82:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   the Callback ID and a pointer to the user callback function.
+  83:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+  84:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   Use function @ref HAL_LPTIM_UnRegisterCallback() to reset a callback to the
+  85:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   default weak function.
+  86:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   @ref HAL_LPTIM_UnRegisterCallback takes as parameters the HAL peripheral handle,
+  87:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   and the Callback ID.
+  88:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+ARM GAS  /tmp/cc0zbLM9.s 			page 3
+
+
+  89:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   These functions allow to register/unregister following callbacks:
+  90:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  91:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) MspInitCallback         : LPTIM Base Msp Init Callback.
+  92:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) MspDeInitCallback       : LPTIM Base Msp DeInit Callback.
+  93:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) CompareMatchCallback    : Compare match Callback.
+  94:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) AutoReloadMatchCallback : Auto-reload match Callback.
+  95:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) TriggerCallback         : External trigger event detection Callback.
+  96:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) CompareWriteCallback    : Compare register write complete Callback.
+  97:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) AutoReloadWriteCallback : Auto-reload register write complete Callback.
+  98:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) DirectionUpCallback     : Up-counting direction change Callback.
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     (+) DirectionDownCallback   : Down-counting direction change Callback.
+ 100:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+ 102:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   By default, after the Init and when the state is HAL_LPTIM_STATE_RESET
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   all interrupt callbacks are set to the corresponding weak functions:
+ 104:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   examples @ref HAL_LPTIM_TriggerCallback(), @ref HAL_LPTIM_CompareMatchCallback().
+ 105:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 106:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   Exception done for MspInit and MspDeInit functions that are reset to the legacy weak
+ 108:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   functionalities in the Init/DeInit only when these callbacks are null
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   (not registered beforehand). If not, MspInit or MspDeInit are not null, the Init/DeInit
+ 110:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   keep and use the user MspInit/MspDeInit callbacks (registered beforehand)
+ 111:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+ 113:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   Callbacks can be registered/unregistered in HAL_LPTIM_STATE_READY state only.
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   Exception done MspInit/MspDeInit that can be registered/unregistered
+ 115:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   in HAL_LPTIM_STATE_READY or HAL_LPTIM_STATE_RESET state,
+ 116:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   thus registered (user) MspInit/DeInit callbacks can be used during the Init/DeInit.
+ 117:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   In that case first register the MspInit/MspDeInit user callbacks
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   using @ref HAL_LPTIM_RegisterCallback() before calling DeInit or Init function.
+ 119:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 120:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   [..]
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   When The compilation define USE_HAL_LPTIM_REGISTER_CALLBACKS is set to 0 or
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   not defined, the callback registration feature is not available and all callbacks
+ 123:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   are set to the corresponding weak functions.
+ 124:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 125:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   @endverbatim
+ 126:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ******************************************************************************
+ 127:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @attention
+ 128:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *
+ 129:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * All rights reserved.</center></h2>
+ 131:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * All rights reserved.</center></h2>
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+ 136:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * the "License"; You may not use this file except in compliance with the
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * License. You may obtain a copy of the License at:
+ 138:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *                        opensource.org/licenses/BSD-3-Clause
+ 139:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *
+ 140:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ******************************************************************************
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 142:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 143:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /* Includes ------------------------------------------------------------------*/
+ 144:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #include "py32f0xx_hal.h"
+ 145:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ARM GAS  /tmp/cc0zbLM9.s 			page 4
+
+
+ 146:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /** @addtogroup PY32F0xx_HAL_Driver
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @{
+ 148:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 149:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 150:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /** @defgroup LPTIM LPTIM
+ 151:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief LPTIM HAL module driver.
+ 152:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @{
+ 153:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 154:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 155:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #ifdef HAL_LPTIM_MODULE_ENABLED
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 158:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /* Private typedef -----------------------------------------------------------*/
+ 160:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /* Private define ------------------------------------------------------------*/
+ 161:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /* Private macro -------------------------------------------------------------*/
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /* Private variables ---------------------------------------------------------*/
+ 163:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /* Private function prototypes -----------------------------------------------*/
+ 164:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #if (USE_HAL_LPTIM_REGISTER_CALLBACKS == 1)
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** static void LPTIM_ResetCallback(LPTIM_HandleTypeDef *lptim);
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 167:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 168:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /* Exported functions --------------------------------------------------------*/
+ 169:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 170:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /** @defgroup LPTIM_Exported_Functions LPTIM Exported Functions
+ 171:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @{
+ 172:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 173:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 174:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /** @defgroup LPTIM_Exported_Functions_Group1 Initialization/de-initialization functions
+ 175:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *  @brief    Initialization and Configuration functions.
+ 176:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *
+ 177:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @verbatim
+ 178:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 179:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****               ##### Initialization and de-initialization functions #####
+ 180:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 181:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     [..]  This section provides functions allowing to:
+ 182:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (+) Initialize the LPTIM according to the specified parameters in the
+ 183:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****           LPTIM_InitTypeDef and initialize the associated handle.
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (+) DeInitialize the LPTIM peripheral.
+ 185:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (+) Initialize the LPTIM MSP.
+ 186:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (+) DeInitialize the LPTIM MSP.
+ 187:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 188:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @endverbatim
+ 189:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @{
+ 190:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 191:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 192:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 193:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Initialize the LPTIM according to the specified parameters in the
+ 194:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *         LPTIM_InitTypeDef and initialize the associated handle.
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 196:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval HAL status
+ 197:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 198:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_Init(LPTIM_HandleTypeDef *hlptim)
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 200:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   uint32_t tmpcfgr;
+ 201:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 202:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the LPTIM handle allocation */
+ARM GAS  /tmp/cc0zbLM9.s 			page 5
+
+
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(hlptim == NULL)
+ 204:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     return HAL_ERROR;
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the parameters */
+ 209:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_INSTANCE(hlptim->Instance));
+ 210:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 211:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_CLOCK_PRESCALER(hlptim->Init.Prescaler));
+ 212:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(hlptim->State == HAL_LPTIM_STATE_RESET)
+ 214:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 215:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     /* Allocate lock resource and initialize it */
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     hlptim->Lock = HAL_UNLOCKED;
+ 217:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 218:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #if (USE_HAL_LPTIM_REGISTER_CALLBACKS == 1)
+ 219:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     /* Reset interrupt callbacks to legacy weak callbacks */
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     LPTIM_ResetCallback(hlptim);
+ 221:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 222:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     if(hlptim->MspInitCallback == NULL)
+ 223:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 224:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspInitCallback = HAL_LPTIM_MspInit;
+ 225:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     }
+ 226:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 227:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     /* Init the low level hardware : GPIO, CLOCK, NVIC */
+ 228:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     hlptim->MspInitCallback(hlptim);
+ 229:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #else
+ 230:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     /* Init the low level hardware : GPIO, CLOCK, NVIC */
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     HAL_LPTIM_MspInit(hlptim);
+ 232:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 233:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 234:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 235:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the LPTIM state */
+ 236:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State = HAL_LPTIM_STATE_BUSY;
+ 237:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 238:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Get the LPTIMx CFGR value */
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   tmpcfgr = hlptim->Instance->CFGR;
+ 240:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 241:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Clear PRESC, PRELOAD  */
+ 242:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   tmpcfgr &= (uint32_t)(~(LPTIM_CFGR_PRELOAD | LPTIM_CFGR_PRESC));
+ 243:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 244:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Set initialization parameters */
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   tmpcfgr |= (hlptim->Init.Prescaler|hlptim->Init.UpdateMode);
+ 246:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 247:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Write to LPTIMx CFGR */
+ 248:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->Instance->CFGR = tmpcfgr;
+ 249:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 250:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the LPTIM state */
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State = HAL_LPTIM_STATE_READY;
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 253:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Return function status */
+ 254:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return HAL_OK;
+ 255:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 256:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 257:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 258:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  DeInitialize the LPTIM peripheral.
+ 259:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ARM GAS  /tmp/cc0zbLM9.s 			page 6
+
+
+ 260:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval HAL status
+ 261:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 262:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_DeInit(LPTIM_HandleTypeDef *hlptim)
+ 263:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 264:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the LPTIM handle allocation */
+ 265:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(hlptim == NULL)
+ 266:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 267:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     return HAL_ERROR;
+ 268:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 269:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 270:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the LPTIM state */
+ 271:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State = HAL_LPTIM_STATE_BUSY;
+ 272:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 273:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Disable the LPTIM Peripheral Clock */
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_DISABLE(hlptim);
+ 275:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 276:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #if (USE_HAL_LPTIM_REGISTER_CALLBACKS == 1)
+ 277:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(hlptim->MspDeInitCallback == NULL)
+ 278:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 279:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     hlptim->MspDeInitCallback = HAL_LPTIM_MspDeInit;
+ 280:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 281:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 282:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* DeInit the low level hardware: CLOCK, NVIC.*/
+ 283:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->MspDeInitCallback(hlptim);
+ 284:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #else
+ 285:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* DeInit the low level hardware: CLOCK, NVIC.*/
+ 286:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   HAL_LPTIM_MspDeInit(hlptim);
+ 287:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 288:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 289:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the LPTIM state */
+ 290:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State = HAL_LPTIM_STATE_RESET;
+ 291:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 292:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Release Lock */
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_UNLOCK(hlptim);
+ 294:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 295:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Return function status */
+ 296:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return HAL_OK;
+ 297:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 298:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 299:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 300:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Initialize the LPTIM MSP.
+ 301:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 302:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval None
+ 303:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 304:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** __weak void HAL_LPTIM_MspInit(LPTIM_HandleTypeDef *hlptim)
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+  28              		.loc 1 305 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 306:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Prevent unused argument(s) compilation warning */
+ 307:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   UNUSED(hlptim);
+  33              		.loc 1 307 3 view .LVU1
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****             the HAL_LPTIM_MspInit could be implemented in the user file
+ARM GAS  /tmp/cc0zbLM9.s 			page 7
+
+
+ 311:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    */
+ 312:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+  34              		.loc 1 312 1 is_stmt 0 view .LVU2
+  35              		@ sp needed
+  36 0000 7047     		bx	lr
+  37              		.cfi_endproc
+  38              	.LFE57:
+  40              		.section	.text.HAL_LPTIM_Init,"ax",%progbits
+  41              		.align	1
+  42              		.global	HAL_LPTIM_Init
+  43              		.syntax unified
+  44              		.code	16
+  45              		.thumb_func
+  47              	HAL_LPTIM_Init:
+  48              	.LVL1:
+  49              	.LFB55:
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   uint32_t tmpcfgr;
+  50              		.loc 1 199 1 is_stmt 1 view -0
+  51              		.cfi_startproc
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   uint32_t tmpcfgr;
+  54              		.loc 1 199 1 is_stmt 0 view .LVU4
+  55 0000 10B5     		push	{r4, lr}
+  56              	.LCFI0:
+  57              		.cfi_def_cfa_offset 8
+  58              		.cfi_offset 4, -8
+  59              		.cfi_offset 14, -4
+  60 0002 041E     		subs	r4, r0, #0
+ 200:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  61              		.loc 1 200 3 is_stmt 1 view .LVU5
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+  62              		.loc 1 203 3 view .LVU6
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+  63              		.loc 1 203 5 is_stmt 0 view .LVU7
+  64 0004 15D0     		beq	.L5
+ 209:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  65              		.loc 1 209 3 is_stmt 1 view .LVU8
+ 211:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  66              		.loc 1 211 3 view .LVU9
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+  67              		.loc 1 213 3 view .LVU10
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+  68              		.loc 1 213 12 is_stmt 0 view .LVU11
+  69 0006 437B     		ldrb	r3, [r0, #13]
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+  70              		.loc 1 213 5 view .LVU12
+  71 0008 002B     		cmp	r3, #0
+  72 000a 0ED0     		beq	.L6
+  73              	.LVL2:
+  74              	.L4:
+ 236:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  75              		.loc 1 236 3 is_stmt 1 view .LVU13
+ 236:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  76              		.loc 1 236 17 is_stmt 0 view .LVU14
+  77 000c 0223     		movs	r3, #2
+  78 000e 6373     		strb	r3, [r4, #13]
+ARM GAS  /tmp/cc0zbLM9.s 			page 8
+
+
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  79              		.loc 1 239 3 is_stmt 1 view .LVU15
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  80              		.loc 1 239 19 is_stmt 0 view .LVU16
+  81 0010 2168     		ldr	r1, [r4]
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  82              		.loc 1 239 11 view .LVU17
+  83 0012 CA68     		ldr	r2, [r1, #12]
+  84              	.LVL3:
+ 242:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  85              		.loc 1 242 3 is_stmt 1 view .LVU18
+ 242:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  86              		.loc 1 242 11 is_stmt 0 view .LVU19
+  87 0014 084B     		ldr	r3, .L7
+  88 0016 1A40     		ands	r2, r3
+  89              	.LVL4:
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  90              		.loc 1 245 3 is_stmt 1 view .LVU20
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  91              		.loc 1 245 27 is_stmt 0 view .LVU21
+  92 0018 6368     		ldr	r3, [r4, #4]
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  93              		.loc 1 245 50 view .LVU22
+  94 001a A068     		ldr	r0, [r4, #8]
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  95              		.loc 1 245 37 view .LVU23
+  96 001c 0343     		orrs	r3, r0
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+  97              		.loc 1 245 11 view .LVU24
+  98 001e 1343     		orrs	r3, r2
+  99              	.LVL5:
+ 248:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 100              		.loc 1 248 3 is_stmt 1 view .LVU25
+ 248:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 101              		.loc 1 248 26 is_stmt 0 view .LVU26
+ 102 0020 CB60     		str	r3, [r1, #12]
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 103              		.loc 1 251 3 is_stmt 1 view .LVU27
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 104              		.loc 1 251 17 is_stmt 0 view .LVU28
+ 105 0022 0123     		movs	r3, #1
+ 106              	.LVL6:
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 107              		.loc 1 251 17 view .LVU29
+ 108 0024 6373     		strb	r3, [r4, #13]
+ 109              	.LVL7:
+ 254:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 110              		.loc 1 254 3 is_stmt 1 view .LVU30
+ 254:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 111              		.loc 1 254 10 is_stmt 0 view .LVU31
+ 112 0026 0020     		movs	r0, #0
+ 113              	.LVL8:
+ 114              	.L3:
+ 255:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 115              		.loc 1 255 1 view .LVU32
+ 116              		@ sp needed
+ 117              	.LVL9:
+ARM GAS  /tmp/cc0zbLM9.s 			page 9
+
+
+ 255:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 118              		.loc 1 255 1 view .LVU33
+ 119 0028 10BD     		pop	{r4, pc}
+ 120              	.LVL10:
+ 121              	.L6:
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 122              		.loc 1 216 5 is_stmt 1 view .LVU34
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 123              		.loc 1 216 18 is_stmt 0 view .LVU35
+ 124 002a 0373     		strb	r3, [r0, #12]
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 125              		.loc 1 231 5 is_stmt 1 view .LVU36
+ 126 002c FFF7FEFF 		bl	HAL_LPTIM_MspInit
+ 127              	.LVL11:
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 128              		.loc 1 231 5 is_stmt 0 view .LVU37
+ 129 0030 ECE7     		b	.L4
+ 130              	.LVL12:
+ 131              	.L5:
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 132              		.loc 1 205 12 view .LVU38
+ 133 0032 0120     		movs	r0, #1
+ 134              	.LVL13:
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 135              		.loc 1 205 12 view .LVU39
+ 136 0034 F8E7     		b	.L3
+ 137              	.L8:
+ 138 0036 C046     		.align	2
+ 139              	.L7:
+ 140 0038 FFF1BFFF 		.word	-4197889
+ 141              		.cfi_endproc
+ 142              	.LFE55:
+ 144              		.section	.text.HAL_LPTIM_MspDeInit,"ax",%progbits
+ 145              		.align	1
+ 146              		.weak	HAL_LPTIM_MspDeInit
+ 147              		.syntax unified
+ 148              		.code	16
+ 149              		.thumb_func
+ 151              	HAL_LPTIM_MspDeInit:
+ 152              	.LVL14:
+ 153              	.LFB58:
+ 313:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 314:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 315:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  DeInitialize LPTIM MSP.
+ 316:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 317:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval None
+ 318:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 319:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** __weak void HAL_LPTIM_MspDeInit(LPTIM_HandleTypeDef *hlptim)
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 154              		.loc 1 320 1 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158              		@ link register save eliminated.
+ 321:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Prevent unused argument(s) compilation warning */
+ 322:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   UNUSED(hlptim);
+ 159              		.loc 1 322 3 view .LVU41
+ARM GAS  /tmp/cc0zbLM9.s 			page 10
+
+
+ 323:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 324:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 325:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****             the HAL_LPTIM_MspDeInit could be implemented in the user file
+ 326:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    */
+ 327:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 160              		.loc 1 327 1 is_stmt 0 view .LVU42
+ 161              		@ sp needed
+ 162 0000 7047     		bx	lr
+ 163              		.cfi_endproc
+ 164              	.LFE58:
+ 166              		.section	.text.HAL_LPTIM_DeInit,"ax",%progbits
+ 167              		.align	1
+ 168              		.global	HAL_LPTIM_DeInit
+ 169              		.syntax unified
+ 170              		.code	16
+ 171              		.thumb_func
+ 173              	HAL_LPTIM_DeInit:
+ 174              	.LVL15:
+ 175              	.LFB56:
+ 263:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the LPTIM handle allocation */
+ 176              		.loc 1 263 1 is_stmt 1 view -0
+ 177              		.cfi_startproc
+ 178              		@ args = 0, pretend = 0, frame = 0
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the LPTIM handle allocation */
+ 180              		.loc 1 263 1 is_stmt 0 view .LVU44
+ 181 0000 10B5     		push	{r4, lr}
+ 182              	.LCFI1:
+ 183              		.cfi_def_cfa_offset 8
+ 184              		.cfi_offset 4, -8
+ 185              		.cfi_offset 14, -4
+ 186 0002 041E     		subs	r4, r0, #0
+ 265:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 187              		.loc 1 265 3 is_stmt 1 view .LVU45
+ 265:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 188              		.loc 1 265 5 is_stmt 0 view .LVU46
+ 189 0004 0DD0     		beq	.L12
+ 271:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 190              		.loc 1 271 3 is_stmt 1 view .LVU47
+ 271:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 191              		.loc 1 271 17 is_stmt 0 view .LVU48
+ 192 0006 0223     		movs	r3, #2
+ 193 0008 4373     		strb	r3, [r0, #13]
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 194              		.loc 1 274 3 is_stmt 1 view .LVU49
+ 195 000a 0268     		ldr	r2, [r0]
+ 196 000c 1369     		ldr	r3, [r2, #16]
+ 197 000e 0121     		movs	r1, #1
+ 198 0010 8B43     		bics	r3, r1
+ 199 0012 1361     		str	r3, [r2, #16]
+ 286:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 200              		.loc 1 286 3 view .LVU50
+ 201 0014 FFF7FEFF 		bl	HAL_LPTIM_MspDeInit
+ 202              	.LVL16:
+ 290:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 203              		.loc 1 290 3 view .LVU51
+ 290:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ARM GAS  /tmp/cc0zbLM9.s 			page 11
+
+
+ 204              		.loc 1 290 17 is_stmt 0 view .LVU52
+ 205 0018 0023     		movs	r3, #0
+ 206 001a 6373     		strb	r3, [r4, #13]
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 207              		.loc 1 293 3 is_stmt 1 view .LVU53
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 208              		.loc 1 293 3 view .LVU54
+ 209 001c 2373     		strb	r3, [r4, #12]
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 210              		.loc 1 293 3 view .LVU55
+ 296:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 211              		.loc 1 296 3 view .LVU56
+ 296:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 212              		.loc 1 296 10 is_stmt 0 view .LVU57
+ 213 001e 0020     		movs	r0, #0
+ 214              	.L11:
+ 297:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 215              		.loc 1 297 1 view .LVU58
+ 216              		@ sp needed
+ 217              	.LVL17:
+ 297:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 218              		.loc 1 297 1 view .LVU59
+ 219 0020 10BD     		pop	{r4, pc}
+ 220              	.LVL18:
+ 221              	.L12:
+ 267:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 222              		.loc 1 267 12 view .LVU60
+ 223 0022 0120     		movs	r0, #1
+ 224              	.LVL19:
+ 267:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 225              		.loc 1 267 12 view .LVU61
+ 226 0024 FCE7     		b	.L11
+ 227              		.cfi_endproc
+ 228              	.LFE56:
+ 230              		.section	.text.HAL_LPTIM_SetOnce_Start,"ax",%progbits
+ 231              		.align	1
+ 232              		.global	HAL_LPTIM_SetOnce_Start
+ 233              		.syntax unified
+ 234              		.code	16
+ 235              		.thumb_func
+ 237              	HAL_LPTIM_SetOnce_Start:
+ 238              	.LVL20:
+ 239              	.LFB59:
+ 328:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 329:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 330:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @}
+ 331:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 332:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 333:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 334:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Start the LPTIM in Set once mode.
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 336:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  Period Specifies the Autoreload value.
+ 337:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *         This parameter must be a value between 0x0000 and 0xFFFF.
+ 338:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval HAL status
+ 339:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 340:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_SetOnce_Start(LPTIM_HandleTypeDef *hlptim, uint32_t Period)
+ 341:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ARM GAS  /tmp/cc0zbLM9.s 			page 12
+
+
+ 240              		.loc 1 341 1 is_stmt 1 view -0
+ 241              		.cfi_startproc
+ 242              		@ args = 0, pretend = 0, frame = 0
+ 243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 244              		.loc 1 341 1 is_stmt 0 view .LVU63
+ 245 0000 30B5     		push	{r4, r5, lr}
+ 246              	.LCFI2:
+ 247              		.cfi_def_cfa_offset 12
+ 248              		.cfi_offset 4, -12
+ 249              		.cfi_offset 5, -8
+ 250              		.cfi_offset 14, -4
+ 342:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the parameters */
+ 343:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_INSTANCE(hlptim->Instance));
+ 251              		.loc 1 343 3 is_stmt 1 view .LVU64
+ 344:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_PERIOD(Period));
+ 252              		.loc 1 344 3 view .LVU65
+ 345:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 346:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Set the LPTIM state */
+ 347:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_BUSY;
+ 253              		.loc 1 347 3 view .LVU66
+ 254              		.loc 1 347 16 is_stmt 0 view .LVU67
+ 255 0002 0224     		movs	r4, #2
+ 256 0004 4473     		strb	r4, [r0, #13]
+ 348:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 349:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Enable the Peripheral */
+ 350:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_ENABLE(hlptim);
+ 257              		.loc 1 350 3 is_stmt 1 view .LVU68
+ 258 0006 0568     		ldr	r5, [r0]
+ 259 0008 2B69     		ldr	r3, [r5, #16]
+ 260 000a 0122     		movs	r2, #1
+ 261 000c 1343     		orrs	r3, r2
+ 262 000e 2B61     		str	r3, [r5, #16]
+ 351:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 352:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Load the period value in the autoreload register */
+ 353:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_AUTORELOAD_SET(hlptim, Period);
+ 263              		.loc 1 353 3 view .LVU69
+ 264 0010 0368     		ldr	r3, [r0]
+ 265 0012 9961     		str	r1, [r3, #24]
+ 354:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 355:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Start timer in single mode */
+ 356:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_START_SINGLE(hlptim);
+ 266              		.loc 1 356 3 view .LVU70
+ 267 0014 0168     		ldr	r1, [r0]
+ 268              	.LVL21:
+ 269              		.loc 1 356 3 is_stmt 0 view .LVU71
+ 270 0016 0B69     		ldr	r3, [r1, #16]
+ 271              	.LVL22:
+ 272              		.loc 1 356 3 view .LVU72
+ 273 0018 2343     		orrs	r3, r4
+ 274 001a 0B61     		str	r3, [r1, #16]
+ 357:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 358:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the TIM state*/
+ 359:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_READY;
+ 275              		.loc 1 359 3 is_stmt 1 view .LVU73
+ 276              		.loc 1 359 16 is_stmt 0 view .LVU74
+ 277 001c 4273     		strb	r2, [r0, #13]
+ 360:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ARM GAS  /tmp/cc0zbLM9.s 			page 13
+
+
+ 361:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Return function status */
+ 362:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return HAL_OK;
+ 278              		.loc 1 362 3 is_stmt 1 view .LVU75
+ 363:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 279              		.loc 1 363 1 is_stmt 0 view .LVU76
+ 280 001e 0020     		movs	r0, #0
+ 281              	.LVL23:
+ 282              		.loc 1 363 1 view .LVU77
+ 283              		@ sp needed
+ 284 0020 30BD     		pop	{r4, r5, pc}
+ 285              		.cfi_endproc
+ 286              	.LFE59:
+ 288              		.section	.text.HAL_LPTIM_SetOnce_Stop,"ax",%progbits
+ 289              		.align	1
+ 290              		.global	HAL_LPTIM_SetOnce_Stop
+ 291              		.syntax unified
+ 292              		.code	16
+ 293              		.thumb_func
+ 295              	HAL_LPTIM_SetOnce_Stop:
+ 296              	.LVL24:
+ 297              	.LFB60:
+ 364:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 365:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 366:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Stop the LPTIM Set once mode.
+ 367:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval HAL status
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 370:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_SetOnce_Stop(LPTIM_HandleTypeDef *hlptim)
+ 371:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 298              		.loc 1 371 1 is_stmt 1 view -0
+ 299              		.cfi_startproc
+ 300              		@ args = 0, pretend = 0, frame = 0
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302              		@ link register save eliminated.
+ 372:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the parameters */
+ 373:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_INSTANCE(hlptim->Instance));
+ 303              		.loc 1 373 3 view .LVU79
+ 374:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 375:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Set the LPTIM state */
+ 376:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_BUSY;
+ 304              		.loc 1 376 3 view .LVU80
+ 305              		.loc 1 376 16 is_stmt 0 view .LVU81
+ 306 0000 0223     		movs	r3, #2
+ 307 0002 4373     		strb	r3, [r0, #13]
+ 377:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 378:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Disable the Peripheral */
+ 379:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_DISABLE(hlptim);
+ 308              		.loc 1 379 3 is_stmt 1 view .LVU82
+ 309 0004 0168     		ldr	r1, [r0]
+ 310 0006 0B69     		ldr	r3, [r1, #16]
+ 311 0008 0122     		movs	r2, #1
+ 312 000a 9343     		bics	r3, r2
+ 313 000c 0B61     		str	r3, [r1, #16]
+ 380:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 381:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the TIM state*/
+ 382:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_READY;
+ 314              		.loc 1 382 3 view .LVU83
+ARM GAS  /tmp/cc0zbLM9.s 			page 14
+
+
+ 315              		.loc 1 382 16 is_stmt 0 view .LVU84
+ 316 000e 4273     		strb	r2, [r0, #13]
+ 383:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 384:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Return function status */
+ 385:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return HAL_OK;
+ 317              		.loc 1 385 3 is_stmt 1 view .LVU85
+ 386:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 318              		.loc 1 386 1 is_stmt 0 view .LVU86
+ 319 0010 0020     		movs	r0, #0
+ 320              	.LVL25:
+ 321              		.loc 1 386 1 view .LVU87
+ 322              		@ sp needed
+ 323 0012 7047     		bx	lr
+ 324              		.cfi_endproc
+ 325              	.LFE60:
+ 327              		.section	.text.HAL_LPTIM_SetOnce_Start_IT,"ax",%progbits
+ 328              		.align	1
+ 329              		.global	HAL_LPTIM_SetOnce_Start_IT
+ 330              		.syntax unified
+ 331              		.code	16
+ 332              		.thumb_func
+ 334              	HAL_LPTIM_SetOnce_Start_IT:
+ 335              	.LVL26:
+ 336              	.LFB61:
+ 387:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 388:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 389:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Start the LPTIM Set once mode in interrupt mode.
+ 390:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 391:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  Period Specifies the Autoreload value.
+ 392:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *         This parameter must be a value between 0x0000 and 0xFFFF.
+ 393:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval HAL status
+ 394:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 395:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_SetOnce_Start_IT(LPTIM_HandleTypeDef *hlptim, uint32_t Period)
+ 396:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 337              		.loc 1 396 1 is_stmt 1 view -0
+ 338              		.cfi_startproc
+ 339              		@ args = 0, pretend = 0, frame = 0
+ 340              		@ frame_needed = 0, uses_anonymous_args = 0
+ 341              		.loc 1 396 1 is_stmt 0 view .LVU89
+ 342 0000 30B5     		push	{r4, r5, lr}
+ 343              	.LCFI3:
+ 344              		.cfi_def_cfa_offset 12
+ 345              		.cfi_offset 4, -12
+ 346              		.cfi_offset 5, -8
+ 347              		.cfi_offset 14, -4
+ 397:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the parameters */
+ 398:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_INSTANCE(hlptim->Instance));
+ 348              		.loc 1 398 3 is_stmt 1 view .LVU90
+ 399:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_PERIOD(Period));
+ 349              		.loc 1 399 3 view .LVU91
+ 400:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 401:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Set the LPTIM state */
+ 402:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_BUSY;
+ 350              		.loc 1 402 3 view .LVU92
+ 351              		.loc 1 402 16 is_stmt 0 view .LVU93
+ 352 0002 0222     		movs	r2, #2
+ 353 0004 4273     		strb	r2, [r0, #13]
+ARM GAS  /tmp/cc0zbLM9.s 			page 15
+
+
+ 403:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 404:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Enable Autoreload match interrupt */
+ 405:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_ENABLE_IT(hlptim, LPTIM_IT_ARRM);
+ 354              		.loc 1 405 3 is_stmt 1 view .LVU94
+ 355 0006 0468     		ldr	r4, [r0]
+ 356 0008 A368     		ldr	r3, [r4, #8]
+ 357 000a 1343     		orrs	r3, r2
+ 358 000c A360     		str	r3, [r4, #8]
+ 406:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 407:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Enable the Peripheral */
+ 408:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_ENABLE(hlptim);
+ 359              		.loc 1 408 3 view .LVU95
+ 360 000e 0568     		ldr	r5, [r0]
+ 361 0010 2B69     		ldr	r3, [r5, #16]
+ 362 0012 0124     		movs	r4, #1
+ 363 0014 2343     		orrs	r3, r4
+ 364 0016 2B61     		str	r3, [r5, #16]
+ 409:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 410:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Load the period value in the autoreload register */
+ 411:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_AUTORELOAD_SET(hlptim, Period);
+ 365              		.loc 1 411 3 view .LVU96
+ 366 0018 0368     		ldr	r3, [r0]
+ 367 001a 9961     		str	r1, [r3, #24]
+ 412:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 413:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Start timer in single mode */
+ 414:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_START_SINGLE(hlptim);
+ 368              		.loc 1 414 3 view .LVU97
+ 369 001c 0168     		ldr	r1, [r0]
+ 370              	.LVL27:
+ 371              		.loc 1 414 3 is_stmt 0 view .LVU98
+ 372 001e 0B69     		ldr	r3, [r1, #16]
+ 373              	.LVL28:
+ 374              		.loc 1 414 3 view .LVU99
+ 375 0020 1343     		orrs	r3, r2
+ 376 0022 0B61     		str	r3, [r1, #16]
+ 415:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 416:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the TIM state*/
+ 417:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_READY;
+ 377              		.loc 1 417 3 is_stmt 1 view .LVU100
+ 378              		.loc 1 417 16 is_stmt 0 view .LVU101
+ 379 0024 4473     		strb	r4, [r0, #13]
+ 418:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 419:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Return function status */
+ 420:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return HAL_OK;
+ 380              		.loc 1 420 3 is_stmt 1 view .LVU102
+ 421:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 381              		.loc 1 421 1 is_stmt 0 view .LVU103
+ 382 0026 0020     		movs	r0, #0
+ 383              	.LVL29:
+ 384              		.loc 1 421 1 view .LVU104
+ 385              		@ sp needed
+ 386 0028 30BD     		pop	{r4, r5, pc}
+ 387              		.cfi_endproc
+ 388              	.LFE61:
+ 390              		.section	.text.HAL_LPTIM_SetOnce_Stop_IT,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	HAL_LPTIM_SetOnce_Stop_IT
+ARM GAS  /tmp/cc0zbLM9.s 			page 16
+
+
+ 393              		.syntax unified
+ 394              		.code	16
+ 395              		.thumb_func
+ 397              	HAL_LPTIM_SetOnce_Stop_IT:
+ 398              	.LVL30:
+ 399              	.LFB62:
+ 422:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 423:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 424:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Stop the LPTIM Set once mode in interrupt mode.
+ 425:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 426:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval HAL status
+ 427:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 428:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_SetOnce_Stop_IT(LPTIM_HandleTypeDef *hlptim)
+ 429:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 400              		.loc 1 429 1 is_stmt 1 view -0
+ 401              		.cfi_startproc
+ 402              		@ args = 0, pretend = 0, frame = 0
+ 403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 404              		.loc 1 429 1 is_stmt 0 view .LVU106
+ 405 0000 10B5     		push	{r4, lr}
+ 406              	.LCFI4:
+ 407              		.cfi_def_cfa_offset 8
+ 408              		.cfi_offset 4, -8
+ 409              		.cfi_offset 14, -4
+ 430:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the parameters */
+ 431:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_INSTANCE(hlptim->Instance));
+ 410              		.loc 1 431 3 is_stmt 1 view .LVU107
+ 432:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 433:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Set the LPTIM state */
+ 434:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_BUSY;
+ 411              		.loc 1 434 3 view .LVU108
+ 412              		.loc 1 434 16 is_stmt 0 view .LVU109
+ 413 0002 0224     		movs	r4, #2
+ 414 0004 4473     		strb	r4, [r0, #13]
+ 435:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 436:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Disable the Peripheral */
+ 437:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_DISABLE(hlptim);
+ 415              		.loc 1 437 3 is_stmt 1 view .LVU110
+ 416 0006 0168     		ldr	r1, [r0]
+ 417 0008 0B69     		ldr	r3, [r1, #16]
+ 418 000a 0122     		movs	r2, #1
+ 419 000c 9343     		bics	r3, r2
+ 420 000e 0B61     		str	r3, [r1, #16]
+ 438:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 439:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Disable Autoreload match interrupt */
+ 440:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LPTIM_DISABLE_IT(hlptim, LPTIM_IT_ARRM);
+ 421              		.loc 1 440 3 view .LVU111
+ 422 0010 0168     		ldr	r1, [r0]
+ 423 0012 8B68     		ldr	r3, [r1, #8]
+ 424 0014 A343     		bics	r3, r4
+ 425 0016 8B60     		str	r3, [r1, #8]
+ 441:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 442:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Change the TIM state*/
+ 443:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   hlptim->State= HAL_LPTIM_STATE_READY;
+ 426              		.loc 1 443 3 view .LVU112
+ 427              		.loc 1 443 16 is_stmt 0 view .LVU113
+ 428 0018 4273     		strb	r2, [r0, #13]
+ARM GAS  /tmp/cc0zbLM9.s 			page 17
+
+
+ 444:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 445:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Return function status */
+ 446:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return HAL_OK;
+ 429              		.loc 1 446 3 is_stmt 1 view .LVU114
+ 447:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 430              		.loc 1 447 1 is_stmt 0 view .LVU115
+ 431 001a 0020     		movs	r0, #0
+ 432              	.LVL31:
+ 433              		.loc 1 447 1 view .LVU116
+ 434              		@ sp needed
+ 435 001c 10BD     		pop	{r4, pc}
+ 436              		.cfi_endproc
+ 437              	.LFE62:
+ 439              		.section	.text.HAL_LPTIM_ReadCounter,"ax",%progbits
+ 440              		.align	1
+ 441              		.global	HAL_LPTIM_ReadCounter
+ 442              		.syntax unified
+ 443              		.code	16
+ 444              		.thumb_func
+ 446              	HAL_LPTIM_ReadCounter:
+ 447              	.LVL32:
+ 448              	.LFB63:
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 449:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 450:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @}
+ 451:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 452:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 453:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /** @defgroup LPTIM_Exported_Functions_Group3 LPTIM Read operation functions
+ 454:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *  @brief  Read operation functions.
+ 455:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *
+ 456:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @verbatim
+ 457:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 458:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****                   ##### LPTIM Read operation functions #####
+ 459:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 460:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** [..]  This section provides LPTIM Reading functions.
+ 461:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (+) Read the counter value.
+ 462:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (+) Read the period (Auto-reload) value.
+ 463:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       (+) Read the pulse (Compare)value.
+ 464:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @endverbatim
+ 465:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @{
+ 466:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 467:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 468:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 469:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Return the current counter value.
+ 470:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 471:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval Counter value.
+ 472:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 473:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** uint32_t HAL_LPTIM_ReadCounter(LPTIM_HandleTypeDef *hlptim)
+ 474:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 449              		.loc 1 474 1 is_stmt 1 view -0
+ 450              		.cfi_startproc
+ 451              		@ args = 0, pretend = 0, frame = 0
+ 452              		@ frame_needed = 0, uses_anonymous_args = 0
+ 453              		@ link register save eliminated.
+ 475:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the parameters */
+ 476:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_INSTANCE(hlptim->Instance));
+ 454              		.loc 1 476 3 view .LVU118
+ARM GAS  /tmp/cc0zbLM9.s 			page 18
+
+
+ 477:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 478:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return (hlptim->Instance->CNT);
+ 455              		.loc 1 478 3 view .LVU119
+ 456              		.loc 1 478 17 is_stmt 0 view .LVU120
+ 457 0000 0368     		ldr	r3, [r0]
+ 458              		.loc 1 478 27 view .LVU121
+ 459 0002 D869     		ldr	r0, [r3, #28]
+ 460              	.LVL33:
+ 479:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 461              		.loc 1 479 1 view .LVU122
+ 462              		@ sp needed
+ 463 0004 7047     		bx	lr
+ 464              		.cfi_endproc
+ 465              	.LFE63:
+ 467              		.section	.text.HAL_LPTIM_ReadAutoReload,"ax",%progbits
+ 468              		.align	1
+ 469              		.global	HAL_LPTIM_ReadAutoReload
+ 470              		.syntax unified
+ 471              		.code	16
+ 472              		.thumb_func
+ 474              	HAL_LPTIM_ReadAutoReload:
+ 475              	.LVL34:
+ 476              	.LFB64:
+ 480:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 481:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 482:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Return the current Autoreload (Period) value.
+ 483:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 484:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval Autoreload value.
+ 485:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 486:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** uint32_t HAL_LPTIM_ReadAutoReload(LPTIM_HandleTypeDef *hlptim)
+ 487:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 477              		.loc 1 487 1 is_stmt 1 view -0
+ 478              		.cfi_startproc
+ 479              		@ args = 0, pretend = 0, frame = 0
+ 480              		@ frame_needed = 0, uses_anonymous_args = 0
+ 481              		@ link register save eliminated.
+ 488:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Check the parameters */
+ 489:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   assert_param(IS_LPTIM_INSTANCE(hlptim->Instance));
+ 482              		.loc 1 489 3 view .LVU124
+ 490:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 491:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return (hlptim->Instance->ARR);
+ 483              		.loc 1 491 3 view .LVU125
+ 484              		.loc 1 491 17 is_stmt 0 view .LVU126
+ 485 0000 0368     		ldr	r3, [r0]
+ 486              		.loc 1 491 27 view .LVU127
+ 487 0002 9869     		ldr	r0, [r3, #24]
+ 488              	.LVL35:
+ 492:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 489              		.loc 1 492 1 view .LVU128
+ 490              		@ sp needed
+ 491 0004 7047     		bx	lr
+ 492              		.cfi_endproc
+ 493              	.LFE64:
+ 495              		.section	.text.HAL_LPTIM_AutoReloadMatchCallback,"ax",%progbits
+ 496              		.align	1
+ 497              		.weak	HAL_LPTIM_AutoReloadMatchCallback
+ 498              		.syntax unified
+ARM GAS  /tmp/cc0zbLM9.s 			page 19
+
+
+ 499              		.code	16
+ 500              		.thumb_func
+ 502              	HAL_LPTIM_AutoReloadMatchCallback:
+ 503              	.LVL36:
+ 504              	.LFB66:
+ 493:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 494:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 495:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 496:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @}
+ 497:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 498:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 499:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 500:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 501:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /** @defgroup LPTIM_Exported_Functions_Group4 LPTIM IRQ handler and callbacks
+ 502:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *  @brief  LPTIM  IRQ handler.
+ 503:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *
+ 504:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @verbatim
+ 505:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 506:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****                       ##### LPTIM IRQ handler and callbacks  #####
+ 507:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 508:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** [..]  This section provides LPTIM IRQ handler and callback functions called within
+ 509:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       the IRQ handler:
+ 510:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) LPTIM interrupt request handler
+ 511:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) Compare match Callback
+ 512:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) Auto-reload match Callback
+ 513:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) External trigger event detection Callback
+ 514:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) Compare register write complete Callback
+ 515:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) Auto-reload register write complete Callback
+ 516:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) Up-counting direction change Callback
+ 517:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    (+) Down-counting direction change Callback
+ 518:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 519:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @endverbatim
+ 520:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @{
+ 521:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 522:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 523:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 524:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Handle LPTIM interrupt request.
+ 525:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 526:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval None
+ 527:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 528:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** void HAL_LPTIM_IRQHandler(LPTIM_HandleTypeDef *hlptim)
+ 529:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 530:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Autoreload match interrupt */
+ 531:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(__HAL_LPTIM_GET_FLAG(hlptim, LPTIM_FLAG_ARRM) != RESET)
+ 532:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 533:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     if(__HAL_LPTIM_GET_IT_SOURCE(hlptim, LPTIM_IT_ARRM) != RESET)
+ 534:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 535:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       /* Clear Autoreload match flag */
+ 536:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       __HAL_LPTIM_CLEAR_FLAG(hlptim, LPTIM_FLAG_ARRM);
+ 537:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 538:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       /* Autoreload match Callback */
+ 539:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #if (USE_HAL_LPTIM_REGISTER_CALLBACKS == 1)
+ 540:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->AutoReloadMatchCallback(hlptim);
+ 541:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #else
+ 542:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       HAL_LPTIM_AutoReloadMatchCallback(hlptim);
+ 543:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 544:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     }
+ARM GAS  /tmp/cc0zbLM9.s 			page 20
+
+
+ 545:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 546:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 547:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 548:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 549:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Autoreload match callback in non-blocking mode.
+ 550:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 551:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval None
+ 552:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 553:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** __weak void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim)
+ 554:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 505              		.loc 1 554 1 is_stmt 1 view -0
+ 506              		.cfi_startproc
+ 507              		@ args = 0, pretend = 0, frame = 0
+ 508              		@ frame_needed = 0, uses_anonymous_args = 0
+ 509              		@ link register save eliminated.
+ 555:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Prevent unused argument(s) compilation warning */
+ 556:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   UNUSED(hlptim);
+ 510              		.loc 1 556 3 view .LVU130
+ 557:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 558:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 559:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****             the HAL_LPTIM_AutoReloadMatchCallback could be implemented in the user file
+ 560:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****    */
+ 561:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 511              		.loc 1 561 1 is_stmt 0 view .LVU131
+ 512              		@ sp needed
+ 513 0000 7047     		bx	lr
+ 514              		.cfi_endproc
+ 515              	.LFE66:
+ 517              		.section	.text.HAL_LPTIM_IRQHandler,"ax",%progbits
+ 518              		.align	1
+ 519              		.global	HAL_LPTIM_IRQHandler
+ 520              		.syntax unified
+ 521              		.code	16
+ 522              		.thumb_func
+ 524              	HAL_LPTIM_IRQHandler:
+ 525              	.LVL37:
+ 526              	.LFB65:
+ 529:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Autoreload match interrupt */
+ 527              		.loc 1 529 1 is_stmt 1 view -0
+ 528              		.cfi_startproc
+ 529              		@ args = 0, pretend = 0, frame = 0
+ 530              		@ frame_needed = 0, uses_anonymous_args = 0
+ 529:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Autoreload match interrupt */
+ 531              		.loc 1 529 1 is_stmt 0 view .LVU133
+ 532 0000 10B5     		push	{r4, lr}
+ 533              	.LCFI5:
+ 534              		.cfi_def_cfa_offset 8
+ 535              		.cfi_offset 4, -8
+ 536              		.cfi_offset 14, -4
+ 531:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 537              		.loc 1 531 3 is_stmt 1 view .LVU134
+ 531:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 538              		.loc 1 531 6 is_stmt 0 view .LVU135
+ 539 0002 0268     		ldr	r2, [r0]
+ 540 0004 1368     		ldr	r3, [r2]
+ 531:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 541              		.loc 1 531 5 view .LVU136
+ARM GAS  /tmp/cc0zbLM9.s 			page 21
+
+
+ 542 0006 9B07     		lsls	r3, r3, #30
+ 543 0008 02D5     		bpl	.L20
+ 533:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 544              		.loc 1 533 5 is_stmt 1 view .LVU137
+ 533:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 545              		.loc 1 533 8 is_stmt 0 view .LVU138
+ 546 000a 9368     		ldr	r3, [r2, #8]
+ 533:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 547              		.loc 1 533 7 view .LVU139
+ 548 000c 9B07     		lsls	r3, r3, #30
+ 549 000e 00D4     		bmi	.L24
+ 550              	.LVL38:
+ 551              	.L20:
+ 546:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 552              		.loc 1 546 1 view .LVU140
+ 553              		@ sp needed
+ 554 0010 10BD     		pop	{r4, pc}
+ 555              	.LVL39:
+ 556              	.L24:
+ 536:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 557              		.loc 1 536 7 is_stmt 1 view .LVU141
+ 558 0012 0223     		movs	r3, #2
+ 559 0014 5360     		str	r3, [r2, #4]
+ 542:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 560              		.loc 1 542 7 view .LVU142
+ 561 0016 FFF7FEFF 		bl	HAL_LPTIM_AutoReloadMatchCallback
+ 562              	.LVL40:
+ 546:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 563              		.loc 1 546 1 is_stmt 0 view .LVU143
+ 564 001a F9E7     		b	.L20
+ 565              		.cfi_endproc
+ 566              	.LFE65:
+ 568              		.section	.text.HAL_LPTIM_GetState,"ax",%progbits
+ 569              		.align	1
+ 570              		.global	HAL_LPTIM_GetState
+ 571              		.syntax unified
+ 572              		.code	16
+ 573              		.thumb_func
+ 575              	HAL_LPTIM_GetState:
+ 576              	.LVL41:
+ 577              	.LFB67:
+ 562:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 563:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 564:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #if (USE_HAL_LPTIM_REGISTER_CALLBACKS == 1)
+ 565:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 566:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Register a User LPTIM callback to be used instead of the weak predefined callback
+ 567:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param hlptim LPTIM handle
+ 568:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param CallbackID ID of the callback to be registered
+ 569:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *        This parameter can be one of the following values:
+ 570:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          @arg @ref HAL_LPTIM_MSPINIT_CB_ID          LPTIM Base Msp Init Callback ID
+ 571:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          @arg @ref HAL_LPTIM_MSPDEINIT_CB_ID        LPTIM Base Msp DeInit Callback ID
+ 572:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          @arg @ref HAL_LPTIM_AUTORELOAD_MATCH_CB_ID Auto-reload match Callback ID
+ 573:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param pCallback pointer to the callback function
+ 574:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval status
+ 575:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 576:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_RegisterCallback(LPTIM_HandleTypeDef *       hlptim,
+ 577:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     HAL_LPTIM_CallbackIDTypeDef CallbackID,
+ARM GAS  /tmp/cc0zbLM9.s 			page 22
+
+
+ 578:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     pLPTIM_CallbackTypeDef      pCallback)
+ 579:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 580:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 581:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 582:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(pCallback == NULL)
+ 583:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 584:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     return HAL_ERROR;
+ 585:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 586:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 587:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Process locked */
+ 588:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LOCK(hlptim);
+ 589:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 590:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(hlptim->State == HAL_LPTIM_STATE_READY)
+ 591:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 592:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     switch (CallbackID)
+ 593:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 594:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPINIT_CB_ID :
+ 595:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspInitCallback = pCallback;
+ 596:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 597:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 598:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPDEINIT_CB_ID :
+ 599:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspDeInitCallback = pCallback;
+ 600:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 601:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 602:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_AUTORELOAD_MATCH_CB_ID :
+ 603:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->AutoReloadMatchCallback = pCallback;
+ 604:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 605:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 606:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     default :
+ 607:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       /* Return error status */
+ 608:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       status =  HAL_ERROR;
+ 609:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 610:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     }
+ 611:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 612:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   else if(hlptim->State == HAL_LPTIM_STATE_RESET)
+ 613:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 614:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     switch (CallbackID)
+ 615:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 616:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPINIT_CB_ID :
+ 617:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspInitCallback = pCallback;
+ 618:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 619:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 620:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPDEINIT_CB_ID :
+ 621:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspDeInitCallback = pCallback;
+ 622:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 623:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 624:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     default :
+ 625:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       /* Return error status */
+ 626:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       status =  HAL_ERROR;
+ 627:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 628:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     }
+ 629:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 630:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   else
+ 631:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 632:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     /* Return error status */
+ 633:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     status =  HAL_ERROR;
+ 634:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ARM GAS  /tmp/cc0zbLM9.s 			page 23
+
+
+ 635:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 636:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Release Lock */
+ 637:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_UNLOCK(hlptim);
+ 638:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 639:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return status;
+ 640:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 641:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 642:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 643:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Unregister a LPTIM callback
+ 644:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *         LLPTIM callback is redirected to the weak predefined callback
+ 645:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param hlptim LPTIM handle
+ 646:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param CallbackID ID of the callback to be unregistered
+ 647:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *        This parameter can be one of the following values:
+ 648:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          @arg @ref HAL_LPTIM_MSPINIT_CB_ID          LPTIM Base Msp Init Callback ID
+ 649:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          @arg @ref HAL_LPTIM_MSPDEINIT_CB_ID        LPTIM Base Msp DeInit Callback ID
+ 650:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   *          @arg @ref HAL_LPTIM_AUTORELOAD_MATCH_CB_ID Auto-reload match Callback ID
+ 651:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval status
+ 652:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 653:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_StatusTypeDef HAL_LPTIM_UnRegisterCallback(LPTIM_HandleTypeDef *       hlptim,
+ 654:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     HAL_LPTIM_CallbackIDTypeDef CallbackID)
+ 655:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 656:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 657:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 658:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Process locked */
+ 659:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_LOCK(hlptim);
+ 660:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 661:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   if(hlptim->State == HAL_LPTIM_STATE_READY)
+ 662:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 663:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     switch (CallbackID)
+ 664:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 665:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPINIT_CB_ID :
+ 666:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspInitCallback = HAL_LPTIM_MspInit;                          /* Legacy weak MspInit 
+ 667:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 668:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 669:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPDEINIT_CB_ID :
+ 670:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspDeInitCallback = HAL_LPTIM_MspDeInit;                       /* Legacy weak Msp DeI
+ 671:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 672:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 673:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_AUTORELOAD_MATCH_CB_ID :
+ 674:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->AutoReloadMatchCallback = HAL_LPTIM_AutoReloadMatchCallback;   /* Legacy weak IC Msp 
+ 675:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 676:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 677:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     default :
+ 678:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       /* Return error status */
+ 679:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       status =  HAL_ERROR;
+ 680:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 681:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     }
+ 682:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 683:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   else if(hlptim->State == HAL_LPTIM_STATE_RESET)
+ 684:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 685:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     switch (CallbackID)
+ 686:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     {
+ 687:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPINIT_CB_ID :
+ 688:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspInitCallback = HAL_LPTIM_MspInit;                           /* Legacy weak MspInit
+ 689:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 690:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 691:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     case HAL_LPTIM_MSPDEINIT_CB_ID :
+ARM GAS  /tmp/cc0zbLM9.s 			page 24
+
+
+ 692:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       hlptim->MspDeInitCallback = HAL_LPTIM_MspDeInit;                        /* Legacy weak Msp De
+ 693:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 694:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 695:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     default :
+ 696:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       /* Return error status */
+ 697:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       status =  HAL_ERROR;
+ 698:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****       break;
+ 699:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     }
+ 700:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 701:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   else
+ 702:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   {
+ 703:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     /* Return error status */
+ 704:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     status =  HAL_ERROR;
+ 705:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   }
+ 706:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 707:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Release Lock */
+ 708:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   __HAL_UNLOCK(hlptim);
+ 709:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 710:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return status;
+ 711:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 712:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** #endif /* USE_HAL_LPTIM_REGISTER_CALLBACKS */
+ 713:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 714:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 715:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @}
+ 716:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 717:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 718:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /** @defgroup LPTIM_Group5 Peripheral State functions
+ 719:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *  @brief   Peripheral State functions.
+ 720:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****  *
+ 721:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @verbatim
+ 722:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 723:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****                       ##### Peripheral State functions #####
+ 724:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   ==============================================================================
+ 725:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     [..]
+ 726:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****     This subsection permits to get in run-time the status of the peripheral.
+ 727:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 728:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** @endverbatim
+ 729:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @{
+ 730:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 731:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** 
+ 732:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** /**
+ 733:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @brief  Return the LPTIM handle state.
+ 734:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @param  hlptim LPTIM handle
+ 735:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   * @retval HAL state
+ 736:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   */
+ 737:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** HAL_LPTIM_StateTypeDef HAL_LPTIM_GetState(LPTIM_HandleTypeDef *hlptim)
+ 738:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** {
+ 578              		.loc 1 738 1 is_stmt 1 view -0
+ 579              		.cfi_startproc
+ 580              		@ args = 0, pretend = 0, frame = 0
+ 581              		@ frame_needed = 0, uses_anonymous_args = 0
+ 582              		@ link register save eliminated.
+ 739:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   /* Return LPTIM handle state */
+ 740:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c ****   return hlptim->State;
+ 583              		.loc 1 740 3 view .LVU145
+ 584              		.loc 1 740 16 is_stmt 0 view .LVU146
+ 585 0000 407B     		ldrb	r0, [r0, #13]
+ARM GAS  /tmp/cc0zbLM9.s 			page 25
+
+
+ 586              	.LVL42:
+ 587              		.loc 1 740 16 view .LVU147
+ 588 0002 C0B2     		uxtb	r0, r0
+ 741:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_lptim.c **** }
+ 589              		.loc 1 741 1 view .LVU148
+ 590              		@ sp needed
+ 591 0004 7047     		bx	lr
+ 592              		.cfi_endproc
+ 593              	.LFE67:
+ 595              		.text
+ 596              	.Letext0:
+ 597              		.file 2 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ 598              		.file 3 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 599              		.file 4 "CMSIS/Device/PY32F0xx/Include/py32f0xx.h"
+ 600              		.file 5 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_def.h"
+ 601              		.file 6 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_lptim.h"
+ARM GAS  /tmp/cc0zbLM9.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 py32f0xx_hal_lptim.c
+     /tmp/cc0zbLM9.s:19     .text.HAL_LPTIM_MspInit:00000000 $t
+     /tmp/cc0zbLM9.s:25     .text.HAL_LPTIM_MspInit:00000000 HAL_LPTIM_MspInit
+     /tmp/cc0zbLM9.s:41     .text.HAL_LPTIM_Init:00000000 $t
+     /tmp/cc0zbLM9.s:47     .text.HAL_LPTIM_Init:00000000 HAL_LPTIM_Init
+     /tmp/cc0zbLM9.s:140    .text.HAL_LPTIM_Init:00000038 $d
+     /tmp/cc0zbLM9.s:145    .text.HAL_LPTIM_MspDeInit:00000000 $t
+     /tmp/cc0zbLM9.s:151    .text.HAL_LPTIM_MspDeInit:00000000 HAL_LPTIM_MspDeInit
+     /tmp/cc0zbLM9.s:167    .text.HAL_LPTIM_DeInit:00000000 $t
+     /tmp/cc0zbLM9.s:173    .text.HAL_LPTIM_DeInit:00000000 HAL_LPTIM_DeInit
+     /tmp/cc0zbLM9.s:231    .text.HAL_LPTIM_SetOnce_Start:00000000 $t
+     /tmp/cc0zbLM9.s:237    .text.HAL_LPTIM_SetOnce_Start:00000000 HAL_LPTIM_SetOnce_Start
+     /tmp/cc0zbLM9.s:289    .text.HAL_LPTIM_SetOnce_Stop:00000000 $t
+     /tmp/cc0zbLM9.s:295    .text.HAL_LPTIM_SetOnce_Stop:00000000 HAL_LPTIM_SetOnce_Stop
+     /tmp/cc0zbLM9.s:328    .text.HAL_LPTIM_SetOnce_Start_IT:00000000 $t
+     /tmp/cc0zbLM9.s:334    .text.HAL_LPTIM_SetOnce_Start_IT:00000000 HAL_LPTIM_SetOnce_Start_IT
+     /tmp/cc0zbLM9.s:391    .text.HAL_LPTIM_SetOnce_Stop_IT:00000000 $t
+     /tmp/cc0zbLM9.s:397    .text.HAL_LPTIM_SetOnce_Stop_IT:00000000 HAL_LPTIM_SetOnce_Stop_IT
+     /tmp/cc0zbLM9.s:440    .text.HAL_LPTIM_ReadCounter:00000000 $t
+     /tmp/cc0zbLM9.s:446    .text.HAL_LPTIM_ReadCounter:00000000 HAL_LPTIM_ReadCounter
+     /tmp/cc0zbLM9.s:468    .text.HAL_LPTIM_ReadAutoReload:00000000 $t
+     /tmp/cc0zbLM9.s:474    .text.HAL_LPTIM_ReadAutoReload:00000000 HAL_LPTIM_ReadAutoReload
+     /tmp/cc0zbLM9.s:496    .text.HAL_LPTIM_AutoReloadMatchCallback:00000000 $t
+     /tmp/cc0zbLM9.s:502    .text.HAL_LPTIM_AutoReloadMatchCallback:00000000 HAL_LPTIM_AutoReloadMatchCallback
+     /tmp/cc0zbLM9.s:518    .text.HAL_LPTIM_IRQHandler:00000000 $t
+     /tmp/cc0zbLM9.s:524    .text.HAL_LPTIM_IRQHandler:00000000 HAL_LPTIM_IRQHandler
+     /tmp/cc0zbLM9.s:569    .text.HAL_LPTIM_GetState:00000000 $t
+     /tmp/cc0zbLM9.s:575    .text.HAL_LPTIM_GetState:00000000 HAL_LPTIM_GetState
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,178 @@
+ARM GAS  /tmp/cc68i1Ol.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "src/main.c"
+  18              		.section	.text.SysTick_Handler,"ax",%progbits
+  19              		.align	1
+  20              		.global	SysTick_Handler
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	SysTick_Handler:
+  26              	.LFB55:
+   1:src/main.c    **** #include <stdio.h>
+   2:src/main.c    **** #include "py32f0xx.h"
+   3:src/main.c    **** 
+   4:src/main.c    **** void SysTick_Handler()
+   5:src/main.c    **** {
+  27              		.loc 1 5 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+   6:src/main.c    ****     HAL_IncTick();
+  36              		.loc 1 6 5 view .LVU1
+  37 0002 FFF7FEFF 		bl	HAL_IncTick
+  38              	.LVL0:
+   7:src/main.c    **** }
+  39              		.loc 1 7 1 is_stmt 0 view .LVU2
+  40              		@ sp needed
+  41 0006 10BD     		pop	{r4, pc}
+  42              		.cfi_endproc
+  43              	.LFE55:
+  45              		.section	.text.main,"ax",%progbits
+  46              		.align	1
+  47              		.global	main
+  48              		.syntax unified
+  49              		.code	16
+  50              		.thumb_func
+  52              	main:
+  53              	.LFB56:
+ARM GAS  /tmp/cc68i1Ol.s 			page 2
+
+
+   8:src/main.c    **** 
+   9:src/main.c    **** int main (void)
+  10:src/main.c    **** {
+  54              		.loc 1 10 1 is_stmt 1 view -0
+  55              		.cfi_startproc
+  56              		@ Volatile: function does not return.
+  57              		@ args = 0, pretend = 0, frame = 24
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59 0000 10B5     		push	{r4, lr}
+  60              	.LCFI1:
+  61              		.cfi_def_cfa_offset 8
+  62              		.cfi_offset 4, -8
+  63              		.cfi_offset 14, -4
+  64 0002 86B0     		sub	sp, sp, #24
+  65              	.LCFI2:
+  66              		.cfi_def_cfa_offset 32
+  11:src/main.c    ****     HAL_Init();
+  67              		.loc 1 11 5 view .LVU4
+  68 0004 FFF7FEFF 		bl	HAL_Init
+  69              	.LVL1:
+  12:src/main.c    ****     SystemCoreClockUpdate();
+  70              		.loc 1 12 5 view .LVU5
+  71 0008 FFF7FEFF 		bl	SystemCoreClockUpdate
+  72              	.LVL2:
+  13:src/main.c    ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+  73              		.loc 1 13 5 view .LVU6
+  74              	.LBB2:
+  75              		.loc 1 13 5 view .LVU7
+  76              		.loc 1 13 5 view .LVU8
+  77 000c 0F4A     		ldr	r2, .L4
+  78 000e 516B     		ldr	r1, [r2, #52]
+  79 0010 0223     		movs	r3, #2
+  80 0012 1943     		orrs	r1, r3
+  81 0014 5163     		str	r1, [r2, #52]
+  82              		.loc 1 13 5 view .LVU9
+  83 0016 526B     		ldr	r2, [r2, #52]
+  84 0018 1340     		ands	r3, r2
+  85 001a 0093     		str	r3, [sp]
+  86              		.loc 1 13 5 view .LVU10
+  87 001c 009B     		ldr	r3, [sp]
+  88              	.LBE2:
+  89              		.loc 1 13 5 view .LVU11
+  14:src/main.c    ****     HAL_GPIO_Init(GPIOB, &(GPIO_InitTypeDef){.Mode = GPIO_MODE_OUTPUT_OD, .Pin = GPIO_PIN_0});
+  90              		.loc 1 14 5 view .LVU12
+  91              		.loc 1 14 45 is_stmt 0 view .LVU13
+  92 001e 01AC     		add	r4, sp, #4
+  93 0020 1422     		movs	r2, #20
+  94 0022 0021     		movs	r1, #0
+  95 0024 2000     		movs	r0, r4
+  96 0026 FFF7FEFF 		bl	memset
+  97              	.LVL3:
+  98 002a 0123     		movs	r3, #1
+  99 002c 0193     		str	r3, [sp, #4]
+ 100 002e 1033     		adds	r3, r3, #16
+ 101 0030 0293     		str	r3, [sp, #8]
+ 102              		.loc 1 14 5 view .LVU14
+ 103 0032 2100     		movs	r1, r4
+ARM GAS  /tmp/cc68i1Ol.s 			page 3
+
+
+ 104 0034 0648     		ldr	r0, .L4+4
+ 105 0036 FFF7FEFF 		bl	HAL_GPIO_Init
+ 106              	.LVL4:
+ 107              	.L3:
+  15:src/main.c    ****     while(1) {
+ 108              		.loc 1 15 5 is_stmt 1 view .LVU15
+  16:src/main.c    ****         HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+ 109              		.loc 1 16 9 view .LVU16
+ 110 003a 0121     		movs	r1, #1
+ 111 003c 0448     		ldr	r0, .L4+4
+ 112 003e FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 113              	.LVL5:
+  17:src/main.c    ****         HAL_Delay(100);
+ 114              		.loc 1 17 9 discriminator 1 view .LVU17
+ 115 0042 6420     		movs	r0, #100
+ 116 0044 FFF7FEFF 		bl	HAL_Delay
+ 117              	.LVL6:
+  15:src/main.c    ****     while(1) {
+ 118              		.loc 1 15 10 view .LVU18
+ 119 0048 F7E7     		b	.L3
+ 120              	.L5:
+ 121 004a C046     		.align	2
+ 122              	.L4:
+ 123 004c 00100240 		.word	1073876992
+ 124 0050 00040050 		.word	1342178304
+ 125              		.cfi_endproc
+ 126              	.LFE56:
+ 128              		.text
+ 129              	.Letext0:
+ 130              		.file 2 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 131              		.file 3 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ 132              		.file 4 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_def.h"
+ 133              		.file 5 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_gpio.h"
+ 134              		.file 6 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal.h"
+ 135              		.file 7 "CMSIS/Device/PY32F0xx/Include/system_py32f0xx.h"
+ 136              		.file 8 "<built-in>"
+ARM GAS  /tmp/cc68i1Ol.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+     /tmp/cc68i1Ol.s:19     .text.SysTick_Handler:00000000 $t
+     /tmp/cc68i1Ol.s:25     .text.SysTick_Handler:00000000 SysTick_Handler
+     /tmp/cc68i1Ol.s:46     .text.main:00000000 $t
+     /tmp/cc68i1Ol.s:52     .text.main:00000000 main
+     /tmp/cc68i1Ol.s:123    .text.main:0000004c $d
+
+UNDEFINED SYMBOLS
+HAL_IncTick
+HAL_Init
+SystemCoreClockUpdate
+memset
+HAL_GPIO_Init
+HAL_GPIO_TogglePin
+HAL_Delay

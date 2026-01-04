@@ -1,0 +1,1804 @@
+ARM GAS  /tmp/ccy6wxXT.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"py32f0xx_ll_utils.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c"
+  18              		.section	.text.LL_Init1msTick,"ax",%progbits
+  19              		.align	1
+  20              		.global	LL_Init1msTick
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	LL_Init1msTick:
+  26              	.LVL0:
+  27              	.LFB166:
+   1:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+   2:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   ******************************************************************************
+   3:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @file    py32f0xx_ll_utils.c
+   4:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @brief   UTILS LL module driver.
+   6:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   ******************************************************************************
+   7:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @attention
+   8:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *
+   9:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+  10:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * All rights reserved.</center></h2>
+  11:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *
+  12:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  13:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * All rights reserved.</center></h2>
+  14:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *
+  15:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+  16:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * the "License"; You may not use this file except in compliance with the
+  17:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * License. You may obtain a copy of the License at:
+  18:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *                        opensource.org/licenses/BSD-3-Clause
+  19:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *
+  20:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   ******************************************************************************
+  21:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+  22:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Includes ------------------------------------------------------------------*/
+  23:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #include "py32f0xx_ll_utils.h"
+  24:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #include "py32f0xx_ll_rcc.h"
+  25:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #include "py32f0xx_ll_system.h"
+  26:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #ifdef  USE_FULL_ASSERT
+  27:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   #include "py32_assert.h"
+  28:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #else
+  29:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   #define assert_param(expr) ((void)0U)
+  30:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #endif /* USE_FULL_ASSERT */
+  31:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ARM GAS  /tmp/ccy6wxXT.s 			page 2
+
+
+  32:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /** @addtogroup PY32F0xx_LL_Driver
+  33:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+  34:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+  35:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  36:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /** @addtogroup UTILS_LL
+  37:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+  38:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+  39:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  40:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Private types -------------------------------------------------------------*/
+  41:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Private variables ---------------------------------------------------------*/
+  42:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Private constants ---------------------------------------------------------*/
+  43:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /** @addtogroup UTILS_LL_Private_Constants
+  44:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+  45:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+  46:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #if defined(RCC_PLL_SUPPORT)
+  47:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Defines used for HSE range */
+  48:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define UTILS_HSE_FREQUENCY_MIN      4000000U      /*!< Frequency min for HSE frequency, in Hz   */
+  49:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define UTILS_HSE_FREQUENCY_MAX      32000000U     /*!< Frequency max for HSE frequency, in Hz   */
+  50:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  51:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Defines used for PLL input range */
+  52:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define LL_RCC_PLLINPUT_FREQ_MIN     16000000U     /*!< Frequency min for PLL input frequency, in H
+  53:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define LL_RCC_PLLINPUT_FREQ_MAX     24000000U     /*!< Frequency max for PLL input frequency, in H
+  54:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #endif
+  55:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  56:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Defines used for FLASH latency according to HCLK Frequency */
+  57:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define UTILS_SCALE1_LATENCY1_FREQ  24000000U       /*!< HCLK frequency to set FLASH latency 1 in p
+  58:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define UTILS_SCALE1_LATENCY2_FREQ  48000000U       /*!< HCLK frequency to set FLASH latency 2 in p
+  59:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  60:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+  61:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @}
+  62:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+  63:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  64:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Private macros ------------------------------------------------------------*/
+  65:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /** @addtogroup UTILS_LL_Private_Macros
+  66:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+  67:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+  68:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define IS_LL_UTILS_SYSCLK_DIV(__VALUE__) (((__VALUE__) == LL_RCC_SYSCLK_DIV_1)   \
+  69:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_2)   \
+  70:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_4)   \
+  71:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_8)   \
+  72:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_16)  \
+  73:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_64)  \
+  74:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_128) \
+  75:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_256) \
+  76:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__VALUE__) == LL_RCC_SYSCLK_DIV_512))
+  77:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  78:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define IS_LL_UTILS_APB1_DIV(__VALUE__) (((__VALUE__) == LL_RCC_APB1_DIV_1) \
+  79:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                       || ((__VALUE__) == LL_RCC_APB1_DIV_2) \
+  80:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                       || ((__VALUE__) == LL_RCC_APB1_DIV_4) \
+  81:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                       || ((__VALUE__) == LL_RCC_APB1_DIV_8) \
+  82:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                       || ((__VALUE__) == LL_RCC_APB1_DIV_16))
+  83:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  84:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  85:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define IS_LL_UTILS_HSE_BYPASS(__STATE__) (((__STATE__) == LL_UTILS_HSEBYPASS_ON) \
+  86:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****                                         || ((__STATE__) == LL_UTILS_HSEBYPASS_OFF))
+  87:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  88:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #if defined(RCC_PLL_SUPPORT)
+ARM GAS  /tmp/ccy6wxXT.s 			page 3
+
+
+  89:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define IS_LL_UTILS_HSE_FREQUENCY(__FREQUENCY__) (((__FREQUENCY__) >= UTILS_HSE_FREQUENCY_MIN) && (
+  90:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  91:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #define IS_LL_UTILS_PLL_INPUT_FREQUENCY(__FREQUENCY__) (((__FREQUENCY__) >= LL_RCC_PLLINPUT_FREQ_MI
+  92:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #endif
+  93:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+  94:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+  95:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @}
+  96:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+  97:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #if defined(RCC_PLL_SUPPORT)
+  98:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Private function prototypes -----------------------------------------------*/
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /** @defgroup UTILS_LL_Private_Functions UTILS Private functions
+ 100:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 102:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   static ErrorStatus UTILS_EnablePLLAndSwitchSystem(uint32_t SYSCLK_Frequency, LL_UTILS_ClkInitType
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   static ErrorStatus UTILS_PLL_IsBusy(void);
+ 104:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /**
+ 105:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @}
+ 106:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #endif
+ 108:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /* Exported functions --------------------------------------------------------*/
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /** @addtogroup UTILS_LL_Exported_Functions
+ 110:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+ 111:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 113:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /** @addtogroup UTILS_LL_EF_DELAY
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+ 115:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 116:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 117:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @brief  This function configures the Cortex-M SysTick source to have 1ms time base.
+ 119:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @note   When a RTOS is used, it is recommended to avoid changing the Systick
+ 120:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *         configuration by calling this function, for a delay use rather osDelay RTOS service.
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  HCLKFrequency HCLK frequency in Hz
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @note   HCLK frequency can be calculated thanks to RCC helper macro or function @ref LL_RCC_Get
+ 123:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @retval None
+ 124:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 125:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** void LL_Init1msTick(uint32_t HCLKFrequency)
+ 126:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** {
+  28              		.loc 1 126 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 126 1 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+ 127:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Use frequency provided in argument */
+ 128:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   LL_InitTick(HCLKFrequency, 1000U);
+  38              		.loc 1 128 3 is_stmt 1 view .LVU2
+  39              	.LVL1:
+  40              	.LBB8:
+  41              	.LBI8:
+  42              		.file 2 "PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h"
+   1:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+   2:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   ******************************************************************************
+ARM GAS  /tmp/ccy6wxXT.s 			page 4
+
+
+   3:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @file    py32f0xx_ll_utils.h
+   4:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief   Header file of UTILS LL module.
+   6:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   @verbatim
+   7:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   ==============================================================================
+   8:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****                      ##### How to use this driver #####
+   9:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   ==============================================================================
+  10:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****     [..]
+  11:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****     The LL UTILS driver contains a set of generic APIs that can be
+  12:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****     used by user:
+  13:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****       (+) Device electronic signature
+  14:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****       (+) Timing functions
+  15:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****       (+) PLL configuration functions
+  16:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  17:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   @endverbatim
+  18:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   ******************************************************************************
+  19:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @attention
+  20:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   *
+  21:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+  22:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * All rights reserved.</center></h2>
+  23:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   *
+  24:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  25:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * All rights reserved.</center></h2>
+  26:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   *
+  27:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * This software component is licensed by ST under BSD 3-Clause license,
+  28:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * the "License"; You may not use this file except in compliance with the
+  29:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * License. You may obtain a copy of the License at:
+  30:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   *                        opensource.org/licenses/BSD-3-Clause
+  31:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   *
+  32:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   ******************************************************************************
+  33:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  34:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  35:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Define to prevent recursive inclusion -------------------------------------*/
+  36:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #ifndef PY32F0XX_LL_UTILS_H
+  37:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #define PY32F0XX_LL_UTILS_H
+  38:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  39:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #ifdef __cplusplus
+  40:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** extern "C" {
+  41:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #endif
+  42:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  43:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Includes ------------------------------------------------------------------*/
+  44:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #include "py32f0xx.h"
+  45:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  46:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @addtogroup PY32F0XX_LL_Driver
+  47:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+  48:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  49:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  50:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_LL UTILS
+  51:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+  52:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  53:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  54:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Private types -------------------------------------------------------------*/
+  55:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Private variables ---------------------------------------------------------*/
+  56:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  57:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Private constants ---------------------------------------------------------*/
+  58:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_LL_Private_Constants UTILS Private Constants
+  59:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+ARM GAS  /tmp/ccy6wxXT.s 			page 5
+
+
+  60:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  61:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  62:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Max delay can be used in LL_mDelay */
+  63:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #define LL_MAX_DELAY                  0xFFFFFFFFU
+  64:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  65:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+  66:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****  * @brief Unique device ID register base address
+  67:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****  */
+  68:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #define UID_BASE_ADDRESS              UID_BASE
+  69:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  70:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+  71:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****  * @brief Flash size data register base address
+  72:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****  */
+  73:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #define FLASHSIZE_BASE_ADDRESS        FLASHSIZE_BASE
+  74:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  75:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+  76:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @}
+  77:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  78:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  79:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Private macros ------------------------------------------------------------*/
+  80:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_LL_Private_Macros UTILS Private Macros
+  81:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+  82:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  83:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+  84:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @}
+  85:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  86:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Exported types ------------------------------------------------------------*/
+  87:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_LL_ES_INIT UTILS Exported structures
+  88:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+  89:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  90:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+  91:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief  UTILS System, AHB and APB1 buses clock configuration structure definition
+  92:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+  93:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** typedef struct
+  94:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** {
+  95:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   uint32_t AHBCLKDivider;         /*!< The AHB clock (HCLK) divider. This clock is derived from the
+  96:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****                                        This parameter can be a value of @ref RCC_LL_EC_SYSCLK_DIV
+  97:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+  98:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****                                        This feature can be modified afterwards using unitary functi
+  99:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****                                        @ref LL_RCC_SetAHBPrescaler(). */
+ 100:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 101:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   uint32_t APB1CLKDivider;         /*!< The APB1 clock (PCLK1) divider. This clock is derived from 
+ 102:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****                                        This parameter can be a value of @ref RCC_LL_EC_APB1_DIV
+ 103:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 104:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****                                        This feature can be modified afterwards using unitary functi
+ 105:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****                                        @ref LL_RCC_SetAPB1Prescaler(). */
+ 106:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** } LL_UTILS_ClkInitTypeDef;
+ 107:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 108:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 109:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @}
+ 110:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 111:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 112:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Exported constants --------------------------------------------------------*/
+ 113:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_LL_Exported_Constants UTILS Exported Constants
+ 114:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+ 115:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 116:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ARM GAS  /tmp/ccy6wxXT.s 			page 6
+
+
+ 117:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_EC_HSE_BYPASS HSE Bypass activation
+ 118:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+ 119:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 120:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #define LL_UTILS_HSEBYPASS_OFF        0x00000000U       /*!< HSE Bypass is not enabled             
+ 121:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** #define LL_UTILS_HSEBYPASS_ON         0x00000001U       /*!< HSE Bypass is enabled                 
+ 122:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 123:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @}
+ 124:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 125:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 126:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 127:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @}
+ 128:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 129:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 130:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Exported macro ------------------------------------------------------------*/
+ 131:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 132:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /* Exported functions --------------------------------------------------------*/
+ 133:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_LL_Exported_Functions UTILS Exported Functions
+ 134:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+ 135:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 136:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 137:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_EF_DEVICE_ELECTRONIC_SIGNATURE DEVICE ELECTRONIC SIGNATURE
+ 138:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+ 139:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 140:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 141:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 142:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief  Get Word0 of the unique device identifier (UID based on 96 bits)
+ 143:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @retval UID[31:0]
+ 144:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 145:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** __STATIC_INLINE uint32_t LL_GetUID_Word0(void)
+ 146:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** {
+ 147:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   return (uint32_t)(READ_REG(*((uint32_t *)UID_BASE_ADDRESS)));
+ 148:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** }
+ 149:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 150:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 151:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief  Get Word1 of the unique device identifier (UID based on 96 bits)
+ 152:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @retval UID[63:32]
+ 153:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 154:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** __STATIC_INLINE uint32_t LL_GetUID_Word1(void)
+ 155:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** {
+ 156:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   return (uint32_t)(READ_REG(*((uint32_t *)(UID_BASE_ADDRESS + 4U))));
+ 157:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** }
+ 158:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 159:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 160:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief  Get Word2 of the unique device identifier (UID based on 96 bits)
+ 161:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @retval UID[95:64]
+ 162:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 163:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** __STATIC_INLINE uint32_t LL_GetUID_Word2(void)
+ 164:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** {
+ 165:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   return (uint32_t)(READ_REG(*((uint32_t *)(UID_BASE_ADDRESS + 8U))));
+ 166:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** }
+ 167:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 168:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 169:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief  Get Flash memory size
+ 170:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @retval Flash memory size(Bytes)
+ 171:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 172:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** __STATIC_INLINE uint32_t LL_GetFlashSize(void)
+ 173:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** {
+ARM GAS  /tmp/ccy6wxXT.s 			page 7
+
+
+ 174:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   return (uint32_t)(FLASH_SIZE);
+ 175:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** }
+ 176:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 177:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 178:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief  Get SRAM memory size
+ 179:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @retval SRAM memory size(Bytes)
+ 180:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 181:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** __STATIC_INLINE uint32_t LL_GetSramSize(void)
+ 182:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** {
+ 183:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   return (uint32_t)(SRAM_END - SRAM_BASE + 1);
+ 184:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** }
+ 185:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 186:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 187:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @}
+ 188:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 189:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 190:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /** @defgroup UTILS_LL_EF_DELAY DELAY
+ 191:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @{
+ 192:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 193:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** 
+ 194:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** /**
+ 195:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @brief  This function configures the Cortex-M SysTick source of the time base.
+ 196:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @param  HCLKFrequency HCLK frequency in Hz (can be calculated thanks to RCC helper macro)
+ 197:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @note   When a RTOS is used, it is recommended to avoid changing the SysTick
+ 198:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   *         configuration by calling this function, for a delay use rather osDelay RTOS service.
+ 199:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @param  Ticks Number of ticks
+ 200:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   * @retval None
+ 201:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   */
+ 202:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** __STATIC_INLINE void LL_InitTick(uint32_t HCLKFrequency, uint32_t Ticks)
+  43              		.loc 2 202 22 view .LVU3
+  44              	.LBB9:
+ 203:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h **** {
+ 204:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   /* Configure the SysTick to have interrupt in 1ms time base */
+ 205:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   SysTick->LOAD  = (uint32_t)((HCLKFrequency / Ticks) - 1UL);  /* set reload register */
+  45              		.loc 2 205 3 view .LVU4
+  46              		.loc 2 205 46 is_stmt 0 view .LVU5
+  47 0002 FA21     		movs	r1, #250
+  48 0004 8900     		lsls	r1, r1, #2
+  49 0006 FFF7FEFF 		bl	__aeabi_uidiv
+  50              	.LVL2:
+  51              		.loc 2 205 20 view .LVU6
+  52 000a 0138     		subs	r0, r0, #1
+  53              		.loc 2 205 18 view .LVU7
+  54 000c 034B     		ldr	r3, .L2
+  55 000e 5860     		str	r0, [r3, #4]
+ 206:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   SysTick->VAL   = 0UL;                                       /* Load the SysTick Counter Value */
+  56              		.loc 2 206 3 is_stmt 1 view .LVU8
+  57              		.loc 2 206 18 is_stmt 0 view .LVU9
+  58 0010 0022     		movs	r2, #0
+  59 0012 9A60     		str	r2, [r3, #8]
+ 207:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_utils.h ****   SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+  60              		.loc 2 207 3 is_stmt 1 view .LVU10
+  61              		.loc 2 207 18 is_stmt 0 view .LVU11
+  62 0014 0532     		adds	r2, r2, #5
+  63 0016 1A60     		str	r2, [r3]
+  64              	.LVL3:
+  65              		.loc 2 207 18 view .LVU12
+ARM GAS  /tmp/ccy6wxXT.s 			page 8
+
+
+  66              	.LBE9:
+  67              	.LBE8:
+ 129:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** }
+  68              		.loc 1 129 1 view .LVU13
+  69              		@ sp needed
+  70 0018 10BD     		pop	{r4, pc}
+  71              	.L3:
+  72 001a C046     		.align	2
+  73              	.L2:
+  74 001c 10E000E0 		.word	-536813552
+  75              		.cfi_endproc
+  76              	.LFE166:
+  78              		.section	.text.LL_mDelay,"ax",%progbits
+  79              		.align	1
+  80              		.global	LL_mDelay
+  81              		.syntax unified
+  82              		.code	16
+  83              		.thumb_func
+  85              	LL_mDelay:
+  86              	.LVL4:
+  87              	.LFB167:
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 131:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @brief  This function provides accurate delay (in milliseconds) based
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *         on SysTick counter flag
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @note   When a RTOS is used, it is recommended to avoid using blocking delay
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *         and use rather osDelay service.
+ 136:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @note   To respect 1ms timebase, user should call @ref LL_Init1msTick function which
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *         will configure Systick to 1ms
+ 138:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  Delay specifies the delay time length, in milliseconds.
+ 139:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @retval None
+ 140:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** void LL_mDelay(uint32_t Delay)
+ 142:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** {
+  88              		.loc 1 142 1 is_stmt 1 view -0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 8
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93              		.loc 1 142 1 is_stmt 0 view .LVU15
+  94 0000 82B0     		sub	sp, sp, #8
+  95              	.LCFI1:
+  96              		.cfi_def_cfa_offset 8
+ 143:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   __IO uint32_t  tmp = SysTick->CTRL;  /* Clear the COUNTFLAG first */
+  97              		.loc 1 143 3 is_stmt 1 view .LVU16
+  98              		.loc 1 143 31 is_stmt 0 view .LVU17
+  99 0002 084B     		ldr	r3, .L12
+ 100 0004 1B68     		ldr	r3, [r3]
+ 101              		.loc 1 143 18 view .LVU18
+ 102 0006 0193     		str	r3, [sp, #4]
+ 144:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   uint32_t tmpDelay; /* MISRAC2012-Rule-17.8 */
+ 103              		.loc 1 144 3 is_stmt 1 view .LVU19
+ 145:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Add this code to indicate that local variable is not used */
+ 146:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   ((void)tmp);
+ 104              		.loc 1 146 3 view .LVU20
+ 105              		.loc 1 146 4 is_stmt 0 view .LVU21
+ 106 0008 019B     		ldr	r3, [sp, #4]
+ARM GAS  /tmp/ccy6wxXT.s 			page 9
+
+
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   tmpDelay  = Delay;
+ 107              		.loc 1 147 3 is_stmt 1 view .LVU22
+ 108              	.LVL5:
+ 148:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Add a period to guaranty minimum wait */
+ 149:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   if (tmpDelay  < LL_MAX_DELAY)
+ 109              		.loc 1 149 3 view .LVU23
+ 110              		.loc 1 149 6 is_stmt 0 view .LVU24
+ 111 000a 431C     		adds	r3, r0, #1
+ 112 000c 00D0     		beq	.L6
+ 150:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 151:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     tmpDelay ++;
+ 113              		.loc 1 151 5 is_stmt 1 view .LVU25
+ 114              		.loc 1 151 14 is_stmt 0 view .LVU26
+ 115 000e 0130     		adds	r0, r0, #1
+ 116              	.LVL6:
+ 117              	.L6:
+ 152:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 153:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 154:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   while (tmpDelay  != 0U)
+ 118              		.loc 1 154 20 is_stmt 1 view .LVU27
+ 119 0010 0028     		cmp	r0, #0
+ 120 0012 05D0     		beq	.L11
+ 155:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     if ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) != 0U)
+ 121              		.loc 1 156 5 view .LVU28
+ 122              		.loc 1 156 17 is_stmt 0 view .LVU29
+ 123 0014 034B     		ldr	r3, .L12
+ 124 0016 1B68     		ldr	r3, [r3]
+ 125              		.loc 1 156 8 view .LVU30
+ 126 0018 DB03     		lsls	r3, r3, #15
+ 127 001a F9D5     		bpl	.L6
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     {
+ 158:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       tmpDelay --;
+ 128              		.loc 1 158 7 is_stmt 1 view .LVU31
+ 129              		.loc 1 158 16 is_stmt 0 view .LVU32
+ 130 001c 0138     		subs	r0, r0, #1
+ 131              	.LVL7:
+ 132              		.loc 1 158 16 view .LVU33
+ 133 001e F7E7     		b	.L6
+ 134              	.LVL8:
+ 135              	.L11:
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 160:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 161:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** }
+ 136              		.loc 1 161 1 view .LVU34
+ 137 0020 02B0     		add	sp, sp, #8
+ 138              		@ sp needed
+ 139 0022 7047     		bx	lr
+ 140              	.L13:
+ 141              		.align	2
+ 142              	.L12:
+ 143 0024 10E000E0 		.word	-536813552
+ 144              		.cfi_endproc
+ 145              	.LFE167:
+ 147              		.section	.text.LL_SetSystemCoreClock,"ax",%progbits
+ 148              		.align	1
+ 149              		.global	LL_SetSystemCoreClock
+ARM GAS  /tmp/ccy6wxXT.s 			page 10
+
+
+ 150              		.syntax unified
+ 151              		.code	16
+ 152              		.thumb_func
+ 154              	LL_SetSystemCoreClock:
+ 155              	.LVL9:
+ 156              	.LFB168:
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 163:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+ 164:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @}
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 167:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /** @addtogroup UTILS_EF_SYSTEM
+ 168:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *  @brief    System Configuration functions
+ 169:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *
+ 170:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   @verbatim
+ 171:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****  ===============================================================================
+ 172:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****            ##### System Configuration functions #####
+ 173:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****  ===============================================================================
+ 174:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     [..]
+ 175:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****          System, AHB and APB1 buses clocks configuration
+ 176:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 177:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****          (+) The maximum frequency of the SYSCLK, HCLK, PCLK1 is 48000000 Hz.
+ 178:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   @endverbatim
+ 179:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   @internal
+ 180:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              Depending on the device voltage range, the maximum frequency should be
+ 181:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              adapted accordingly:
+ 182:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 183:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  Table 1. HCLK clock frequency.
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  +-------------------------------------------------------+
+ 185:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  | Latency         |    HCLK clock frequency (MHz)       |
+ 186:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |                 |-------------------------------------|
+ 187:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |                 | voltage range 1  | voltage range 2  |
+ 188:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |                 |   1.08V - 1.32V  |  0.9 V - 1.10V   |
+ 189:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |-----------------|------------------|------------------|
+ 190:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |0WS(1 CPU cycles)|      HCLK <= 24  |      HCLK <= 8   |
+ 191:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |-----------------|------------------|------------------|
+ 192:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |1WS(2 CPU cycles)|      HCLK <= 48  |      HCLK <= 16  |
+ 193:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****              (++)  |-----------------|------------------|------------------|
+ 194:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   @endinternal
+ 196:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @{
+ 197:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 198:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+ 200:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @brief  This function sets directly SystemCoreClock CMSIS variable.
+ 201:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @note   Variable can be calculated also through SystemCoreClockUpdate function.
+ 202:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  HCLKFrequency HCLK frequency in Hz (can be calculated thanks to RCC helper macro)
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @retval None
+ 204:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** void LL_SetSystemCoreClock(uint32_t HCLKFrequency)
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** {
+ 157              		.loc 1 206 1 is_stmt 1 view -0
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161              		@ link register save eliminated.
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* HCLK clock frequency */
+ARM GAS  /tmp/ccy6wxXT.s 			page 11
+
+
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   SystemCoreClock = HCLKFrequency;
+ 162              		.loc 1 208 3 view .LVU36
+ 163              		.loc 1 208 19 is_stmt 0 view .LVU37
+ 164 0000 014B     		ldr	r3, .L15
+ 165 0002 1860     		str	r0, [r3]
+ 209:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** }
+ 166              		.loc 1 209 1 view .LVU38
+ 167              		@ sp needed
+ 168 0004 7047     		bx	lr
+ 169              	.L16:
+ 170 0006 C046     		.align	2
+ 171              	.L15:
+ 172 0008 00000000 		.word	SystemCoreClock
+ 173              		.cfi_endproc
+ 174              	.LFE168:
+ 176              		.section	.text.LL_SetFlashLatency,"ax",%progbits
+ 177              		.align	1
+ 178              		.global	LL_SetFlashLatency
+ 179              		.syntax unified
+ 180              		.code	16
+ 181              		.thumb_func
+ 183              	LL_SetFlashLatency:
+ 184              	.LVL10:
+ 185              	.LFB169:
+ 210:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #if defined(RCC_PLL_SUPPORT)
+ 211:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+ 212:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @brief  This function configures system clock with HSI as clock source of the PLL
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @note   The application need to ensure that PLL is disabled.
+ 214:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  UTILS_ClkInitStruct pointer to a @ref LL_UTILS_ClkInitTypeDef structure that contains
+ 215:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *                             the configuration information for the BUS prescalers.
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @retval An ErrorStatus enumeration value:
+ 217:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *          - SUCCESS: configuration done
+ 218:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *          - ERROR: frequency configuration not done
+ 219:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** ErrorStatus LL_PLL_ConfigSystemClock_HSI(LL_UTILS_ClkInitTypeDef *UTILS_ClkInitStruct)
+ 221:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** {
+ 222:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   ErrorStatus status;
+ 223:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   uint32_t pllfreq;
+ 224:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 225:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Check if one of the PLL is enabled */
+ 226:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   if (UTILS_PLL_IsBusy() == SUCCESS)
+ 227:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 228:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Check if the new PLL input frequency is correct */
+ 229:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     if (!IS_LL_UTILS_PLL_INPUT_FREQUENCY(LL_RCC_HSI_GetFreq()))
+ 230:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     {
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       /* the new PLL input frequency is error */
+ 232:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       return ERROR;
+ 233:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 234:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 235:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Calculate the new PLL output frequency */
+ 236:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     pllfreq = 2 * LL_RCC_HSI_GetFreq();
+ 237:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 238:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Enable HSI if not enabled */
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     if (LL_RCC_HSI_IsReady() != 1U)
+ 240:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     {
+ 241:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       LL_RCC_HSI_Enable();
+ 242:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       while (LL_RCC_HSI_IsReady() != 1U)
+ARM GAS  /tmp/ccy6wxXT.s 			page 12
+
+
+ 243:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       {
+ 244:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****         /* Wait for HSI ready */
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       }
+ 246:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 247:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 248:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Configure PLL */
+ 249:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     LL_RCC_PLL_SetMainSource(LL_RCC_PLLSOURCE_HSI);
+ 250:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Enable PLL and switch system clock to PLL */
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     status = UTILS_EnablePLLAndSwitchSystem(pllfreq, UTILS_ClkInitStruct);
+ 253:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 254:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   else
+ 255:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 256:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Current PLL configuration cannot be modified */
+ 257:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     status = ERROR;
+ 258:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 259:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 260:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   return status;
+ 261:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** }
+ 262:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 263:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+ 264:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @brief  This function configures system clock with HSE as clock source of the PLL
+ 265:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @note   The application need to ensure that PLL is disabled.
+ 266:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  HSEFrequency Value between Min_Data = 4000000 and Max_Data = 48000000
+ 267:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  HSEBypass This parameter can be one of the following values:
+ 268:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *         @arg @ref LL_UTILS_HSEBYPASS_ON
+ 269:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *         @arg @ref LL_UTILS_HSEBYPASS_OFF
+ 270:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  UTILS_ClkInitStruct pointer to a @ref LL_UTILS_ClkInitTypeDef structure that contains
+ 271:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *                             the configuration information for the BUS prescalers.
+ 272:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @retval An ErrorStatus enumeration value:
+ 273:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *          - SUCCESS: Max frequency configuration done
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *          - ERROR: Max frequency configuration not done
+ 275:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 276:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** ErrorStatus LL_PLL_ConfigSystemClock_HSE(uint32_t HSEFrequency, uint32_t HSEBypass, LL_UTILS_ClkIni
+ 277:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** {
+ 278:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   ErrorStatus status;
+ 279:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   uint32_t pllfreq;
+ 280:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 281:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Check the parameters */
+ 282:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   assert_param(IS_LL_UTILS_HSE_FREQUENCY(HSEFrequency));
+ 283:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   assert_param(IS_LL_UTILS_HSE_BYPASS(HSEBypass));
+ 284:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 285:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Check if one of the PLL is enabled */
+ 286:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   if (UTILS_PLL_IsBusy() == SUCCESS)
+ 287:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 288:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Check if the new PLL input frequency is correct */
+ 289:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     if (!IS_LL_UTILS_PLL_INPUT_FREQUENCY(HSEFrequency))
+ 290:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     {
+ 291:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       /* the new PLL input frequency is error */
+ 292:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       return ERROR;
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 294:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 295:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Calculate the new PLL output frequency */
+ 296:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     pllfreq = HSEFrequency * 2;
+ 297:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 298:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Enable HSE if not enabled */
+ 299:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     if (LL_RCC_HSE_IsReady() != 1U)
+ARM GAS  /tmp/ccy6wxXT.s 			page 13
+
+
+ 300:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     {
+ 301:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       /* Set frequency range of the HSE */
+ 302:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       LL_RCC_HSE_SetFreqRegion(LL_RCC_HSE_16_32MHz);
+ 303:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 304:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       /* Check if need to enable HSE bypass feature or not */
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       if (HSEBypass == LL_UTILS_HSEBYPASS_ON)
+ 306:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       {
+ 307:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****         LL_RCC_HSE_EnableBypass();
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       }
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       else
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       {
+ 311:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****         LL_RCC_HSE_DisableBypass();
+ 312:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       }
+ 313:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 314:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       /* Enable HSE */
+ 315:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       LL_RCC_HSE_Enable();
+ 316:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       while (LL_RCC_HSE_IsReady() != 1U)
+ 317:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       {
+ 318:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****         /* Wait for HSE ready */
+ 319:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       }
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 321:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 322:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Configure PLL */
+ 323:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     LL_RCC_PLL_SetMainSource(LL_RCC_PLLSOURCE_HSE);
+ 324:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 325:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Enable PLL and switch system clock to PLL */
+ 326:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     status = UTILS_EnablePLLAndSwitchSystem(pllfreq, UTILS_ClkInitStruct);
+ 327:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 328:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   else
+ 329:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 330:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Current PLL configuration cannot be modified */
+ 331:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     status = ERROR;
+ 332:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 333:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 334:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   return status;
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** }
+ 336:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** #endif
+ 337:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 338:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** /**
+ 339:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @brief  Update number of Flash wait states in line with new frequency and current
+ 340:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *         voltage range.
+ 341:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @param  HCLKFrequency  HCLK frequency
+ 342:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   * @retval An ErrorStatus enumeration value:
+ 343:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *          - SUCCESS: Latency has been modified
+ 344:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   *          - ERROR: Latency cannot be modified
+ 345:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   */
+ 346:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** ErrorStatus LL_SetFlashLatency(uint32_t HCLKFrequency)
+ 347:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** {
+ 186              		.loc 1 347 1 is_stmt 1 view -0
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190              		@ link register save eliminated.
+ 348:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   uint32_t timeout;
+ 191              		.loc 1 348 3 view .LVU40
+ 349:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   uint32_t getlatency;
+ 192              		.loc 1 349 3 view .LVU41
+ARM GAS  /tmp/ccy6wxXT.s 			page 14
+
+
+ 350:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   uint32_t latency;
+ 193              		.loc 1 350 3 view .LVU42
+ 351:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   ErrorStatus status;
+ 194              		.loc 1 351 3 view .LVU43
+ 352:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 353:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Frequency cannot be equal to 0 or greater than max clock */
+ 354:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   if ((HCLKFrequency == 0U) || (HCLKFrequency > UTILS_SCALE1_LATENCY2_FREQ))
+ 195              		.loc 1 354 3 view .LVU44
+ 196              		.loc 1 354 29 is_stmt 0 view .LVU45
+ 197 0000 421E     		subs	r2, r0, #1
+ 198              		.loc 1 354 6 view .LVU46
+ 199 0002 0F4B     		ldr	r3, .L24
+ 200 0004 9A42     		cmp	r2, r3
+ 201 0006 03D8     		bhi	.L18
+ 355:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 356:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     status = ERROR;
+ 357:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 358:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   else
+ 359:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 360:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     if (HCLKFrequency > UTILS_SCALE1_LATENCY1_FREQ)
+ 202              		.loc 1 360 5 is_stmt 1 view .LVU47
+ 203              		.loc 1 360 8 is_stmt 0 view .LVU48
+ 204 0008 0E4B     		ldr	r3, .L24+4
+ 205 000a 9842     		cmp	r0, r3
+ 206 000c 14D9     		bls	.L22
+ 361:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     {
+ 362:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       /* 24 < HCLK <= 48 => 1WS (2 CPU cycles) */
+ 363:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       latency = LL_FLASH_LATENCY_1;
+ 207              		.loc 1 363 15 view .LVU49
+ 208 000e 0121     		movs	r1, #1
+ 209              	.L18:
+ 210              	.LVL11:
+ 364:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 365:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     else
+ 366:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     {
+ 367:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       /* else HCLKFrequency < 24MHz default LL_FLASH_LATENCY_0 0WS */
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****       latency = LL_FLASH_LATENCY_0;
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 370:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 371:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 372:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   LL_FLASH_SetLatency(latency);
+ 211              		.loc 1 372 3 is_stmt 1 view .LVU50
+ 212              	.LBB10:
+ 213              	.LBI10:
+ 214              		.file 3 "PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h"
+   1:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+   2:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   ******************************************************************************
+   3:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @file    py32f0xx_ll_system.h
+   4:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief   Header file of SYSTEM LL module.
+   6:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   ******************************************************************************
+   7:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @attention
+   8:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *
+   9:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+  10:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * All rights reserved.</center></h2>
+  11:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *
+  12:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+ARM GAS  /tmp/ccy6wxXT.s 			page 15
+
+
+  13:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * All rights reserved.</center></h2>
+  14:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *
+  15:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * This software component is licensed by ST under BSD 3-Clause license,
+  16:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * the "License"; You may not use this file except in compliance with the
+  17:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * License. You may obtain a copy of the License at:
+  18:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *                        opensource.org/licenses/BSD-3-Clause
+  19:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *
+  20:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   ******************************************************************************
+  21:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  22:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  23:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Define to prevent recursive inclusion -------------------------------------*/
+  24:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #ifndef PY32F0XX_LL_SYSTEM_H
+  25:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define PY32F0XX_LL_SYSTEM_H
+  26:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  27:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #ifdef __cplusplus
+  28:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** extern "C" {
+  29:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  30:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  31:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Includes ------------------------------------------------------------------*/
+  32:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #include "py32f0xx.h"
+  33:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  34:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @addtogroup PY32F0XX_LL_Driver
+  35:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+  36:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  37:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  38:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined (FLASH) || defined (SYSCFG) || defined (DBGMCU)
+  39:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  40:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL SYSTEM
+  41:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+  42:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  43:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  44:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Private types -------------------------------------------------------------*/
+  45:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Private variables ---------------------------------------------------------*/
+  46:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  47:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Private constants ---------------------------------------------------------*/
+  48:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_Private_Constants SYSTEM Private Constants
+  49:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+  50:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  51:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  52:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+  53:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+  54:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  55:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  56:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Private macros ------------------------------------------------------------*/
+  57:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  58:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Exported types ------------------------------------------------------------*/
+  59:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Exported constants --------------------------------------------------------*/
+  60:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_Exported_Constants SYSTEM Exported Constants
+  61:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+  62:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  63:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  64:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_REMAP SYSCFG REMAP
+  65:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+  66:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  67:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_REMAP_FLASH               0x00000000U                                           /
+  68:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_REMAP_SYSTEMFLASH         SYSCFG_CFGR1_MEM_MODE_0                               /
+  69:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_REMAP_SRAM                (SYSCFG_CFGR1_MEM_MODE_1 | SYSCFG_CFGR1_MEM_MODE_0)   /
+ARM GAS  /tmp/ccy6wxXT.s 			page 16
+
+
+  70:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+  71:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+  72:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  73:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+  74:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_I2C_ANF I2C ANALOG FILTER ENABLE CONTORL
+  75:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+  76:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+  77:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA2_ANF)
+  78:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA2                SYSCFG_CFGR1_I2C_PA2_ANF
+  79:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  80:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA3_ANF)
+  81:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA3                SYSCFG_CFGR1_I2C_PA3_ANF
+  82:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  83:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA7_ANF)
+  84:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA7                SYSCFG_CFGR1_I2C_PA7_ANF
+  85:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  86:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA8_ANF)
+  87:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA8                SYSCFG_CFGR1_I2C_PA8_ANF
+  88:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  89:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA9_ANF)
+  90:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA9                SYSCFG_CFGR1_I2C_PA9_ANF
+  91:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  92:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA10_ANF)
+  93:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA10               SYSCFG_CFGR1_I2C_PA10_ANF
+  94:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  95:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA11_ANF)
+  96:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA11               SYSCFG_CFGR1_I2C_PA11_ANF
+  97:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+  98:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PA12_ANF)
+  99:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PA12               SYSCFG_CFGR1_I2C_PA12_ANF
+ 100:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 101:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PB6_ANF)
+ 102:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PB6                SYSCFG_CFGR1_I2C_PB6_ANF
+ 103:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 104:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PB7_ANF)
+ 105:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PB7                SYSCFG_CFGR1_I2C_PB7_ANF
+ 106:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 107:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PB8_ANF)
+ 108:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PB8                SYSCFG_CFGR1_I2C_PB8_ANF
+ 109:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 110:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PF0_ANF)
+ 111:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PF0                SYSCFG_CFGR1_I2C_PF0_ANF
+ 112:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 113:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR1_I2C_PF1_ANF)
+ 114:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_I2C_ANF_PF1                SYSCFG_CFGR1_I2C_PF1_ANF
+ 115:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 116:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 117:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 118:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 119:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 120:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_TIMBREAK TIMER BREAK INPUT
+ 121:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+ 122:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 123:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_LOCKUP_LOCK)
+ 124:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_LOCKUP_TO_ALL      SYSCFG_CFGR2_LOCKUP_LOCK
+ 125:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 126:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_PVD_LOCK)
+ARM GAS  /tmp/ccy6wxXT.s 			page 17
+
+
+ 127:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_PVD_TO_ALL         SYSCFG_CFGR2_PVD_LOCK
+ 128:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 129:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_COMP1_BRK_TIM1)
+ 130:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_COMP1_TO_TIM1      SYSCFG_CFGR2_COMP1_BRK_TIM1
+ 131:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 132:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_COMP2_BRK_TIM1)
+ 133:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_COMP2_TO_TIM1      SYSCFG_CFGR2_COMP2_BRK_TIM1
+ 134:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 135:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_COMP1_BRK_TIM16)
+ 136:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_COMP1_TO_TIM16     SYSCFG_CFGR2_COMP1_BRK_TIM16
+ 137:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 138:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_COMP2_BRK_TIM16)
+ 139:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_COMP2_TO_TIM16     SYSCFG_CFGR2_COMP2_BRK_TIM16
+ 140:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 141:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_COMP1_BRK_TIM17)
+ 142:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_COMP1_TO_TIM17     SYSCFG_CFGR2_COMP1_BRK_TIM17
+ 143:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 144:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(SYSCFG_CFGR2_COMP2_BRK_TIM17)
+ 145:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_TIMBREAK_COMP2_TO_TIM17     SYSCFG_CFGR2_COMP2_BRK_TIM17
+ 146:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 147:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 148:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 149:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 150:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 151:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_ETR_SRC ETR SOURCE
+ 152:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 153:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_ETR_SRC_TIM1_GPIO          0x00000000U
+ 154:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(COMP1)
+ 155:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_ETR_SRC_TIM1_COMP1         SYSCFG_CFGR2_ETR_SRC_TIM1_0
+ 156:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 157:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(COMP2)
+ 158:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_ETR_SRC_TIM1_COMP2         SYSCFG_CFGR2_ETR_SRC_TIM1_1
+ 159:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 160:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_ETR_SRC_TIM1_ADC           (SYSCFG_CFGR2_ETR_SRC_TIM1_1 | SYSCFG_CFGR2_ETR_SRC_TI
+ 161:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 162:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 163:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 164:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 	
+ 165:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if (defined(DMA) || defined(DMA1))
+ 166:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_DMA_MAP DMA MAP
+ 167:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 168:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_ADC               0x00000000U
+ 169:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_SPI1_TX           SYSCFG_CFGR3_DMA1_MAP_0
+ 170:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_SPI1_RX           SYSCFG_CFGR3_DMA1_MAP_1
+ 171:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_SPI2_TX           (SYSCFG_CFGR3_DMA1_MAP_1 | SYSCFG_CFGR3_DMA1_MAP_0)
+ 172:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_SPI2_RX           SYSCFG_CFGR3_DMA1_MAP_2
+ 173:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_USART1_TX         (SYSCFG_CFGR3_DMA1_MAP_2 | SYSCFG_CFGR3_DMA1_MAP_0)
+ 174:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_USART1_RX         (SYSCFG_CFGR3_DMA1_MAP_2 | SYSCFG_CFGR3_DMA1_MAP_1)
+ 175:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_USART2_TX         (SYSCFG_CFGR3_DMA1_MAP_2 | SYSCFG_CFGR3_DMA1_MAP_1 | SY
+ 176:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_USART2_RX         SYSCFG_CFGR3_DMA1_MAP_3
+ 177:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_I2C_TX            (SYSCFG_CFGR3_DMA1_MAP_3 | SYSCFG_CFGR3_DMA1_MAP_0)
+ 178:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_I2C_RX            (SYSCFG_CFGR3_DMA1_MAP_3 | SYSCFG_CFGR3_DMA1_MAP_1)
+ 179:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM1_CH1          (SYSCFG_CFGR3_DMA1_MAP_3 | SYSCFG_CFGR3_DMA1_MAP_1 | SY
+ 180:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM1_CH2          (SYSCFG_CFGR3_DMA1_MAP_3 | SYSCFG_CFGR3_DMA1_MAP_2)
+ 181:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM1_CH3          (SYSCFG_CFGR3_DMA1_MAP_3 | SYSCFG_CFGR3_DMA1_MAP_2 | SY
+ 182:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM1_CH4          (SYSCFG_CFGR3_DMA1_MAP_3 | SYSCFG_CFGR3_DMA1_MAP_2 | SY
+ 183:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM1_COM          (SYSCFG_CFGR3_DMA1_MAP_3 | SYSCFG_CFGR3_DMA1_MAP_2 | SY
+ARM GAS  /tmp/ccy6wxXT.s 			page 18
+
+
+ 184:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM1_UP           SYSCFG_CFGR3_DMA1_MAP_4
+ 185:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM1_TRIG         (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_0)
+ 186:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM3_CH1          (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_1)
+ 187:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM3_CH3          (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_1 | SY
+ 188:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM3_CH4          (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_2)
+ 189:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM3_TRG          (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_2 | SY
+ 190:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM3_UP           (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_2 | SY
+ 191:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM16_CH1         (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_3)
+ 192:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM16_UP          (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_3 | SY
+ 193:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM17_CH1         (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_3 | SY
+ 194:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_MAP_TIM17_UP          (SYSCFG_CFGR3_DMA1_MAP_4 | SYSCFG_CFGR3_DMA1_MAP_3 | SY
+ 195:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 196:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 197:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 198:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 199:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_DMA_ACKLVL DMA SPEED ENABLE
+ 200:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 201:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_ACKLVL_NORM          0x00000000U
+ 202:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_ACKLVL_FAST          SYSCFG_CFGR3_DMA1_ACKLVL
+ 203:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 204:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 205:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 206:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 207:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_DMA_CHNNEL_SHIFT DMA CHNNEL SHIFT ADDRESS
+ 208:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 209:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_CH2_SHIFT            (8U)
+ 210:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_SYSCFG_DMA_CH3_SHIFT            (16U)
+ 211:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 212:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 213:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 214:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 215:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 216:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_LATENCY FLASH LATENCY
+ 217:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+ 218:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 219:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_FLASH_LATENCY_0                 0x00000000U             /*!< FLASH Zero Latency cycle */
+ 220:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_FLASH_LATENCY_1                 FLASH_ACR_LATENCY       /*!< FLASH One Latency cycle */
+ 221:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 222:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 223:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 224:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 225:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 226:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_APB1_GRP1_STOP_IP  DBGMCU APB1 GRP1 STOP IP
+ 227:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+ 228:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 229:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ1_DBG_TIM3_STOP)
+ 230:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP1_TIM3_STOP      DBGMCU_APB_FZ1_DBG_TIM3_STOP        /*!< TIM3 counter st
+ 231:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 232:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ1_DBG_RTC_STOP)
+ 233:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP1_RTC_STOP       DBGMCU_APB_FZ1_DBG_RTC_STOP         /*!< RTC Calendar fr
+ 234:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 235:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ1_DBG_WWDG_STOP)
+ 236:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP1_WWDG_STOP      DBGMCU_APB_FZ1_DBG_WWDG_STOP        /*!< Debug Window Wa
+ 237:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 238:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ1_DBG_IWDG_STOP)
+ 239:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP1_IWDG_STOP      DBGMCU_APB_FZ1_DBG_IWDG_STOP        /*!< Debug Independe
+ 240:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ARM GAS  /tmp/ccy6wxXT.s 			page 19
+
+
+ 241:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ1_DBG_LPTIM_STOP)
+ 242:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP1_LPTIM1_STOP    DBGMCU_APB_FZ1_DBG_LPTIM_STOP      /*!< LPTIM1 counter s
+ 243:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 244:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 245:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 246:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 247:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 248:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EC_APB2_GRP1_STOP_IP DBGMCU APB2 GRP1 STOP IP
+ 249:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+ 250:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 251:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ2_DBG_TIM1_STOP)
+ 252:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP2_TIM1_STOP      DBGMCU_APB_FZ2_DBG_TIM1_STOP        /*!< TIM1 counter st
+ 253:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 254:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ2_DBG_TIM14_STOP)
+ 255:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP2_TIM14_STOP     DBGMCU_APB_FZ2_DBG_TIM14_STOP       /*!< TIM14 counter s
+ 256:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 257:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ2_DBG_TIM16_STOP)
+ 258:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP2_TIM16_STOP     DBGMCU_APB_FZ2_DBG_TIM16_STOP       /*!< TIM16 counter s
+ 259:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 260:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if defined(DBGMCU_APB_FZ2_DBG_TIM17_STOP)
+ 261:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #define LL_DBGMCU_APB1_GRP2_TIM17_STOP     DBGMCU_APB_FZ2_DBG_TIM17_STOP       /*!< TIM17 counter s
+ 262:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 263:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 264:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 265:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 266:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 267:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 268:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 269:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 270:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 271:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Exported macro ------------------------------------------------------------*/
+ 272:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 273:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /* Exported functions --------------------------------------------------------*/
+ 274:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_Exported_Functions SYSTEM Exported Functions
+ 275:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+ 276:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 277:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 278:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EF_SYSCFG SYSCFG
+ 279:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+ 280:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 281:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 282:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 283:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set memory mapping at address 0x00000000
+ 284:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @rmtoll SYSCFG_CFGR1 MEM_MODE      LL_SYSCFG_SetRemapMemory
+ 285:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Memory This parameter can be one of the following values:
+ 286:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_REMAP_FLASH
+ 287:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_REMAP_SYSTEMFLASH
+ 288:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_REMAP_SRAM
+ 289:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 290:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 291:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetRemapMemory(uint32_t Memory)
+ 292:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 293:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR1, SYSCFG_CFGR1_MEM_MODE, Memory);
+ 294:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 295:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 296:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 297:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Get memory mapping at address 0x00000000
+ARM GAS  /tmp/ccy6wxXT.s 			page 20
+
+
+ 298:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @rmtoll SYSCFG_CFGR1 MEM_MODE      LL_SYSCFG_GetRemapMemory
+ 299:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 300:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_REMAP_FLASH
+ 301:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_REMAP_SYSTEMFLASH
+ 302:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_REMAP_SRAM
+ 303:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 304:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetRemapMemory(void)
+ 305:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 306:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)(READ_BIT(SYSCFG->CFGR1, SYSCFG_CFGR1_MEM_MODE));
+ 307:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 308:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 309:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 310:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Enable analog filtering of I2C related IO
+ 311:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some IOs may not be available.
+ 312:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for IOs availability.
+ 313:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  I2CAnalogFilter This parameter can be a combination of the following values:
+ 314:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA2
+ 315:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA3
+ 316:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA7
+ 317:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA8
+ 318:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA9
+ 319:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA10
+ 320:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA11
+ 321:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA12
+ 322:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB6
+ 323:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB7
+ 324:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB8
+ 325:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PF0
+ 326:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PF1
+ 327:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 328:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 329:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_EnableI2CAnalogFilter(uint32_t I2CAnalogFilter)
+ 330:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 331:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   SET_BIT(SYSCFG->CFGR1, I2CAnalogFilter);
+ 332:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 333:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 334:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 335:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Disable analog filtering of I2C related IO
+ 336:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some IOs may not be available.
+ 337:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for IOs availability.
+ 338:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  I2CAnalogFilter This parameter can be a combination of the following values:
+ 339:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA2
+ 340:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA3
+ 341:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA7
+ 342:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA8
+ 343:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA9
+ 344:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA10
+ 345:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA11
+ 346:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA12
+ 347:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB6
+ 348:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB7
+ 349:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB8
+ 350:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PF0
+ 351:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PF1
+ 352:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 353:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 354:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_DisableI2CAnalogFilter(uint32_t I2CAnalogFilter)
+ARM GAS  /tmp/ccy6wxXT.s 			page 21
+
+
+ 355:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 356:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   CLEAR_BIT(SYSCFG->CFGR1, I2CAnalogFilter);
+ 357:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 358:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 359:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 360:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Indicate if enable analog filtering of I2C related IO
+ 361:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some IOs may not be available.
+ 362:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for IOs availability.
+ 363:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  I2CAnalogFilter This parameter can be one of the following values:
+ 364:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA2
+ 365:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA3
+ 366:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA7
+ 367:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA8
+ 368:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA9
+ 369:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA10
+ 370:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA11
+ 371:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PA12
+ 372:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB6
+ 373:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB7
+ 374:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PB8
+ 375:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PF0
+ 376:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_I2C_ANF_PF1
+ 377:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval State of bit (1 or 0).
+ 378:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 379:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_IsEnabledI2CAnalogFilter(uint32_t I2CAnalogFilter)
+ 380:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 381:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return ((READ_BIT(SYSCFG->CFGR1, I2CAnalogFilter) == (I2CAnalogFilter)) ? 1UL : 0UL);
+ 382:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 383:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 384:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 385:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Enables COMPx as TIMx break input
+ 386:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some Peripherals may not be available.
+ 387:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for Peripherals availability.
+ 388:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  TIMBreakInputs This parameter can be a combination of the following values:
+ 389:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_LOCKUP_TO_ALL
+ 390:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_PVD_TO_ALL
+ 391:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM1
+ 392:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM1
+ 393:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM16
+ 394:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM16
+ 395:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM17
+ 396:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM17
+ 397:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 398:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 399:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_EnableTIMBreakInputs(uint32_t TIMBreakInputs)
+ 400:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 401:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   SET_BIT(SYSCFG->CFGR2, TIMBreakInputs);
+ 402:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 403:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 404:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 405:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Disables COMPx as TIMx break input
+ 406:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some Peripherals may not be available.
+ 407:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for Peripherals availability.
+ 408:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  TIMBreakInputs This parameter can be a combination of the following values:
+ 409:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_LOCKUP_TO_ALL
+ 410:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_PVD_TO_ALL
+ 411:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM1
+ARM GAS  /tmp/ccy6wxXT.s 			page 22
+
+
+ 412:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM1
+ 413:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM16
+ 414:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM16
+ 415:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM17
+ 416:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM17
+ 417:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 418:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 419:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_DisableTIMBreakInputs(uint32_t TIMBreakInputs)
+ 420:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 421:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   CLEAR_BIT(SYSCFG->CFGR2, TIMBreakInputs);
+ 422:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 423:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 424:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 425:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Indicate if COMPx as TIMx break input
+ 426:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some Peripherals may not be available.
+ 427:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for Peripherals availability.
+ 428:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  TIMBreakInputs This parameter can be one of the following values:
+ 429:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_LOCKUP_TO_ALL
+ 430:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_PVD_TO_ALL
+ 431:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM1
+ 432:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM1
+ 433:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM16
+ 434:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM16
+ 435:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP1_TO_TIM17
+ 436:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_TIMBREAK_COMP2_TO_TIM17
+ 437:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval State of bit (1 or 0).
+ 438:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 439:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_IsEnabledTIMBreakInputs(uint32_t TIMBreakInputs)
+ 440:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 441:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return ((READ_BIT(SYSCFG->CFGR2, TIMBreakInputs) == (TIMBreakInputs)) ? 1UL : 0UL);
+ 442:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 443:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 444:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 445:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set the TIMER1 ETR input source
+ 446:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some Peripherals may not be available.
+ 447:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for Peripherals availability.
+ 448:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  source This parameter can be one of the following values:
+ 449:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_GPIO
+ 450:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_COMP1
+ 451:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_COMP2
+ 452:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_ADC
+ 453:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 454:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 455:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetTIM1ETRSource(uint32_t source)
+ 456:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 457:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR2, SYSCFG_CFGR2_ETR_SRC_TIM1, source);
+ 458:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 459:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 460:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 461:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Get the TIMER1 ETR input source
+ 462:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @note   Depending on devices and packages, some Peripherals may not be available.
+ 463:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         Refer to device datasheet for Peripherals availability.
+ 464:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 465:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_GPIO
+ 466:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_COMP1
+ 467:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_COMP2
+ 468:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_ETR_SRC_TIM1_ADC
+ARM GAS  /tmp/ccy6wxXT.s 			page 23
+
+
+ 469:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 470:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 471:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetTIM1ETRSource(void)
+ 472:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 473:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)(READ_BIT(SYSCFG->CFGR2, SYSCFG_CFGR2_ETR_SRC_TIM1));
+ 474:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 475:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 476:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #if (defined(DMA) || defined(DMA1))
+ 477:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 478:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set the request image for DMA channel 1
+ 479:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Requset This parameter can be one of the following values:
+ 480:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_ADC
+ 481:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_TX
+ 482:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_RX
+ 483:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_TX
+ 484:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_RX
+ 485:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_TX
+ 486:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_RX
+ 487:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_TX
+ 488:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_RX
+ 489:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_TX
+ 490:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_RX
+ 491:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH1
+ 492:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH2
+ 493:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH3
+ 494:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH4
+ 495:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_COM
+ 496:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_UP
+ 497:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_TRIG
+ 498:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH1
+ 499:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH3
+ 500:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH4
+ 501:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_TRG
+ 502:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_UP
+ 503:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_CH1
+ 504:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_UP
+ 505:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_CH1
+ 506:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_UP
+ 507:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 508:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 509:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetDMARemap_CH1(uint32_t Requset)
+ 510:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 511:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA1_MAP_Msk, Requset);
+ 512:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 513:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 514:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 515:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Gett the request image for DMA channel 1
+ 516:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 517:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_ADC
+ 518:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_TX
+ 519:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_RX
+ 520:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_TX
+ 521:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_RX
+ 522:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_TX
+ 523:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_RX
+ 524:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_TX
+ 525:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_RX
+ARM GAS  /tmp/ccy6wxXT.s 			page 24
+
+
+ 526:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_TX
+ 527:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_RX
+ 528:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH1
+ 529:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH2
+ 530:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH3
+ 531:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH4
+ 532:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_COM
+ 533:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_UP
+ 534:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_TRIG
+ 535:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH1
+ 536:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH3
+ 537:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH4
+ 538:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_TRG
+ 539:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_UP
+ 540:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_CH1
+ 541:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_UP
+ 542:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_CH1
+ 543:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_UP
+ 544:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 545:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetDMARemap_CH1(void)
+ 546:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 547:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)(READ_BIT(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA1_MAP_Msk));
+ 548:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 549:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 550:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 551:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set the response speed of DMA channel 1
+ 552:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Requset This parameter can be one of the following values:
+ 553:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_NORM
+ 554:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_FAST
+ 555:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 556:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 557:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetDMAResponseSpeed_CH1(uint32_t ResponseSpeed)
+ 558:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 559:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA1_ACKLVL, ResponseSpeed);
+ 560:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 561:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 562:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 563:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Get the response speed of DMA channel 1
+ 564:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 565:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_NORM
+ 566:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_FAST
+ 567:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 568:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetDMAResponseSpeed_CH1(void)
+ 569:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 570:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)(READ_BIT(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA1_ACKLVL));
+ 571:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 572:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 573:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 574:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 575:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set the request image for DMA channel 2
+ 576:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Requset This parameter can be one of the following values:
+ 577:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_ADC
+ 578:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_TX
+ 579:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_RX
+ 580:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_TX
+ 581:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_RX
+ 582:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_TX
+ARM GAS  /tmp/ccy6wxXT.s 			page 25
+
+
+ 583:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_RX
+ 584:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_TX
+ 585:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_RX
+ 586:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_TX
+ 587:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_RX
+ 588:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH1
+ 589:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH2
+ 590:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH3
+ 591:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH4
+ 592:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_COM
+ 593:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_UP
+ 594:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_TRIG
+ 595:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH1
+ 596:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH3
+ 597:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH4
+ 598:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_TRG
+ 599:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_UP
+ 600:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_CH1
+ 601:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_UP
+ 602:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_CH1
+ 603:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_UP
+ 604:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 605:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 606:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetDMARemap_CH2(uint32_t Requset)
+ 607:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 608:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA2_MAP_Msk, (Requset << LL_SYSCFG_DMA_CH2_SHIFT));
+ 609:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 610:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 611:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 612:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Gett the request image for DMA channel 2
+ 613:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 614:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_ADC
+ 615:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_TX
+ 616:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_RX
+ 617:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_TX
+ 618:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_RX
+ 619:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_TX
+ 620:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_RX
+ 621:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_TX
+ 622:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_RX
+ 623:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_TX
+ 624:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_RX
+ 625:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH1
+ 626:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH2
+ 627:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH3
+ 628:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH4
+ 629:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_COM
+ 630:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_UP
+ 631:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_TRIG
+ 632:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH1
+ 633:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH3
+ 634:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH4
+ 635:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_TRG
+ 636:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_UP
+ 637:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_CH1
+ 638:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_UP
+ 639:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_CH1
+ARM GAS  /tmp/ccy6wxXT.s 			page 26
+
+
+ 640:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_UP
+ 641:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 642:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetDMARemap_CH2(void)
+ 643:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 644:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)((READ_BIT(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA2_MAP_Msk)) >> LL_SYSCFG_DMA_CH2_SHIFT
+ 645:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 646:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 647:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 648:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set the response speed of DMA channel 2
+ 649:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Requset This parameter can be one of the following values:
+ 650:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_NORM
+ 651:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_FAST
+ 652:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 653:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 654:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetDMAResponseSpeed_CH2(uint32_t ResponseSpeed)
+ 655:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 656:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA2_ACKLVL, (ResponseSpeed << LL_SYSCFG_DMA_CH2_SHIFT));
+ 657:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 658:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 659:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 660:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Get the response speed of DMA channel 2
+ 661:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 662:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_NORM
+ 663:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_FAST
+ 664:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 665:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetDMAResponseSpeed_CH2(void)
+ 666:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 667:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)((READ_BIT(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA2_ACKLVL)) >> LL_SYSCFG_DMA_CH2_SHIFT)
+ 668:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 669:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 670:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 671:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set the request image for DMA channel 3
+ 672:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Requset This parameter can be one of the following values:
+ 673:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_ADC
+ 674:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_TX
+ 675:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_RX
+ 676:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_TX
+ 677:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_RX
+ 678:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_TX
+ 679:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_RX
+ 680:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_TX
+ 681:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_RX
+ 682:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_TX
+ 683:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_RX
+ 684:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH1
+ 685:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH2
+ 686:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH3
+ 687:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH4
+ 688:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_COM
+ 689:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_UP
+ 690:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_TRIG
+ 691:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH1
+ 692:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH3
+ 693:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH4
+ 694:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_TRG
+ 695:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_UP
+ 696:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_CH1
+ARM GAS  /tmp/ccy6wxXT.s 			page 27
+
+
+ 697:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_UP
+ 698:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_CH1
+ 699:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_UP
+ 700:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 701:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 702:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetDMARemap_CH3(uint32_t Requset)
+ 703:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 704:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA3_MAP_Msk, (Requset << LL_SYSCFG_DMA_CH3_SHIFT));
+ 705:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 706:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 707:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 708:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Gett the request image for DMA channel 3
+ 709:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 710:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_ADC
+ 711:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_TX
+ 712:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI1_RX
+ 713:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_TX
+ 714:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_SPI2_RX
+ 715:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_TX
+ 716:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART1_RX
+ 717:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_TX
+ 718:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_USART2_RX
+ 719:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_TX
+ 720:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_I2C_RX
+ 721:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH1
+ 722:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH2
+ 723:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH3
+ 724:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_CH4
+ 725:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_COM
+ 726:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_UP
+ 727:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM1_TRIG
+ 728:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH1
+ 729:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH3
+ 730:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_CH4
+ 731:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_TRG
+ 732:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM3_UP
+ 733:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_CH1
+ 734:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM16_UP
+ 735:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_CH1
+ 736:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_MAP_TIM17_UP
+ 737:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 738:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetDMARemap_CH3(void)
+ 739:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 740:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)((READ_BIT(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA3_MAP_Msk)) >> LL_SYSCFG_DMA_CH3_SHIFT
+ 741:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 742:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 743:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 744:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set the response speed of DMA channel 3
+ 745:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Requset This parameter can be one of the following values:
+ 746:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_NORM
+ 747:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_FAST
+ 748:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 749:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 750:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_SYSCFG_SetDMAResponseSpeed_CH3(uint32_t ResponseSpeed)
+ 751:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 752:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA3_ACKLVL, (ResponseSpeed << LL_SYSCFG_DMA_CH3_SHIFT));
+ 753:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ARM GAS  /tmp/ccy6wxXT.s 			page 28
+
+
+ 754:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 755:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 756:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Get the response speed of DMA channel 3
+ 757:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 758:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_NORM
+ 759:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_SYSCFG_DMA_ACKLVL_FAST
+ 760:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 761:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_SYSCFG_GetDMAResponseSpeed_CH3(void)
+ 762:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 763:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)((READ_BIT(SYSCFG->CFGR3, SYSCFG_CFGR3_DMA3_ACKLVL)) >> LL_SYSCFG_DMA_CH3_SHIFT)
+ 764:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 765:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** #endif
+ 766:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 767:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 768:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @}
+ 769:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 770:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 771:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /** @defgroup SYSTEM_LL_EF_FLASH FLASH
+ 772:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @{
+ 773:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 774:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 775:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 776:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Set FLASH Latency
+ 777:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @rmtoll FLASH_ACR    FLASH_ACR_LATENCY       LL_FLASH_SetLatency
+ 778:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @param  Latency This parameter can be one of the following values:
+ 779:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_FLASH_LATENCY_0
+ 780:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_FLASH_LATENCY_1
+ 781:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval None
+ 782:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 783:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE void LL_FLASH_SetLatency(uint32_t Latency)
+ 215              		.loc 3 783 22 view .LVU51
+ 216              	.LBB11:
+ 784:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 785:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   MODIFY_REG(FLASH->ACR, FLASH_ACR_LATENCY, Latency);
+ 217              		.loc 3 785 3 view .LVU52
+ 218 0010 0D4A     		ldr	r2, .L24+8
+ 219 0012 1368     		ldr	r3, [r2]
+ 220 0014 0120     		movs	r0, #1
+ 221              	.LVL12:
+ 222              		.loc 3 785 3 is_stmt 0 view .LVU53
+ 223 0016 8343     		bics	r3, r0
+ 224 0018 0B43     		orrs	r3, r1
+ 225 001a 1360     		str	r3, [r2]
+ 226              	.LVL13:
+ 227              		.loc 3 785 3 view .LVU54
+ 228              	.LBE11:
+ 229              	.LBE10:
+ 373:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 374:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   /* Check that the new number of wait states is taken into account to access the Flash
+ 375:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****      memory by reading the FLASH_ACR register */
+ 376:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   timeout = 2u;
+ 230              		.loc 1 376 3 is_stmt 1 view .LVU55
+ 231              		.loc 1 376 11 is_stmt 0 view .LVU56
+ 232 001c 0222     		movs	r2, #2
+ 233              	.LVL14:
+ 234              	.L20:
+ 377:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   do
+ARM GAS  /tmp/ccy6wxXT.s 			page 29
+
+
+ 235              		.loc 1 377 3 is_stmt 1 view .LVU57
+ 378:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 379:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     /* Wait for Flash latency to be updated */
+ 380:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     getlatency = LL_FLASH_GetLatency();
+ 236              		.loc 1 380 5 view .LVU58
+ 237              	.LBB12:
+ 238              	.LBI12:
+ 786:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** }
+ 787:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** 
+ 788:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** /**
+ 789:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @brief  Get FLASH Latency
+ 790:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @rmtoll FLASH_ACR    FLASH_ACR_LATENCY       LL_FLASH_GetLatency
+ 791:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   * @retval Returned value can be one of the following values:
+ 792:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_FLASH_LATENCY_0
+ 793:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   *         @arg @ref LL_FLASH_LATENCY_1
+ 794:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   */
+ 795:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** __STATIC_INLINE uint32_t LL_FLASH_GetLatency(void)
+ 239              		.loc 3 795 26 view .LVU59
+ 240              	.LBB13:
+ 796:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h **** {
+ 797:PY32F0xx_HAL_Driver/Inc/py32f0xx_ll_system.h ****   return (uint32_t)(READ_BIT(FLASH->ACR, FLASH_ACR_LATENCY));
+ 241              		.loc 3 797 3 view .LVU60
+ 242              		.loc 3 797 21 is_stmt 0 view .LVU61
+ 243 001e 0A4B     		ldr	r3, .L24+8
+ 244 0020 1868     		ldr	r0, [r3]
+ 245              		.loc 3 797 10 view .LVU62
+ 246 0022 0123     		movs	r3, #1
+ 247 0024 0340     		ands	r3, r0
+ 248              	.LVL15:
+ 249              		.loc 3 797 10 view .LVU63
+ 250              	.LBE13:
+ 251              	.LBE12:
+ 381:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     timeout--;
+ 252              		.loc 1 381 5 is_stmt 1 view .LVU64
+ 253              		.loc 1 381 12 is_stmt 0 view .LVU65
+ 254 0026 013A     		subs	r2, r2, #1
+ 255              	.LVL16:
+ 382:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 383:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   while ((getlatency != latency) && (timeout > 0u));
+ 256              		.loc 1 383 34 is_stmt 1 discriminator 2 view .LVU66
+ 257 0028 9942     		cmp	r1, r3
+ 258 002a 01D0     		beq	.L19
+ 259              		.loc 1 383 34 is_stmt 0 discriminator 1 view .LVU67
+ 260 002c 002A     		cmp	r2, #0
+ 261 002e F6D1     		bne	.L20
+ 262              	.L19:
+ 384:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 385:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   if (getlatency != latency)
+ 263              		.loc 1 385 3 is_stmt 1 view .LVU68
+ 264              		.loc 1 385 6 is_stmt 0 view .LVU69
+ 265 0030 9942     		cmp	r1, r3
+ 266 0032 03D0     		beq	.L23
+ 386:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 387:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     status = ERROR;
+ 267              		.loc 1 387 12 view .LVU70
+ 268 0034 0020     		movs	r0, #0
+ 269              	.L21:
+ARM GAS  /tmp/ccy6wxXT.s 			page 30
+
+
+ 270              	.LVL17:
+ 388:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 389:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   else
+ 390:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   {
+ 391:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     status = SUCCESS;
+ 392:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 393:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** 
+ 394:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   return status;
+ 271              		.loc 1 394 3 is_stmt 1 view .LVU71
+ 395:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c **** }
+ 272              		.loc 1 395 1 is_stmt 0 view .LVU72
+ 273              		@ sp needed
+ 274 0036 7047     		bx	lr
+ 275              	.LVL18:
+ 276              	.L22:
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****     }
+ 277              		.loc 1 368 15 view .LVU73
+ 278 0038 0021     		movs	r1, #0
+ 279 003a E9E7     		b	.L18
+ 280              	.LVL19:
+ 281              	.L23:
+ 391:PY32F0xx_HAL_Driver/Src/py32f0xx_ll_utils.c ****   }
+ 282              		.loc 1 391 12 view .LVU74
+ 283 003c 0120     		movs	r0, #1
+ 284 003e FAE7     		b	.L21
+ 285              	.L25:
+ 286              		.align	2
+ 287              	.L24:
+ 288 0040 FF6BDC02 		.word	47999999
+ 289 0044 00366E01 		.word	24000000
+ 290 0048 00200240 		.word	1073881088
+ 291              		.cfi_endproc
+ 292              	.LFE169:
+ 294              		.text
+ 295              	.Letext0:
+ 296              		.file 4 "CMSIS/Include/core_cm0plus.h"
+ 297              		.file 5 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 298              		.file 6 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ 299              		.file 7 "CMSIS/Device/PY32F0xx/Include/py32f0xx.h"
+ 300              		.file 8 "CMSIS/Device/PY32F0xx/Include/system_py32f0xx.h"
+ARM GAS  /tmp/ccy6wxXT.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 py32f0xx_ll_utils.c
+     /tmp/ccy6wxXT.s:19     .text.LL_Init1msTick:00000000 $t
+     /tmp/ccy6wxXT.s:25     .text.LL_Init1msTick:00000000 LL_Init1msTick
+     /tmp/ccy6wxXT.s:74     .text.LL_Init1msTick:0000001c $d
+     /tmp/ccy6wxXT.s:79     .text.LL_mDelay:00000000 $t
+     /tmp/ccy6wxXT.s:85     .text.LL_mDelay:00000000 LL_mDelay
+     /tmp/ccy6wxXT.s:143    .text.LL_mDelay:00000024 $d
+     /tmp/ccy6wxXT.s:148    .text.LL_SetSystemCoreClock:00000000 $t
+     /tmp/ccy6wxXT.s:154    .text.LL_SetSystemCoreClock:00000000 LL_SetSystemCoreClock
+     /tmp/ccy6wxXT.s:172    .text.LL_SetSystemCoreClock:00000008 $d
+     /tmp/ccy6wxXT.s:177    .text.LL_SetFlashLatency:00000000 $t
+     /tmp/ccy6wxXT.s:183    .text.LL_SetFlashLatency:00000000 LL_SetFlashLatency
+     /tmp/ccy6wxXT.s:288    .text.LL_SetFlashLatency:00000040 $d
+
+UNDEFINED SYMBOLS
+__aeabi_uidiv
+SystemCoreClock

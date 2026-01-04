@@ -1,0 +1,1667 @@
+ARM GAS  /tmp/cc5t40Wv.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"py32f0xx_hal_rcc_ex.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c"
+  18              		.section	.text.HAL_RCCEx_PeriphCLKConfig,"ax",%progbits
+  19              		.align	1
+  20              		.global	HAL_RCCEx_PeriphCLKConfig
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	HAL_RCCEx_PeriphCLKConfig:
+  26              	.LVL0:
+  27              	.LFB55:
+   1:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+   2:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   ******************************************************************************
+   3:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @file    py32f0xx_hal_rcc_ex.c
+   4:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @brief   Extended RCC HAL module driver.
+   6:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *          This file provides firmware functions to manage the following
+   7:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *          functionalities RCC extended peripheral:
+   8:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *           + Extended Peripheral Control functions
+   9:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *           + Extended Clock management functions
+  10:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *
+  11:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   ******************************************************************************
+  12:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @attention
+  13:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *
+  14:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+  15:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * All rights reserved.</center></h2>
+  16:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *
+  17:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  18:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * All rights reserved.</center></h2>
+  19:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *
+  20:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+  21:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * the "License"; You may not use this file except in compliance with the
+  22:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * License. You may obtain a copy of the License at:
+  23:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *                        opensource.org/licenses/BSD-3-Clause
+  24:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *
+  25:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   ******************************************************************************
+  26:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+  27:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  28:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /* Includes ------------------------------------------------------------------*/
+  29:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #include "py32f0xx_hal.h"
+  30:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  31:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /** @addtogroup PY32F0xx_HAL_Driver
+ARM GAS  /tmp/cc5t40Wv.s 			page 2
+
+
+  32:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @{
+  33:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+  34:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  35:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /** @defgroup RCCEx RCCEx
+  36:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @brief RCC Extended HAL module driver
+  37:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @{
+  38:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+  39:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  40:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #ifdef HAL_RCC_MODULE_ENABLED
+  41:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  42:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /* Private typedef -----------------------------------------------------------*/
+  43:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /* Private defines -----------------------------------------------------------*/
+  44:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /** @defgroup RCCEx_Private_Constants RCCEx Private Constants
+  45:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  * @{
+  46:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  */
+  47:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #define PLL_TIMEOUT_VALUE        100U /* 100 ms (minimum Tick + 1)  */
+  48:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  49:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_BDCR_LSCOEN)
+  50:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #define LSCO_CLK_ENABLE()     __HAL_RCC_GPIOA_CLK_ENABLE()
+  51:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #define LSCO_GPIO_PORT        GPIOA
+  52:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #define LSCO_PIN              (GPIO_PIN_9 |GPIO_PIN_10)
+  53:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+  54:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+  55:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @}
+  56:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+  57:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  58:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /* Private macros ------------------------------------------------------------*/
+  59:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /* Private variables ---------------------------------------------------------*/
+  60:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /* Private function prototypes -----------------------------------------------*/
+  61:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /* Exported functions --------------------------------------------------------*/
+  62:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  63:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /** @defgroup RCCEx_Exported_Functions RCCEx Exported Functions
+  64:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @{
+  65:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+  66:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  67:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /** @defgroup RCCEx_Exported_Functions_Group1 Extended Peripheral Control functions
+  68:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  *  @brief  Extended Peripheral Control functions
+  69:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  *
+  70:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** @verbatim
+  71:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  ===============================================================================
+  72:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                 ##### Extended Peripheral Control functions  #####
+  73:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  ===============================================================================
+  74:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     [..]
+  75:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     This subsection provides a set of functions allowing to control the RCC Clocks
+  76:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     frequencies.
+  77:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     [..]
+  78:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     (@) Important note: Care must be taken when @ref HAL_RCCEx_PeriphCLKConfig() is used to
+  79:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         select the RTC clock source; in this case the Backup domain will be reset in
+  80:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         order to modify the RTC Clock source, as consequence RTC registers (including
+  81:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         the backup registers) and RCC_BDCR register are set to their reset values.
+  82:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+  83:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** @endverbatim
+  84:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @{
+  85:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+  86:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+  87:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @brief  Initialize the RCC extended peripherals clocks according to the specified
+  88:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         parameters in the @ref RCC_PeriphCLKInitTypeDef.
+ARM GAS  /tmp/cc5t40Wv.s 			page 3
+
+
+  89:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @param  PeriphClkInit  pointer to a @ref RCC_PeriphCLKInitTypeDef structure that
+  90:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         contains a field PeriphClockSelection which can be a combination of the following value
+  91:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_RTC  RTC peripheral clock  (1)
+  92:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_PVD    PVD peripheral clock  (1)
+  93:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_COMP1   COMP1 peripheral clock  (1)
+  94:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_COMP2   COMP2 peripheral clock  (1)
+  95:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_LPTIM  LPTIM peripheral clock  (1)
+  96:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *
+  97:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @note   (1) Peripherals maybe not available on some devices
+  98:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @note   Care must be taken when @ref HAL_RCCEx_PeriphCLKConfig() is used to select
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         the RTC clock source: in this case the access to Backup domain is enabled.
+ 100:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @retval HAL status
+ 102:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(RCC_PeriphCLKInitTypeDef  *PeriphClkInit)
+ 104:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** {
+  28              		.loc 1 104 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 104 1 is_stmt 0 view .LVU1
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+  40 0002 82B0     		sub	sp, sp, #8
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 24
+  43 0004 0400     		movs	r4, r0
+ 105:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_BDCR_RTCSEL)
+ 106:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   uint32_t tickstart = 0U, temp_reg = 0U;
+  44              		.loc 1 106 3 is_stmt 1 view .LVU2
+  45              	.LVL1:
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   FlagStatus       pwrclkchanged = RESET;
+  46              		.loc 1 107 3 view .LVU3
+ 108:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Check the parameters */
+ 110:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   assert_param(IS_RCC_PERIPHCLOCK(PeriphClkInit->PeriphClockSelection));
+  47              		.loc 1 110 3 view .LVU4
+ 111:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_BDCR_RTCSEL)
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /*------------------------------- RTC Configuration ------------------------*/
+ 113:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if ((((PeriphClkInit->PeriphClockSelection) & RCC_PERIPHCLK_RTC) == RCC_PERIPHCLK_RTC))
+  48              		.loc 1 113 3 view .LVU5
+  49              		.loc 1 113 23 is_stmt 0 view .LVU6
+  50 0006 0368     		ldr	r3, [r0]
+  51              		.loc 1 113 6 view .LVU7
+  52 0008 9B03     		lsls	r3, r3, #14
+  53 000a 37D5     		bpl	.L2
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 115:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* check for RTC Parameters used to output RTCCLK */
+ 116:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     assert_param(IS_RCC_RTCCLKSOURCE(PeriphClkInit->RTCClockSelection));
+  54              		.loc 1 116 5 is_stmt 1 view .LVU8
+ 117:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* As soon as function is called to change RTC clock source, activation of the
+ARM GAS  /tmp/cc5t40Wv.s 			page 4
+
+
+ 119:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****        power domain is done. */
+ 120:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Requires to enable write access to Backup Domain of necessary */
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     if (__HAL_RCC_PWR_IS_CLK_DISABLED())
+  55              		.loc 1 121 5 view .LVU9
+  56              		.loc 1 121 9 is_stmt 0 view .LVU10
+  57 000c 3F4B     		ldr	r3, .L22
+  58 000e DB6B     		ldr	r3, [r3, #60]
+  59              		.loc 1 121 8 view .LVU11
+  60 0010 DB00     		lsls	r3, r3, #3
+  61 0012 5ED4     		bmi	.L12
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 123:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       __HAL_RCC_PWR_CLK_ENABLE();
+  62              		.loc 1 123 7 is_stmt 1 view .LVU12
+  63              	.LBB2:
+  64              		.loc 1 123 7 view .LVU13
+  65              		.loc 1 123 7 view .LVU14
+  66 0014 3D4B     		ldr	r3, .L22
+  67 0016 DA6B     		ldr	r2, [r3, #60]
+  68 0018 8021     		movs	r1, #128
+  69 001a 4905     		lsls	r1, r1, #21
+  70 001c 0A43     		orrs	r2, r1
+  71 001e DA63     		str	r2, [r3, #60]
+  72              		.loc 1 123 7 view .LVU15
+  73 0020 DB6B     		ldr	r3, [r3, #60]
+  74 0022 0B40     		ands	r3, r1
+  75 0024 0193     		str	r3, [sp, #4]
+  76              		.loc 1 123 7 view .LVU16
+  77 0026 019B     		ldr	r3, [sp, #4]
+  78              	.LBE2:
+  79              		.loc 1 123 7 view .LVU17
+ 124:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       pwrclkchanged = SET;
+  80              		.loc 1 124 7 view .LVU18
+  81              	.LVL2:
+  82              		.loc 1 124 21 is_stmt 0 view .LVU19
+  83 0028 0125     		movs	r5, #1
+  84              	.LVL3:
+  85              	.L3:
+ 125:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 126:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 127:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     if (HAL_IS_BIT_CLR(PWR->CR1, PWR_CR1_DBP))
+  86              		.loc 1 127 5 is_stmt 1 view .LVU20
+  87              		.loc 1 127 9 is_stmt 0 view .LVU21
+  88 002a 394B     		ldr	r3, .L22+4
+  89 002c 1B68     		ldr	r3, [r3]
+  90              		.loc 1 127 8 view .LVU22
+  91 002e DB05     		lsls	r3, r3, #23
+  92 0030 51D5     		bpl	.L20
+  93              	.LVL4:
+  94              	.L4:
+ 128:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 129:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Enable write access to Backup domain */
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       SET_BIT(PWR->CR1, PWR_CR1_DBP);
+ 131:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Wait for Backup domain Write protection disable */
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       tickstart = HAL_GetTick();
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       while (HAL_IS_BIT_CLR(PWR->CR1, PWR_CR1_DBP))
+ARM GAS  /tmp/cc5t40Wv.s 			page 5
+
+
+ 136:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         if ((HAL_GetTick() - tickstart) > RCC_DBP_TIMEOUT_VALUE)
+ 138:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         {
+ 139:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****           return HAL_TIMEOUT;
+ 140:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         }
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 142:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 143:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 144:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Reset the Backup domain only if the RTC Clock source selection is modified from reset value 
+ 145:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     temp_reg = (RCC->BDCR & RCC_BDCR_RTCSEL);
+  95              		.loc 1 145 5 is_stmt 1 view .LVU23
+  96              		.loc 1 145 20 is_stmt 0 view .LVU24
+  97 0032 364B     		ldr	r3, .L22
+  98 0034 DA6D     		ldr	r2, [r3, #92]
+  99              		.loc 1 145 14 view .LVU25
+ 100 0036 C023     		movs	r3, #192
+ 101 0038 9B00     		lsls	r3, r3, #2
+ 102 003a 1100     		movs	r1, r2
+ 103 003c 1940     		ands	r1, r3
+ 104              	.LVL5:
+ 146:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     if ((temp_reg != 0x00000000U) && (temp_reg != (PeriphClkInit->RTCClockSelection & RCC_BDCR_RTCS
+ 105              		.loc 1 146 5 is_stmt 1 view .LVU26
+ 106              		.loc 1 146 8 is_stmt 0 view .LVU27
+ 107 003e 1A42     		tst	r2, r3
+ 108 0040 13D0     		beq	.L8
+ 109              		.loc 1 146 65 discriminator 1 view .LVU28
+ 110 0042 6369     		ldr	r3, [r4, #20]
+ 111              		.loc 1 146 85 discriminator 1 view .LVU29
+ 112 0044 C022     		movs	r2, #192
+ 113 0046 9200     		lsls	r2, r2, #2
+ 114 0048 1340     		ands	r3, r2
+ 115              		.loc 1 146 35 discriminator 1 view .LVU30
+ 116 004a 8B42     		cmp	r3, r1
+ 117 004c 0DD0     		beq	.L8
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 148:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Store the content of BDCR register before the reset of Backup Domain */
+ 149:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       temp_reg = (RCC->BDCR & ~(RCC_BDCR_RTCSEL));
+ 118              		.loc 1 149 7 is_stmt 1 view .LVU31
+ 119              		.loc 1 149 22 is_stmt 0 view .LVU32
+ 120 004e 2F4B     		ldr	r3, .L22
+ 121 0050 DA6D     		ldr	r2, [r3, #92]
+ 122              		.loc 1 149 16 view .LVU33
+ 123 0052 3049     		ldr	r1, .L22+8
+ 124              	.LVL6:
+ 125              		.loc 1 149 16 view .LVU34
+ 126 0054 0A40     		ands	r2, r1
+ 127              	.LVL7:
+ 150:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* RTC Clock selection can be changed only if the Backup Domain is reset */
+ 151:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       __HAL_RCC_BACKUPRESET_FORCE();
+ 128              		.loc 1 151 7 is_stmt 1 view .LVU35
+ 129 0056 D86D     		ldr	r0, [r3, #92]
+ 130 0058 8021     		movs	r1, #128
+ 131 005a 4902     		lsls	r1, r1, #9
+ 132 005c 0143     		orrs	r1, r0
+ 133 005e D965     		str	r1, [r3, #92]
+ 152:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       __HAL_RCC_BACKUPRESET_RELEASE();
+ 134              		.loc 1 152 7 view .LVU36
+ARM GAS  /tmp/cc5t40Wv.s 			page 6
+
+
+ 135 0060 D96D     		ldr	r1, [r3, #92]
+ 136 0062 2D48     		ldr	r0, .L22+12
+ 137 0064 0140     		ands	r1, r0
+ 138 0066 D965     		str	r1, [r3, #92]
+ 153:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Restore the Content of BDCR register */
+ 154:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       RCC->BDCR = temp_reg;
+ 139              		.loc 1 154 7 view .LVU37
+ 140              		.loc 1 154 17 is_stmt 0 view .LVU38
+ 141 0068 DA65     		str	r2, [r3, #92]
+ 142              	.LVL8:
+ 143              	.L8:
+ 155:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Wait for LSERDY if LSE was enabled */
+ 158:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       if (HAL_IS_BIT_SET(temp_reg, RCC_BDCR_LSEON))
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 160:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         /* Get Start Tick */
+ 161:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         tickstart = HAL_GetTick();
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 163:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         /* Wait till LSE is ready */
+ 164:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         while (__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY) == RESET)
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         {
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****           if ((HAL_GetTick() - tickstart) > RCC_LSE_TIMEOUT_VALUE)
+ 167:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****           {
+ 168:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****             return HAL_TIMEOUT;
+ 169:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****           }
+ 170:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         }
+ 171:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 172:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 173:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 174:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_RTC_CONFIG(PeriphClkInit->RTCClockSelection);
+ 144              		.loc 1 174 5 is_stmt 1 view .LVU39
+ 145 006a 284A     		ldr	r2, .L22
+ 146 006c D36D     		ldr	r3, [r2, #92]
+ 147 006e 2949     		ldr	r1, .L22+8
+ 148 0070 0B40     		ands	r3, r1
+ 149 0072 6169     		ldr	r1, [r4, #20]
+ 150 0074 0B43     		orrs	r3, r1
+ 151 0076 D365     		str	r3, [r2, #92]
+ 175:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 176:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Require to disable power clock if necessary */
+ 177:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     if (pwrclkchanged == SET)
+ 152              		.loc 1 177 5 view .LVU40
+ 153              		.loc 1 177 8 is_stmt 0 view .LVU41
+ 154 0078 012D     		cmp	r5, #1
+ 155 007a 40D0     		beq	.L21
+ 156              	.LVL9:
+ 157              	.L2:
+ 178:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 179:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       __HAL_RCC_PWR_CLK_DISABLE();
+ 180:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 181:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 182:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /*RCC_BDCR_RTCSEL*/
+ 183:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_PVDSEL)
+ 185:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /*-------------------------- PVD clock source configuration -------------------*/
+ 186:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (((PeriphClkInit->PeriphClockSelection) & RCC_PERIPHCLK_PVD) == RCC_PERIPHCLK_PVD)
+ARM GAS  /tmp/cc5t40Wv.s 			page 7
+
+
+ 158              		.loc 1 186 3 is_stmt 1 view .LVU42
+ 159              		.loc 1 186 22 is_stmt 0 view .LVU43
+ 160 007c 2368     		ldr	r3, [r4]
+ 161              		.loc 1 186 6 view .LVU44
+ 162 007e DB07     		lsls	r3, r3, #31
+ 163 0080 06D5     		bpl	.L9
+ 187:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 188:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Check the parameters */
+ 189:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     assert_param(IS_RCC_PVDCLKSOURCE(PeriphClkInit->PvdClockSelection));
+ 164              		.loc 1 189 5 is_stmt 1 view .LVU45
+ 190:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 191:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Configure the PVD clock source */
+ 192:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_PVD_CONFIG(PeriphClkInit->PvdClockSelection);
+ 165              		.loc 1 192 5 view .LVU46
+ 166 0082 224A     		ldr	r2, .L22
+ 167 0084 536D     		ldr	r3, [r2, #84]
+ 168 0086 8021     		movs	r1, #128
+ 169 0088 8B43     		bics	r3, r1
+ 170 008a 6168     		ldr	r1, [r4, #4]
+ 171 008c 0B43     		orrs	r3, r1
+ 172 008e 5365     		str	r3, [r2, #84]
+ 173              	.L9:
+ 193:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 194:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_PVDSEL */
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 196:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_COMP1SEL)
+ 197:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /*-------------------------- COMP1 clock source configuration -------------------*/
+ 198:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (((PeriphClkInit->PeriphClockSelection) & RCC_PERIPHCLK_COMP1) == RCC_PERIPHCLK_COMP1)
+ 174              		.loc 1 198 3 view .LVU47
+ 175              		.loc 1 198 22 is_stmt 0 view .LVU48
+ 176 0090 2368     		ldr	r3, [r4]
+ 177              		.loc 1 198 6 view .LVU49
+ 178 0092 9B07     		lsls	r3, r3, #30
+ 179 0094 06D5     		bpl	.L10
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 200:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Check the parameters */
+ 201:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     assert_param(IS_RCC_COMP1CLKSOURCE(PeriphClkInit->Comp1ClockSelection));
+ 180              		.loc 1 201 5 is_stmt 1 view .LVU50
+ 202:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Configure the COMP1 clock source */
+ 204:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_COMP1_CONFIG(PeriphClkInit->Comp1ClockSelection);
+ 181              		.loc 1 204 5 view .LVU51
+ 182 0096 1D4A     		ldr	r2, .L22
+ 183 0098 536D     		ldr	r3, [r2, #84]
+ 184 009a 2049     		ldr	r1, .L22+16
+ 185 009c 0B40     		ands	r3, r1
+ 186 009e A168     		ldr	r1, [r4, #8]
+ 187 00a0 0B43     		orrs	r3, r1
+ 188 00a2 5365     		str	r3, [r2, #84]
+ 189              	.L10:
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_COMP1SEL */
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_COMP2SEL)
+ 209:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /*-------------------------- COMP2 clock source configuration -------------------*/
+ 210:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (((PeriphClkInit->PeriphClockSelection) & RCC_PERIPHCLK_COMP2) == RCC_PERIPHCLK_COMP2)
+ 190              		.loc 1 210 3 view .LVU52
+ARM GAS  /tmp/cc5t40Wv.s 			page 8
+
+
+ 191              		.loc 1 210 22 is_stmt 0 view .LVU53
+ 192 00a4 2368     		ldr	r3, [r4]
+ 193              		.loc 1 210 6 view .LVU54
+ 194 00a6 9B06     		lsls	r3, r3, #26
+ 195 00a8 06D5     		bpl	.L11
+ 211:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 212:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Check the parameters */
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     assert_param(IS_RCC_COMP2CLKSOURCE(PeriphClkInit->Comp2ClockSelection));
+ 196              		.loc 1 213 5 is_stmt 1 view .LVU55
+ 214:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 215:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Configure the COMP2 clock source */
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_COMP2_CONFIG(PeriphClkInit->Comp2ClockSelection);
+ 197              		.loc 1 216 5 view .LVU56
+ 198 00aa 184A     		ldr	r2, .L22
+ 199 00ac 536D     		ldr	r3, [r2, #84]
+ 200 00ae 1C49     		ldr	r1, .L22+20
+ 201 00b0 0B40     		ands	r3, r1
+ 202 00b2 E168     		ldr	r1, [r4, #12]
+ 203 00b4 0B43     		orrs	r3, r1
+ 204 00b6 5365     		str	r3, [r2, #84]
+ 205              	.L11:
+ 217:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 218:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_COMP2SEL */
+ 219:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_LPTIMSEL)
+ 221:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /*-------------------------- LPTIM clock source configuration -------------------*/
+ 222:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (((PeriphClkInit->PeriphClockSelection) & RCC_PERIPHCLK_LPTIM) == (RCC_PERIPHCLK_LPTIM))
+ 206              		.loc 1 222 3 view .LVU57
+ 207              		.loc 1 222 22 is_stmt 0 view .LVU58
+ 208 00b8 2368     		ldr	r3, [r4]
+ 209              		.loc 1 222 6 view .LVU59
+ 210 00ba 9B05     		lsls	r3, r3, #22
+ 211 00bc 24D5     		bpl	.L14
+ 223:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 224:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     assert_param(IS_RCC_LPTIM1CLKSOURCE(PeriphClkInit->LptimClockSelection));
+ 212              		.loc 1 224 5 is_stmt 1 view .LVU60
+ 225:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_LPTIM_CONFIG(PeriphClkInit->LptimClockSelection);
+ 213              		.loc 1 225 5 view .LVU61
+ 214 00be 134A     		ldr	r2, .L22
+ 215 00c0 536D     		ldr	r3, [r2, #84]
+ 216 00c2 1849     		ldr	r1, .L22+24
+ 217 00c4 0B40     		ands	r3, r1
+ 218 00c6 2169     		ldr	r1, [r4, #16]
+ 219 00c8 0B43     		orrs	r3, r1
+ 220 00ca 5365     		str	r3, [r2, #84]
+ 226:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 227:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_LPTIM1SEL */
+ 228:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 229:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   return HAL_OK;
+ 221              		.loc 1 229 10 is_stmt 0 view .LVU62
+ 222 00cc 0020     		movs	r0, #0
+ 223              	.L6:
+ 230:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 224              		.loc 1 230 1 view .LVU63
+ 225 00ce 02B0     		add	sp, sp, #8
+ 226              		@ sp needed
+ 227              	.LVL10:
+ARM GAS  /tmp/cc5t40Wv.s 			page 9
+
+
+ 228              		.loc 1 230 1 view .LVU64
+ 229 00d0 70BD     		pop	{r4, r5, r6, pc}
+ 230              	.LVL11:
+ 231              	.L12:
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 232              		.loc 1 107 20 view .LVU65
+ 233 00d2 0025     		movs	r5, #0
+ 234 00d4 A9E7     		b	.L3
+ 235              	.LVL12:
+ 236              	.L20:
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 237              		.loc 1 130 7 is_stmt 1 view .LVU66
+ 238 00d6 0E4A     		ldr	r2, .L22+4
+ 239 00d8 1168     		ldr	r1, [r2]
+ 240 00da 8023     		movs	r3, #128
+ 241 00dc 5B00     		lsls	r3, r3, #1
+ 242 00de 0B43     		orrs	r3, r1
+ 243 00e0 1360     		str	r3, [r2]
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 244              		.loc 1 133 7 view .LVU67
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 245              		.loc 1 133 19 is_stmt 0 view .LVU68
+ 246 00e2 FFF7FEFF 		bl	HAL_GetTick
+ 247              	.LVL13:
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 248              		.loc 1 133 19 view .LVU69
+ 249 00e6 0600     		movs	r6, r0
+ 250              	.LVL14:
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 251              		.loc 1 135 7 is_stmt 1 view .LVU70
+ 252              	.L5:
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 253              		.loc 1 135 14 view .LVU71
+ 254 00e8 094B     		ldr	r3, .L22+4
+ 255 00ea 1B68     		ldr	r3, [r3]
+ 256 00ec DB05     		lsls	r3, r3, #23
+ 257 00ee A0D4     		bmi	.L4
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         {
+ 258              		.loc 1 137 9 view .LVU72
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         {
+ 259              		.loc 1 137 14 is_stmt 0 view .LVU73
+ 260 00f0 FFF7FEFF 		bl	HAL_GetTick
+ 261              	.LVL15:
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         {
+ 262              		.loc 1 137 28 discriminator 1 view .LVU74
+ 263 00f4 801B     		subs	r0, r0, r6
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         {
+ 264              		.loc 1 137 12 discriminator 1 view .LVU75
+ 265 00f6 0228     		cmp	r0, #2
+ 266 00f8 F6D9     		bls	.L5
+ 139:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         }
+ 267              		.loc 1 139 18 view .LVU76
+ 268 00fa 0320     		movs	r0, #3
+ 269 00fc E7E7     		b	.L6
+ 270              	.LVL16:
+ 271              	.L21:
+ 179:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ARM GAS  /tmp/cc5t40Wv.s 			page 10
+
+
+ 272              		.loc 1 179 7 is_stmt 1 view .LVU77
+ 273 00fe D36B     		ldr	r3, [r2, #60]
+ 274 0100 0949     		ldr	r1, .L22+28
+ 275 0102 0B40     		ands	r3, r1
+ 276 0104 D363     		str	r3, [r2, #60]
+ 277 0106 B9E7     		b	.L2
+ 278              	.LVL17:
+ 279              	.L14:
+ 229:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 280              		.loc 1 229 10 is_stmt 0 view .LVU78
+ 281 0108 0020     		movs	r0, #0
+ 282 010a E0E7     		b	.L6
+ 283              	.L23:
+ 284              		.align	2
+ 285              	.L22:
+ 286 010c 00100240 		.word	1073876992
+ 287 0110 00700040 		.word	1073770496
+ 288 0114 FFFCFFFF 		.word	-769
+ 289 0118 FFFFFEFF 		.word	-65537
+ 290 011c FFFEFFFF 		.word	-257
+ 291 0120 FFFDFFFF 		.word	-513
+ 292 0124 FFFFF3FF 		.word	-786433
+ 293 0128 FFFFFFEF 		.word	-268435457
+ 294              		.cfi_endproc
+ 295              	.LFE55:
+ 297              		.section	.text.HAL_RCCEx_GetPeriphCLKConfig,"ax",%progbits
+ 298              		.align	1
+ 299              		.global	HAL_RCCEx_GetPeriphCLKConfig
+ 300              		.syntax unified
+ 301              		.code	16
+ 302              		.thumb_func
+ 304              	HAL_RCCEx_GetPeriphCLKConfig:
+ 305              	.LVL18:
+ 306              	.LFB56:
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 232:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+ 233:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @brief  Get the RCC_ClkInitStruct according to the internal RCC configuration registers.
+ 234:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @param  PeriphClkInit pointer to an RCC_PeriphCLKInitTypeDef structure that
+ 235:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         returns the configuration information for the Extended Peripherals
+ 236:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         clocks: PVD, COMP1, COMP2, RTC, LPTIM
+ 237:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @note   Depending on devices and packages, some Peripherals may not be available.
+ 238:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         Refer to device datasheet for Peripheral availability.
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @retval None
+ 240:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+ 241:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** void HAL_RCCEx_GetPeriphCLKConfig(RCC_PeriphCLKInitTypeDef  *PeriphClkInit)
+ 242:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** {
+ 307              		.loc 1 242 1 is_stmt 1 view -0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
+ 243:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Set all possible values for the extended clock type parameter------------*/
+ 244:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(PY32F002APRE)
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** PeriphClkInit->PeriphClockSelection =  RCC_PERIPHCLK_LPTIM;
+ 246:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #else
+ 247:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** PeriphClkInit->PeriphClockSelection = RCC_PERIPHCLK_COMP1 | RCC_PERIPHCLK_COMP2 | RCC_PERIPHCLK_PVD
+ 312              		.loc 1 247 1 view .LVU80
+ARM GAS  /tmp/cc5t40Wv.s 			page 11
+
+
+ 313              		.loc 1 247 37 is_stmt 0 view .LVU81
+ 314 0000 0D4B     		ldr	r3, .L25
+ 315 0002 0360     		str	r3, [r0]
+ 248:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                                         RCC_PERIPHCLK_LPTIM     | RCC_PERIPHCLK_RTC ;
+ 249:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 250:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_PVDSEL)
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Get the PVD clock source ---------------------------------------------*/
+ 253:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   PeriphClkInit->PvdClockSelection  = __HAL_RCC_GET_PVD_SOURCE();
+ 316              		.loc 1 253 3 is_stmt 1 view .LVU82
+ 317              		.loc 1 253 39 is_stmt 0 view .LVU83
+ 318 0004 0D4B     		ldr	r3, .L25+4
+ 319 0006 596D     		ldr	r1, [r3, #84]
+ 320 0008 8022     		movs	r2, #128
+ 321 000a 0A40     		ands	r2, r1
+ 322              		.loc 1 253 37 view .LVU84
+ 323 000c 4260     		str	r2, [r0, #4]
+ 254:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_PVDSEL */
+ 255:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_COMP1SEL)
+ 256:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Get the COMP1 clock source --------------------------------------------*/
+ 257:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   PeriphClkInit->Comp1ClockSelection = __HAL_RCC_GET_COMP1_SOURCE();
+ 324              		.loc 1 257 3 is_stmt 1 view .LVU85
+ 325              		.loc 1 257 40 is_stmt 0 view .LVU86
+ 326 000e 5A6D     		ldr	r2, [r3, #84]
+ 327 0010 8021     		movs	r1, #128
+ 328 0012 4900     		lsls	r1, r1, #1
+ 329 0014 0A40     		ands	r2, r1
+ 330              		.loc 1 257 38 view .LVU87
+ 331 0016 8260     		str	r2, [r0, #8]
+ 258:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_COMP1SEL */
+ 259:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_COMP2SEL)
+ 260:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Get the COMP2 clock source ---------------------------------------------*/
+ 261:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   PeriphClkInit->Comp2ClockSelection  = __HAL_RCC_GET_COMP2_SOURCE();
+ 332              		.loc 1 261 3 is_stmt 1 view .LVU88
+ 333              		.loc 1 261 41 is_stmt 0 view .LVU89
+ 334 0018 5A6D     		ldr	r2, [r3, #84]
+ 335 001a 0131     		adds	r1, r1, #1
+ 336 001c FF31     		adds	r1, r1, #255
+ 337 001e 0A40     		ands	r2, r1
+ 338              		.loc 1 261 39 view .LVU90
+ 339 0020 C260     		str	r2, [r0, #12]
+ 262:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_COMP2SEL */
+ 263:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_LPTIMSEL)
+ 264:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Get the LPTIM clock source ---------------------------------------------*/
+ 265:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   PeriphClkInit->LptimClockSelection  = __HAL_RCC_GET_LPTIM_SOURCE();
+ 340              		.loc 1 265 3 is_stmt 1 view .LVU91
+ 341              		.loc 1 265 41 is_stmt 0 view .LVU92
+ 342 0022 5A6D     		ldr	r2, [r3, #84]
+ 343 0024 C021     		movs	r1, #192
+ 344 0026 0903     		lsls	r1, r1, #12
+ 345 0028 0A40     		ands	r2, r1
+ 346              		.loc 1 265 39 view .LVU93
+ 347 002a 0261     		str	r2, [r0, #16]
+ 266:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_LPTIM2SEL */
+ 267:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_BDCR_RTCSEL)
+ 268:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Get the RTC clock source ------------------------------------------------*/
+ 269:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   PeriphClkInit->RTCClockSelection     = __HAL_RCC_GET_RTC_SOURCE();
+ARM GAS  /tmp/cc5t40Wv.s 			page 12
+
+
+ 348              		.loc 1 269 3 is_stmt 1 view .LVU94
+ 349              		.loc 1 269 42 is_stmt 0 view .LVU95
+ 350 002c DB6D     		ldr	r3, [r3, #92]
+ 351 002e C022     		movs	r2, #192
+ 352 0030 9200     		lsls	r2, r2, #2
+ 353 0032 1340     		ands	r3, r2
+ 354              		.loc 1 269 40 view .LVU96
+ 355 0034 4361     		str	r3, [r0, #20]
+ 270:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_BDCR_RTCSEL */
+ 271:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 272:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 273:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 356              		.loc 1 273 1 view .LVU97
+ 357              		@ sp needed
+ 358 0036 7047     		bx	lr
+ 359              	.L26:
+ 360              		.align	2
+ 361              	.L25:
+ 362 0038 23020200 		.word	131619
+ 363 003c 00100240 		.word	1073876992
+ 364              		.cfi_endproc
+ 365              	.LFE56:
+ 367              		.section	.text.HAL_RCCEx_GetPeriphCLKFreq,"ax",%progbits
+ 368              		.align	1
+ 369              		.global	HAL_RCCEx_GetPeriphCLKFreq
+ 370              		.syntax unified
+ 371              		.code	16
+ 372              		.thumb_func
+ 374              	HAL_RCCEx_GetPeriphCLKFreq:
+ 375              	.LVL19:
+ 376              	.LFB57:
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 275:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+ 276:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @brief  Return the peripheral clock frequency for peripherals with clock source from PLL
+ 277:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @note   Return 0 if peripheral clock identifier not managed by this API
+ 278:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @param  PeriphClk  Peripheral clock identifier
+ 279:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         This parameter can be one of the following values:
+ 280:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_RTC     RTC peripheral clock
+ 281:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_PVD     PVD peripheral clock
+ 282:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_COMP1   COMP1 peripheral clock
+ 283:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_COMP2   COMP2 peripheral clock
+ 284:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_PERIPHCLK_LPTIM   LPTIM peripheral clock
+ 285:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @note   Depending on devices and packages, some Peripherals may not be available.
+ 286:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *         Refer to device datasheet for Peripheral availability.
+ 287:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @retval Frequency in Hz
+ 288:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+ 289:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
+ 290:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** {
+ 377              		.loc 1 290 1 is_stmt 1 view -0
+ 378              		.cfi_startproc
+ 379              		@ args = 0, pretend = 0, frame = 0
+ 380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 381              		.loc 1 290 1 is_stmt 0 view .LVU99
+ 382 0000 10B5     		push	{r4, lr}
+ 383              	.LCFI2:
+ 384              		.cfi_def_cfa_offset 8
+ 385              		.cfi_offset 4, -8
+ARM GAS  /tmp/cc5t40Wv.s 			page 13
+
+
+ 386              		.cfi_offset 14, -4
+ 291:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   uint32_t frequency = 0U;
+ 387              		.loc 1 291 3 is_stmt 1 view .LVU100
+ 388              	.LVL20:
+ 292:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   uint32_t srcclk;
+ 389              		.loc 1 292 3 view .LVU101
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 294:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_RNGSEL)
+ 295:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   uint32_t rngclk;
+ 296:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   uint32_t rngdiv;
+ 297:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 298:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Check the parameters */
+ 299:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   assert_param(IS_RCC_PERIPHCLOCK(PeriphClk));
+ 390              		.loc 1 299 3 view .LVU102
+ 300:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 301:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_BDCR_RTCSEL)
+ 302:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (PeriphClk == RCC_PERIPHCLK_RTC)
+ 391              		.loc 1 302 3 view .LVU103
+ 392              		.loc 1 302 6 is_stmt 0 view .LVU104
+ 393 0002 8023     		movs	r3, #128
+ 394 0004 9B02     		lsls	r3, r3, #10
+ 395 0006 9842     		cmp	r0, r3
+ 396 0008 0DD0     		beq	.L44
+ 303:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 304:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Get the current RTC source */
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     srcclk = __HAL_RCC_GET_RTC_SOURCE();
+ 306:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 307:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Check if LSI is ready and if RTC clock selection is LSI */
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     if ((HAL_IS_BIT_SET(RCC->CSR, RCC_CSR_LSIRDY)) && (srcclk == RCC_RTCCLKSOURCE_LSI))
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       frequency = LSI_VALUE;
+ 311:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 312:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 313:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Check if LSE is ready and if RTC clock selection is LSE */
+ 314:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     else if ((HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSERDY)) && (srcclk == RCC_RTCCLKSOURCE_LSE))
+ 315:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 316:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       frequency = LSE_VALUE;
+ 317:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 318:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 319:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Check if HSE is ready  and if RTC clock selection is HSI_DIV32*/
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     else if ((HAL_IS_BIT_SET(RCC->CR, RCC_CR_HSERDY)) &&(srcclk == RCC_RTCCLKSOURCE_HSE_DIV128))
+ 321:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 322:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       frequency = HSE_VALUE / 128U;
+ 323:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 324:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Clock not enabled for RTC*/
+ 325:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     else
+ 326:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 327:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Nothing to do as frequency already initialized to 0U */
+ 328:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 329:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 330:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   else
+ 331:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 332:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 333:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Other external peripheral clock source than RTC */
+ 334:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     switch (PeriphClk)
+ 397              		.loc 1 335 5 is_stmt 1 view .LVU105
+ARM GAS  /tmp/cc5t40Wv.s 			page 14
+
+
+ 398 000a 2028     		cmp	r0, #32
+ 399 000c 4FD0     		beq	.L31
+ 400 000e 26D8     		bhi	.L32
+ 401 0010 0128     		cmp	r0, #1
+ 402 0012 3FD0     		beq	.L33
+ 403 0014 0228     		cmp	r0, #2
+ 404 0016 20D1     		bne	.L45
+ 336:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 337:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_PVDSEL)
+ 338:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     case RCC_PERIPHCLK_PVD:
+ 339:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Get the current PVD source */
+ 340:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       srcclk = __HAL_RCC_GET_PVD_SOURCE();
+ 341:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 342:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       if (srcclk == RCC_PVDCLKSOURCE_PCLK)            /* PCLK1 */
+ 343:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 344:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = HAL_RCC_GetPCLK1Freq();
+ 345:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 346:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 347:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->CSR, RCC_CSR_LSIRDY)) && (HAL_IS_BIT_CLR(RCC->BDCR, RCC_BDCR_LS
+ 348:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSCOEN)) && (srcclk == RCC_PVDCLKSOURCE_LSC))
+ 349:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 350:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSI_VALUE;
+ 351:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 352:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSERDY)) && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_
+ 353:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSCOEN)) && (srcclk == RCC_PVDCLKSOURCE_LSC))
+ 354:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 355:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSE_VALUE;
+ 356:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 357:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Clock not enabled for PVD */
+ 358:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else
+ 359:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 360:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         /* Nothing to do as frequency already initialized to 0U */
+ 361:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 362:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #else
+ 363:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else
+ 364:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 365:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSI_VALUE;
+ 366:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 367:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       break;
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 370:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 371:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_COMP1SEL)
+ 372:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     case RCC_PERIPHCLK_COMP1:
+ 373:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Get the current COMP1 source */
+ 374:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       srcclk = __HAL_RCC_GET_COMP1_SOURCE();
+ 405              		.loc 1 374 7 view .LVU106
+ 406              		.loc 1 374 16 is_stmt 0 view .LVU107
+ 407 0018 2F4B     		ldr	r3, .L51
+ 408 001a 5B6D     		ldr	r3, [r3, #84]
+ 409              	.LVL21:
+ 375:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 376:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       if (srcclk == RCC_COMP1CLKSOURCE_PCLK)            /* PCLK1 */
+ 410              		.loc 1 376 7 is_stmt 1 view .LVU108
+ 411              		.loc 1 376 10 is_stmt 0 view .LVU109
+ 412 001c DB05     		lsls	r3, r3, #23
+ 413 001e 43D5     		bpl	.L46
+ARM GAS  /tmp/cc5t40Wv.s 			page 15
+
+
+ 414              	.LVL22:
+ 377:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 378:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = HAL_RCC_GetPCLK1Freq();
+ 379:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 380:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 381:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->CSR, RCC_CSR_LSIRDY)) && (HAL_IS_BIT_CLR(RCC->BDCR, RCC_BDCR_LS
+ 382:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSCOEN)) && (srcclk == RCC_COMP1CLKSOURCE_LSC
+ 383:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 384:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSI_VALUE;
+ 385:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 386:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSERDY)) && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_
+ 387:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSCOEN)) && (srcclk == RCC_COMP1CLKSOURCE_LSC
+ 388:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 389:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSE_VALUE;
+ 390:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 391:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Clock not enabled for COMP1 */
+ 392:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else
+ 393:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 394:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         /* Nothing to do as frequency already initialized to 0U */
+ 395:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 396:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #else
+ 397:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else
+ 398:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 399:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSI_VALUE;
+ 415              		.loc 1 399 19 view .LVU110
+ 416 0020 8020     		movs	r0, #128
+ 417              	.LVL23:
+ 418              		.loc 1 399 19 view .LVU111
+ 419 0022 0002     		lsls	r0, r0, #8
+ 420 0024 18E0     		b	.L27
+ 421              	.LVL24:
+ 422              	.L44:
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 423              		.loc 1 305 5 is_stmt 1 view .LVU112
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 424              		.loc 1 305 14 is_stmt 0 view .LVU113
+ 425 0026 2C4A     		ldr	r2, .L51
+ 426 0028 D36D     		ldr	r3, [r2, #92]
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 427              		.loc 1 305 12 view .LVU114
+ 428 002a C021     		movs	r1, #192
+ 429 002c 8900     		lsls	r1, r1, #2
+ 430 002e 0B40     		ands	r3, r1
+ 431              	.LVL25:
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 432              		.loc 1 308 5 is_stmt 1 view .LVU115
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 433              		.loc 1 308 10 is_stmt 0 view .LVU116
+ 434 0030 126E     		ldr	r2, [r2, #96]
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 435              		.loc 1 308 8 view .LVU117
+ 436 0032 9207     		lsls	r2, r2, #30
+ 437 0034 03D5     		bpl	.L29
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 438              		.loc 1 308 52 discriminator 1 view .LVU118
+ 439 0036 8022     		movs	r2, #128
+ 440 0038 9200     		lsls	r2, r2, #2
+ARM GAS  /tmp/cc5t40Wv.s 			page 16
+
+
+ 441 003a 9342     		cmp	r3, r2
+ 442 003c 44D0     		beq	.L37
+ 443              	.L29:
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 444              		.loc 1 320 10 is_stmt 1 view .LVU119
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 445              		.loc 1 320 15 is_stmt 0 view .LVU120
+ 446 003e 264A     		ldr	r2, .L51
+ 447 0040 1168     		ldr	r1, [r2]
+ 448 0042 8022     		movs	r2, #128
+ 449 0044 9202     		lsls	r2, r2, #10
+ 450 0046 0800     		movs	r0, r1
+ 451              	.LVL26:
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 452              		.loc 1 320 15 view .LVU121
+ 453 0048 1040     		ands	r0, r2
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 454              		.loc 1 320 13 view .LVU122
+ 455 004a 1142     		tst	r1, r2
+ 456 004c 04D0     		beq	.L27
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 457              		.loc 1 320 55 discriminator 1 view .LVU123
+ 458 004e C022     		movs	r2, #192
+ 459 0050 9200     		lsls	r2, r2, #2
+ 460 0052 9342     		cmp	r3, r2
+ 461 0054 3BD0     		beq	.L38
+ 291:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   uint32_t srcclk;
+ 462              		.loc 1 291 12 view .LVU124
+ 463 0056 0020     		movs	r0, #0
+ 464              	.LVL27:
+ 465              	.L27:
+ 400:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 401:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 402:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       break;
+ 403:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 404:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 405:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_COMP2SEL)
+ 406:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     case RCC_PERIPHCLK_COMP2:
+ 407:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Get the current COMP2 source */
+ 408:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       srcclk = __HAL_RCC_GET_COMP2_SOURCE();
+ 409:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 410:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       if (srcclk == RCC_COMP2CLKSOURCE_PCLK)            /* PCLK1 */
+ 411:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 412:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = HAL_RCC_GetPCLK1Freq();
+ 413:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 414:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 415:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->CSR, RCC_CSR_LSIRDY)) && (HAL_IS_BIT_CLR(RCC->BDCR, RCC_BDCR_LS
+ 416:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSCOEN)) && (srcclk == RCC_COMP2CLKSOURCE_LSC
+ 417:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 418:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSI_VALUE;
+ 419:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 420:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSERDY)) && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_
+ 421:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                && (HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSCOEN)) && (srcclk == RCC_COMP2CLKSOURCE_LSC
+ 422:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 423:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSE_VALUE;
+ 424:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 425:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Clock not enabled for COMP2 */
+ARM GAS  /tmp/cc5t40Wv.s 			page 17
+
+
+ 426:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else
+ 427:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 428:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         /* Nothing to do as frequency already initialized to 0U */
+ 429:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 430:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #else
+ 431:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else
+ 432:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 433:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSI_VALUE;
+ 434:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 435:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 436:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       break;
+ 437:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 438:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 439:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_CCIPR_LPTIMSEL)
+ 440:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     case RCC_PERIPHCLK_LPTIM:
+ 441:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Get the current LPTIM1 source */
+ 442:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       srcclk = __HAL_RCC_GET_LPTIM_SOURCE();
+ 443:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 444:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       if (srcclk == RCC_LPTIMCLKSOURCE_PCLK)
+ 445:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 446:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = HAL_RCC_GetPCLK1Freq();
+ 447:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->CSR, RCC_CSR_LSIRDY)) && (srcclk == RCC_LPTIMCLKSOURCE_LSI))
+ 449:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 450:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSI_VALUE;
+ 451:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 452:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 453:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else if ((HAL_IS_BIT_SET(RCC->BDCR, RCC_BDCR_LSERDY)) && (srcclk == RCC_LPTIMCLKSOURCE_LSE))
+ 454:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 455:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         frequency = LSE_VALUE;
+ 456:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 457:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 458:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       /* Clock not enabled for LPTIM1 */
+ 459:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       else
+ 460:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 461:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****         /* Nothing to do as frequency already initialized to 0U */
+ 462:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 463:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       break;
+ 464:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif /* RCC_CCIPR_LPTIM1SEL */
+ 465:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 466:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     default:
+ 467:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       break;
+ 468:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 469:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_BDCR_RTCSEL)
+ 470:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 471:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 472:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   return (frequency);
+ 473:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 466              		.loc 1 473 1 view .LVU125
+ 467              		@ sp needed
+ 468 0058 10BD     		pop	{r4, pc}
+ 469              	.LVL28:
+ 470              	.L45:
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 471              		.loc 1 335 5 view .LVU126
+ 472 005a 0020     		movs	r0, #0
+ 473              	.LVL29:
+ARM GAS  /tmp/cc5t40Wv.s 			page 18
+
+
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 474              		.loc 1 335 5 view .LVU127
+ 475 005c FCE7     		b	.L27
+ 476              	.LVL30:
+ 477              	.L32:
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 478              		.loc 1 335 5 view .LVU128
+ 479 005e 8023     		movs	r3, #128
+ 480 0060 9B00     		lsls	r3, r3, #2
+ 481 0062 9842     		cmp	r0, r3
+ 482 0064 14D1     		bne	.L47
+ 442:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 483              		.loc 1 442 7 is_stmt 1 view .LVU129
+ 442:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 484              		.loc 1 442 16 is_stmt 0 view .LVU130
+ 485 0066 1C4B     		ldr	r3, .L51
+ 486 0068 5A6D     		ldr	r2, [r3, #84]
+ 442:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 487              		.loc 1 442 14 view .LVU131
+ 488 006a C023     		movs	r3, #192
+ 489 006c 1B03     		lsls	r3, r3, #12
+ 490 006e 1100     		movs	r1, r2
+ 491 0070 1940     		ands	r1, r3
+ 492              	.LVL31:
+ 444:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 493              		.loc 1 444 7 is_stmt 1 view .LVU132
+ 444:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 494              		.loc 1 444 10 is_stmt 0 view .LVU133
+ 495 0072 1A42     		tst	r2, r3
+ 496 0074 25D0     		beq	.L48
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 497              		.loc 1 448 12 is_stmt 1 view .LVU134
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 498              		.loc 1 448 17 is_stmt 0 view .LVU135
+ 499 0076 184B     		ldr	r3, .L51
+ 500 0078 1B6E     		ldr	r3, [r3, #96]
+ 501 007a 0222     		movs	r2, #2
+ 502 007c 1000     		movs	r0, r2
+ 503              	.LVL32:
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 504              		.loc 1 448 17 view .LVU136
+ 505 007e 1840     		ands	r0, r3
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 506              		.loc 1 448 15 view .LVU137
+ 507 0080 1A42     		tst	r2, r3
+ 508 0082 E9D0     		beq	.L27
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 509              		.loc 1 448 59 discriminator 1 view .LVU138
+ 510 0084 8023     		movs	r3, #128
+ 511 0086 DB02     		lsls	r3, r3, #11
+ 512 0088 9942     		cmp	r1, r3
+ 513 008a 22D0     		beq	.L42
+ 291:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   uint32_t srcclk;
+ 514              		.loc 1 291 12 view .LVU139
+ 515 008c 0020     		movs	r0, #0
+ 516 008e E3E7     		b	.L27
+ 517              	.LVL33:
+ARM GAS  /tmp/cc5t40Wv.s 			page 19
+
+
+ 518              	.L47:
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 519              		.loc 1 335 5 view .LVU140
+ 520 0090 0020     		movs	r0, #0
+ 521              	.LVL34:
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     {
+ 522              		.loc 1 335 5 view .LVU141
+ 523 0092 E1E7     		b	.L27
+ 524              	.LVL35:
+ 525              	.L33:
+ 340:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 526              		.loc 1 340 7 is_stmt 1 view .LVU142
+ 340:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 527              		.loc 1 340 16 is_stmt 0 view .LVU143
+ 528 0094 104B     		ldr	r3, .L51
+ 529 0096 5B6D     		ldr	r3, [r3, #84]
+ 530              	.LVL36:
+ 342:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 531              		.loc 1 342 7 is_stmt 1 view .LVU144
+ 342:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 532              		.loc 1 342 10 is_stmt 0 view .LVU145
+ 533 0098 1B06     		lsls	r3, r3, #24
+ 534 009a 02D5     		bpl	.L49
+ 535              	.LVL37:
+ 365:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 536              		.loc 1 365 19 view .LVU146
+ 537 009c 8020     		movs	r0, #128
+ 538              	.LVL38:
+ 365:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 539              		.loc 1 365 19 view .LVU147
+ 540 009e 0002     		lsls	r0, r0, #8
+ 541 00a0 DAE7     		b	.L27
+ 542              	.LVL39:
+ 543              	.L49:
+ 344:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 544              		.loc 1 344 9 is_stmt 1 view .LVU148
+ 344:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 545              		.loc 1 344 21 is_stmt 0 view .LVU149
+ 546 00a2 FFF7FEFF 		bl	HAL_RCC_GetPCLK1Freq
+ 547              	.LVL40:
+ 344:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 548              		.loc 1 344 21 view .LVU150
+ 549 00a6 D7E7     		b	.L27
+ 550              	.LVL41:
+ 551              	.L46:
+ 378:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 552              		.loc 1 378 9 is_stmt 1 view .LVU151
+ 378:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 553              		.loc 1 378 21 is_stmt 0 view .LVU152
+ 554 00a8 FFF7FEFF 		bl	HAL_RCC_GetPCLK1Freq
+ 555              	.LVL42:
+ 378:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 556              		.loc 1 378 21 view .LVU153
+ 557 00ac D4E7     		b	.L27
+ 558              	.LVL43:
+ 559              	.L31:
+ 408:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ARM GAS  /tmp/cc5t40Wv.s 			page 20
+
+
+ 560              		.loc 1 408 7 is_stmt 1 view .LVU154
+ 408:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 561              		.loc 1 408 16 is_stmt 0 view .LVU155
+ 562 00ae 0A4B     		ldr	r3, .L51
+ 563 00b0 5B6D     		ldr	r3, [r3, #84]
+ 564              	.LVL44:
+ 410:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 565              		.loc 1 410 7 is_stmt 1 view .LVU156
+ 410:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       {
+ 566              		.loc 1 410 10 is_stmt 0 view .LVU157
+ 567 00b2 9B05     		lsls	r3, r3, #22
+ 568 00b4 02D5     		bpl	.L50
+ 569              	.LVL45:
+ 433:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 570              		.loc 1 433 19 view .LVU158
+ 571 00b6 8020     		movs	r0, #128
+ 572              	.LVL46:
+ 433:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 573              		.loc 1 433 19 view .LVU159
+ 574 00b8 0002     		lsls	r0, r0, #8
+ 575 00ba CDE7     		b	.L27
+ 576              	.LVL47:
+ 577              	.L50:
+ 412:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 578              		.loc 1 412 9 is_stmt 1 view .LVU160
+ 412:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 579              		.loc 1 412 21 is_stmt 0 view .LVU161
+ 580 00bc FFF7FEFF 		bl	HAL_RCC_GetPCLK1Freq
+ 581              	.LVL48:
+ 412:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 582              		.loc 1 412 21 view .LVU162
+ 583 00c0 CAE7     		b	.L27
+ 584              	.LVL49:
+ 585              	.L48:
+ 446:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 586              		.loc 1 446 9 is_stmt 1 view .LVU163
+ 446:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 587              		.loc 1 446 21 is_stmt 0 view .LVU164
+ 588 00c2 FFF7FEFF 		bl	HAL_RCC_GetPCLK1Freq
+ 589              	.LVL50:
+ 446:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 590              		.loc 1 446 21 view .LVU165
+ 591 00c6 C7E7     		b	.L27
+ 592              	.LVL51:
+ 593              	.L37:
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 594              		.loc 1 310 17 view .LVU166
+ 595 00c8 8020     		movs	r0, #128
+ 596              	.LVL52:
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 597              		.loc 1 310 17 view .LVU167
+ 598 00ca 0002     		lsls	r0, r0, #8
+ 599 00cc C4E7     		b	.L27
+ 600              	.L38:
+ 322:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     }
+ 601              		.loc 1 322 17 view .LVU168
+ 602 00ce 0348     		ldr	r0, .L51+4
+ARM GAS  /tmp/cc5t40Wv.s 			page 21
+
+
+ 603 00d0 C2E7     		b	.L27
+ 604              	.LVL53:
+ 605              	.L42:
+ 450:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****       }
+ 606              		.loc 1 450 19 view .LVU169
+ 607 00d2 8020     		movs	r0, #128
+ 608 00d4 0002     		lsls	r0, r0, #8
+ 609              	.LVL54:
+ 472:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 610              		.loc 1 472 3 is_stmt 1 view .LVU170
+ 472:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 611              		.loc 1 472 10 is_stmt 0 view .LVU171
+ 612 00d6 BFE7     		b	.L27
+ 613              	.L52:
+ 614              		.align	2
+ 615              	.L51:
+ 616 00d8 00100240 		.word	1073876992
+ 617 00dc 6CDC0200 		.word	187500
+ 618              		.cfi_endproc
+ 619              	.LFE57:
+ 621              		.section	.text.HAL_RCCEx_EnableLSCO,"ax",%progbits
+ 622              		.align	1
+ 623              		.global	HAL_RCCEx_EnableLSCO
+ 624              		.syntax unified
+ 625              		.code	16
+ 626              		.thumb_func
+ 628              	HAL_RCCEx_EnableLSCO:
+ 629              	.LVL55:
+ 630              	.LFB58:
+ 474:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 475:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+ 476:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @}
+ 477:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+ 478:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 479:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /** @defgroup RCCEx_Exported_Functions_Group2 Extended Clock management functions
+ 480:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  *  @brief  Extended Clock management functions
+ 481:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  *
+ 482:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** @verbatim
+ 483:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  ===============================================================================
+ 484:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****                 ##### Extended clock management functions  #####
+ 485:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****  ===============================================================================
+ 486:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     [..]
+ 487:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     This subsection provides a set of functions allowing to control the
+ 488:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     activation or deactivation of LSE CSS, Low speed clock output and
+ 489:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     clock after wake-up from STOP mode.
+ 490:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** @endverbatim
+ 491:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @{
+ 492:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+ 493:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 494:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_BDCR_LSCOEN)
+ 495:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+ 496:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @brief  Select the Low Speed clock source to output on LSCO pin (PA2).
+ 497:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @param  LSCOSource  specifies the Low Speed clock source to output.
+ 498:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *          This parameter can be one of the following values:
+ 499:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_LSCOSOURCE_LSI  LSI clock selected as LSCO source
+ 500:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   *            @arg @ref RCC_LSCOSOURCE_LSE  LSE clock selected as LSCO source
+ 501:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @retval None
+ARM GAS  /tmp/cc5t40Wv.s 			page 22
+
+
+ 502:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+ 503:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** void HAL_RCCEx_EnableLSCO(uint32_t LSCOSource)
+ 504:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** {
+ 631              		.loc 1 504 1 is_stmt 1 view -0
+ 632              		.cfi_startproc
+ 633              		@ args = 0, pretend = 0, frame = 8
+ 634              		@ frame_needed = 0, uses_anonymous_args = 0
+ 635              		.loc 1 504 1 is_stmt 0 view .LVU173
+ 636 0000 10B5     		push	{r4, lr}
+ 637              	.LCFI3:
+ 638              		.cfi_def_cfa_offset 8
+ 639              		.cfi_offset 4, -8
+ 640              		.cfi_offset 14, -4
+ 641 0002 82B0     		sub	sp, sp, #8
+ 642              	.LCFI4:
+ 643              		.cfi_def_cfa_offset 16
+ 505:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   FlagStatus       pwrclkchanged = RESET;
+ 644              		.loc 1 505 3 is_stmt 1 view .LVU174
+ 645              	.LVL56:
+ 506:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   FlagStatus       backupchanged = RESET;
+ 646              		.loc 1 506 3 view .LVU175
+ 507:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 508:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   GPIO_InitTypeDef GPIO_InitStruct;
+ 509:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 510:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Check the parameters */
+ 511:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   assert_param(IS_RCC_LSCOSOURCE(LSCOSource));
+ 512:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 513:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (LSCOSource == RCC_LSCOSOURCE_LSE)
+ 514:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 515:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* LSCO Pin Clock Enable */
+ 516:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     LSCO_CLK_ENABLE();
+ 517:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 518:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Configue the LSCO pin in analog mode */
+ 519:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     GPIO_InitStruct.Pin = LSCO_PIN;
+ 520:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 521:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 522:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 523:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     HAL_GPIO_Init(LSCO_GPIO_PORT, &GPIO_InitStruct);
+ 524:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 525:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 526:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Update LSCOSEL clock source in Backup Domain control register */
+ 527:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (__HAL_RCC_PWR_IS_CLK_DISABLED())
+ 647              		.loc 1 527 3 view .LVU176
+ 648              		.loc 1 527 7 is_stmt 0 view .LVU177
+ 649 0004 174B     		ldr	r3, .L63
+ 650 0006 DB6B     		ldr	r3, [r3, #60]
+ 651              		.loc 1 527 6 view .LVU178
+ 652 0008 DB00     		lsls	r3, r3, #3
+ 653 000a 1BD4     		bmi	.L58
+ 528:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 529:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_PWR_CLK_ENABLE();
+ 654              		.loc 1 529 5 is_stmt 1 view .LVU179
+ 655              	.LBB3:
+ 656              		.loc 1 529 5 view .LVU180
+ 657              		.loc 1 529 5 view .LVU181
+ 658 000c 154B     		ldr	r3, .L63
+ 659 000e DA6B     		ldr	r2, [r3, #60]
+ARM GAS  /tmp/cc5t40Wv.s 			page 23
+
+
+ 660 0010 8021     		movs	r1, #128
+ 661 0012 4905     		lsls	r1, r1, #21
+ 662 0014 0A43     		orrs	r2, r1
+ 663 0016 DA63     		str	r2, [r3, #60]
+ 664              		.loc 1 529 5 view .LVU182
+ 665 0018 DB6B     		ldr	r3, [r3, #60]
+ 666 001a 0B40     		ands	r3, r1
+ 667 001c 0193     		str	r3, [sp, #4]
+ 668              		.loc 1 529 5 view .LVU183
+ 669 001e 019B     		ldr	r3, [sp, #4]
+ 670              	.LBE3:
+ 671              		.loc 1 529 5 view .LVU184
+ 530:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     pwrclkchanged = SET;
+ 672              		.loc 1 530 5 view .LVU185
+ 673              	.LVL57:
+ 674              		.loc 1 530 19 is_stmt 0 view .LVU186
+ 675 0020 0124     		movs	r4, #1
+ 676              	.LVL58:
+ 677              	.L54:
+ 531:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 532:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (HAL_IS_BIT_CLR(PWR->CR1, PWR_CR1_DBP))
+ 678              		.loc 1 532 3 is_stmt 1 view .LVU187
+ 679              		.loc 1 532 7 is_stmt 0 view .LVU188
+ 680 0022 114B     		ldr	r3, .L63+4
+ 681 0024 1B68     		ldr	r3, [r3]
+ 682              		.loc 1 532 6 view .LVU189
+ 683 0026 DB05     		lsls	r3, r3, #23
+ 684 0028 0ED5     		bpl	.L60
+ 506:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 685              		.loc 1 506 20 view .LVU190
+ 686 002a 0021     		movs	r1, #0
+ 687              	.LVL59:
+ 688              	.L55:
+ 533:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 534:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 535:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     HAL_PWR_EnableBkUpAccess();
+ 536:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     backupchanged = SET;
+ 537:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 538:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 539:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #if defined(RCC_LSE_SUPPORT)
+ 540:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   MODIFY_REG(RCC->BDCR, RCC_BDCR_LSCOSEL | RCC_BDCR_LSCOEN, LSCOSource | RCC_BDCR_LSCOEN);
+ 541:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #else
+ 542:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   MODIFY_REG(RCC->BDCR, RCC_BDCR_LSCOEN, RCC_BDCR_LSCOEN);
+ 689              		.loc 1 542 3 is_stmt 1 view .LVU191
+ 690 002c 0D4A     		ldr	r2, .L63
+ 691 002e D06D     		ldr	r0, [r2, #92]
+ 692 0030 8023     		movs	r3, #128
+ 693 0032 5B04     		lsls	r3, r3, #17
+ 694 0034 0343     		orrs	r3, r0
+ 695 0036 D365     		str	r3, [r2, #92]
+ 543:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** #endif
+ 544:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (backupchanged == SET)
+ 696              		.loc 1 544 3 view .LVU192
+ 697              		.loc 1 544 6 is_stmt 0 view .LVU193
+ 698 0038 0129     		cmp	r1, #1
+ 699 003a 09D0     		beq	.L61
+ 700              	.LVL60:
+ARM GAS  /tmp/cc5t40Wv.s 			page 24
+
+
+ 701              	.L56:
+ 545:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 546:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     HAL_PWR_DisableBkUpAccess();
+ 547:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 548:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (pwrclkchanged == SET)
+ 702              		.loc 1 548 3 is_stmt 1 view .LVU194
+ 703              		.loc 1 548 6 is_stmt 0 view .LVU195
+ 704 003c 012C     		cmp	r4, #1
+ 705 003e 0AD0     		beq	.L62
+ 706              	.L53:
+ 549:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 550:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_PWR_CLK_DISABLE();
+ 551:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 552:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 707              		.loc 1 552 1 view .LVU196
+ 708 0040 02B0     		add	sp, sp, #8
+ 709              		@ sp needed
+ 710              	.LVL61:
+ 711              		.loc 1 552 1 view .LVU197
+ 712 0042 10BD     		pop	{r4, pc}
+ 713              	.LVL62:
+ 714              	.L58:
+ 505:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   FlagStatus       backupchanged = RESET;
+ 715              		.loc 1 505 20 view .LVU198
+ 716 0044 0024     		movs	r4, #0
+ 717 0046 ECE7     		b	.L54
+ 718              	.LVL63:
+ 719              	.L60:
+ 535:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     backupchanged = SET;
+ 720              		.loc 1 535 5 is_stmt 1 view .LVU199
+ 721 0048 FFF7FEFF 		bl	HAL_PWR_EnableBkUpAccess
+ 722              	.LVL64:
+ 536:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 723              		.loc 1 536 5 view .LVU200
+ 536:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 724              		.loc 1 536 19 is_stmt 0 view .LVU201
+ 725 004c 0121     		movs	r1, #1
+ 726 004e EDE7     		b	.L55
+ 727              	.LVL65:
+ 728              	.L61:
+ 546:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 729              		.loc 1 546 5 is_stmt 1 view .LVU202
+ 730 0050 FFF7FEFF 		bl	HAL_PWR_DisableBkUpAccess
+ 731              	.LVL66:
+ 546:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 732              		.loc 1 546 5 is_stmt 0 view .LVU203
+ 733 0054 F2E7     		b	.L56
+ 734              	.L62:
+ 550:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 735              		.loc 1 550 5 is_stmt 1 view .LVU204
+ 736 0056 034A     		ldr	r2, .L63
+ 737 0058 D36B     		ldr	r3, [r2, #60]
+ 738 005a 0449     		ldr	r1, .L63+8
+ 739 005c 0B40     		ands	r3, r1
+ 740 005e D363     		str	r3, [r2, #60]
+ 741              		.loc 1 552 1 is_stmt 0 view .LVU205
+ 742 0060 EEE7     		b	.L53
+ARM GAS  /tmp/cc5t40Wv.s 			page 25
+
+
+ 743              	.L64:
+ 744 0062 C046     		.align	2
+ 745              	.L63:
+ 746 0064 00100240 		.word	1073876992
+ 747 0068 00700040 		.word	1073770496
+ 748 006c FFFFFFEF 		.word	-268435457
+ 749              		.cfi_endproc
+ 750              	.LFE58:
+ 752              		.section	.text.HAL_RCCEx_DisableLSCO,"ax",%progbits
+ 753              		.align	1
+ 754              		.global	HAL_RCCEx_DisableLSCO
+ 755              		.syntax unified
+ 756              		.code	16
+ 757              		.thumb_func
+ 759              	HAL_RCCEx_DisableLSCO:
+ 760              	.LFB59:
+ 553:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 554:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** /**
+ 555:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @brief  Disable the Low Speed clock output.
+ 556:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   * @retval None
+ 557:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   */
+ 558:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** void HAL_RCCEx_DisableLSCO(void)
+ 559:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** {
+ 761              		.loc 1 559 1 is_stmt 1 view -0
+ 762              		.cfi_startproc
+ 763              		@ args = 0, pretend = 0, frame = 8
+ 764              		@ frame_needed = 0, uses_anonymous_args = 0
+ 765 0000 10B5     		push	{r4, lr}
+ 766              	.LCFI5:
+ 767              		.cfi_def_cfa_offset 8
+ 768              		.cfi_offset 4, -8
+ 769              		.cfi_offset 14, -4
+ 770 0002 82B0     		sub	sp, sp, #8
+ 771              	.LCFI6:
+ 772              		.cfi_def_cfa_offset 16
+ 560:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   FlagStatus       pwrclkchanged = RESET;
+ 773              		.loc 1 560 3 view .LVU207
+ 774              	.LVL67:
+ 561:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   FlagStatus       backupchanged = RESET;
+ 775              		.loc 1 561 3 view .LVU208
+ 562:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 563:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Update LSCOEN bit in Backup Domain control register */
+ 564:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (__HAL_RCC_PWR_IS_CLK_DISABLED())
+ 776              		.loc 1 564 3 view .LVU209
+ 777              		.loc 1 564 7 is_stmt 0 view .LVU210
+ 778 0004 164B     		ldr	r3, .L75
+ 779 0006 DB6B     		ldr	r3, [r3, #60]
+ 780              		.loc 1 564 6 view .LVU211
+ 781 0008 DB00     		lsls	r3, r3, #3
+ 782 000a 1AD4     		bmi	.L70
+ 565:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 566:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_PWR_CLK_ENABLE();
+ 783              		.loc 1 566 5 is_stmt 1 view .LVU212
+ 784              	.LBB4:
+ 785              		.loc 1 566 5 view .LVU213
+ 786              		.loc 1 566 5 view .LVU214
+ 787 000c 144B     		ldr	r3, .L75
+ARM GAS  /tmp/cc5t40Wv.s 			page 26
+
+
+ 788 000e DA6B     		ldr	r2, [r3, #60]
+ 789 0010 8021     		movs	r1, #128
+ 790 0012 4905     		lsls	r1, r1, #21
+ 791 0014 0A43     		orrs	r2, r1
+ 792 0016 DA63     		str	r2, [r3, #60]
+ 793              		.loc 1 566 5 view .LVU215
+ 794 0018 DB6B     		ldr	r3, [r3, #60]
+ 795 001a 0B40     		ands	r3, r1
+ 796 001c 0193     		str	r3, [sp, #4]
+ 797              		.loc 1 566 5 view .LVU216
+ 798 001e 019B     		ldr	r3, [sp, #4]
+ 799              	.LBE4:
+ 800              		.loc 1 566 5 view .LVU217
+ 567:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     pwrclkchanged = SET;
+ 801              		.loc 1 567 5 view .LVU218
+ 802              	.LVL68:
+ 803              		.loc 1 567 19 is_stmt 0 view .LVU219
+ 804 0020 0124     		movs	r4, #1
+ 805              	.LVL69:
+ 806              	.L66:
+ 568:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 569:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (HAL_IS_BIT_CLR(PWR->CR1, PWR_CR1_DBP))
+ 807              		.loc 1 569 3 is_stmt 1 view .LVU220
+ 808              		.loc 1 569 7 is_stmt 0 view .LVU221
+ 809 0022 104B     		ldr	r3, .L75+4
+ 810 0024 1B68     		ldr	r3, [r3]
+ 811              		.loc 1 569 6 view .LVU222
+ 812 0026 DB05     		lsls	r3, r3, #23
+ 813 0028 0DD5     		bpl	.L72
+ 561:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 814              		.loc 1 561 20 view .LVU223
+ 815 002a 0021     		movs	r1, #0
+ 816              	.LVL70:
+ 817              	.L67:
+ 570:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 571:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Enable access to the backup domain */
+ 572:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     HAL_PWR_EnableBkUpAccess();
+ 573:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     backupchanged = SET;
+ 574:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 575:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 576:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   CLEAR_BIT(RCC->BDCR, RCC_BDCR_LSCOEN);
+ 818              		.loc 1 576 3 is_stmt 1 view .LVU224
+ 819 002c 0C4A     		ldr	r2, .L75
+ 820 002e D36D     		ldr	r3, [r2, #92]
+ 821 0030 0D48     		ldr	r0, .L75+8
+ 822 0032 0340     		ands	r3, r0
+ 823 0034 D365     		str	r3, [r2, #92]
+ 577:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** 
+ 578:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   /* Restore previous configuration */
+ 579:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (backupchanged == SET)
+ 824              		.loc 1 579 3 view .LVU225
+ 825              		.loc 1 579 6 is_stmt 0 view .LVU226
+ 826 0036 0129     		cmp	r1, #1
+ 827 0038 09D0     		beq	.L73
+ 828              	.LVL71:
+ 829              	.L68:
+ 580:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ARM GAS  /tmp/cc5t40Wv.s 			page 27
+
+
+ 581:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     /* Disable access to the backup domain */
+ 582:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     HAL_PWR_DisableBkUpAccess();
+ 583:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 584:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   if (pwrclkchanged == SET)
+ 830              		.loc 1 584 3 is_stmt 1 view .LVU227
+ 831              		.loc 1 584 6 is_stmt 0 view .LVU228
+ 832 003a 012C     		cmp	r4, #1
+ 833 003c 0AD0     		beq	.L74
+ 834              	.L65:
+ 585:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   {
+ 586:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     __HAL_RCC_PWR_CLK_DISABLE();
+ 587:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 588:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c **** }
+ 835              		.loc 1 588 1 view .LVU229
+ 836 003e 02B0     		add	sp, sp, #8
+ 837              		@ sp needed
+ 838              	.LVL72:
+ 839              		.loc 1 588 1 view .LVU230
+ 840 0040 10BD     		pop	{r4, pc}
+ 841              	.LVL73:
+ 842              	.L70:
+ 560:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   FlagStatus       backupchanged = RESET;
+ 843              		.loc 1 560 20 view .LVU231
+ 844 0042 0024     		movs	r4, #0
+ 845 0044 EDE7     		b	.L66
+ 846              	.LVL74:
+ 847              	.L72:
+ 572:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****     backupchanged = SET;
+ 848              		.loc 1 572 5 is_stmt 1 view .LVU232
+ 849 0046 FFF7FEFF 		bl	HAL_PWR_EnableBkUpAccess
+ 850              	.LVL75:
+ 573:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 851              		.loc 1 573 5 view .LVU233
+ 573:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 852              		.loc 1 573 19 is_stmt 0 view .LVU234
+ 853 004a 0121     		movs	r1, #1
+ 854 004c EEE7     		b	.L67
+ 855              	.LVL76:
+ 856              	.L73:
+ 582:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 857              		.loc 1 582 5 is_stmt 1 view .LVU235
+ 858 004e FFF7FEFF 		bl	HAL_PWR_DisableBkUpAccess
+ 859              	.LVL77:
+ 582:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 860              		.loc 1 582 5 is_stmt 0 view .LVU236
+ 861 0052 F2E7     		b	.L68
+ 862              	.L74:
+ 586:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_rcc_ex.c ****   }
+ 863              		.loc 1 586 5 is_stmt 1 view .LVU237
+ 864 0054 024A     		ldr	r2, .L75
+ 865 0056 D36B     		ldr	r3, [r2, #60]
+ 866 0058 0449     		ldr	r1, .L75+12
+ 867 005a 0B40     		ands	r3, r1
+ 868 005c D363     		str	r3, [r2, #60]
+ 869              		.loc 1 588 1 is_stmt 0 view .LVU238
+ 870 005e EEE7     		b	.L65
+ 871              	.L76:
+ARM GAS  /tmp/cc5t40Wv.s 			page 28
+
+
+ 872              		.align	2
+ 873              	.L75:
+ 874 0060 00100240 		.word	1073876992
+ 875 0064 00700040 		.word	1073770496
+ 876 0068 FFFFFFFE 		.word	-16777217
+ 877 006c FFFFFFEF 		.word	-268435457
+ 878              		.cfi_endproc
+ 879              	.LFE59:
+ 881              		.text
+ 882              	.Letext0:
+ 883              		.file 2 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ 884              		.file 3 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 885              		.file 4 "CMSIS/Device/PY32F0xx/Include/py32f0xx.h"
+ 886              		.file 5 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_def.h"
+ 887              		.file 6 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_rcc_ex.h"
+ 888              		.file 7 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_pwr.h"
+ 889              		.file 8 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_rcc.h"
+ 890              		.file 9 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal.h"
+ARM GAS  /tmp/cc5t40Wv.s 			page 29
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 py32f0xx_hal_rcc_ex.c
+     /tmp/cc5t40Wv.s:19     .text.HAL_RCCEx_PeriphCLKConfig:00000000 $t
+     /tmp/cc5t40Wv.s:25     .text.HAL_RCCEx_PeriphCLKConfig:00000000 HAL_RCCEx_PeriphCLKConfig
+     /tmp/cc5t40Wv.s:286    .text.HAL_RCCEx_PeriphCLKConfig:0000010c $d
+     /tmp/cc5t40Wv.s:298    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 $t
+     /tmp/cc5t40Wv.s:304    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 HAL_RCCEx_GetPeriphCLKConfig
+     /tmp/cc5t40Wv.s:362    .text.HAL_RCCEx_GetPeriphCLKConfig:00000038 $d
+     /tmp/cc5t40Wv.s:368    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 $t
+     /tmp/cc5t40Wv.s:374    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 HAL_RCCEx_GetPeriphCLKFreq
+     /tmp/cc5t40Wv.s:616    .text.HAL_RCCEx_GetPeriphCLKFreq:000000d8 $d
+     /tmp/cc5t40Wv.s:622    .text.HAL_RCCEx_EnableLSCO:00000000 $t
+     /tmp/cc5t40Wv.s:628    .text.HAL_RCCEx_EnableLSCO:00000000 HAL_RCCEx_EnableLSCO
+     /tmp/cc5t40Wv.s:746    .text.HAL_RCCEx_EnableLSCO:00000064 $d
+     /tmp/cc5t40Wv.s:753    .text.HAL_RCCEx_DisableLSCO:00000000 $t
+     /tmp/cc5t40Wv.s:759    .text.HAL_RCCEx_DisableLSCO:00000000 HAL_RCCEx_DisableLSCO
+     /tmp/cc5t40Wv.s:874    .text.HAL_RCCEx_DisableLSCO:00000060 $d
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+HAL_RCC_GetPCLK1Freq
+HAL_PWR_EnableBkUpAccess
+HAL_PWR_DisableBkUpAccess

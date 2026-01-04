@@ -1,0 +1,804 @@
+ARM GAS  /tmp/ccrg7DL3.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"py32f0xx_hal_crc.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c"
+  18              		.section	.text.HAL_CRC_MspInit,"ax",%progbits
+  19              		.align	1
+  20              		.weak	HAL_CRC_MspInit
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	HAL_CRC_MspInit:
+  26              	.LVL0:
+  27              	.LFB57:
+   1:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+   2:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   ******************************************************************************
+   3:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @file    py32f0xx_hal_crc.c
+   4:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief   CRC HAL module driver.
+   6:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *          This file provides firmware functions to manage the following
+   7:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *          functionalities of the Cyclic Redundancy Check (CRC) peripheral:
+   8:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *           + Initialization and de-initialization functions
+   9:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *           + Peripheral Control functions
+  10:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *           + Peripheral State functions
+  11:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *
+  12:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   @verbatim
+  13:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+  14:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****                      ##### How to use this driver #####
+  15:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+  16:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     [..]
+  17:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****          (+) Enable CRC AHB clock using __HAL_RCC_CRC_CLK_ENABLE();
+  18:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****          (+) Initialize CRC calculator
+  19:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              (++) specify generating polynomial (peripheral default or non-default one)
+  20:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              (++) specify initialization value (peripheral default or non-default one)
+  21:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              (++) specify input data format
+  22:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              (++) specify input or output data inversion mode if any
+  23:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****          (+) Use HAL_CRC_Accumulate() function to compute the CRC value of the
+  24:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              input data buffer starting with the previously computed CRC as
+  25:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              initialization value
+  26:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****          (+) Use HAL_CRC_Calculate() function to compute the CRC value of the
+  27:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              input data buffer starting with the defined initialization value
+  28:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****              (default or non-default) to initiate CRC calculation
+  29:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  30:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   @endverbatim
+  31:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   ******************************************************************************
+ARM GAS  /tmp/ccrg7DL3.s 			page 2
+
+
+  32:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @attention
+  33:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *
+  34:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+  35:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * All rights reserved.</center></h2>
+  36:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *
+  37:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  38:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * All rights reserved.</center></h2>
+  39:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *
+  40:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+  41:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * the "License"; You may not use this file except in compliance with the
+  42:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * License. You may obtain a copy of the License at:
+  43:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *                        opensource.org/licenses/BSD-3-Clause
+  44:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *
+  45:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   ******************************************************************************
+  46:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+  47:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  48:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /* Includes ------------------------------------------------------------------*/
+  49:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** #include "py32f0xx_hal.h"
+  50:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  51:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /** @addtogroup PY32F0xx_HAL_Driver
+  52:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @{
+  53:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+  54:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  55:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /** @defgroup CRC CRC
+  56:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief    CRC HAL module driver.
+  57:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @{
+  58:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+  59:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  60:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** #ifdef HAL_CRC_MODULE_ENABLED
+  61:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  62:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /* Private typedef -----------------------------------------------------------*/
+  63:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /* Private define ------------------------------------------------------------*/
+  64:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /* Private macro -------------------------------------------------------------*/
+  65:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /* Private variables ---------------------------------------------------------*/
+  66:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /* Private function prototypes -----------------------------------------------*/
+  67:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  68:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /* Exported functions --------------------------------------------------------*/
+  69:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  70:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /** @defgroup CRC_Exported_Functions CRC Exported Functions
+  71:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @{
+  72:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+  73:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  74:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /** @defgroup CRC_Exported_Functions_Group1 Initialization and de-initialization functions
+  75:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  *  @brief    Initialization and Configuration functions.
+  76:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  *
+  77:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** @verbatim
+  78:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+  79:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****             ##### Initialization and de-initialization functions #####
+  80:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+  81:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     [..]  This section provides functions allowing to:
+  82:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****       (+) Initialize the CRC according to the specified parameters
+  83:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****           in the CRC_InitTypeDef and create the associated handle
+  84:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****       (+) DeInitialize the CRC peripheral
+  85:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****       (+) Initialize the CRC MSP (MCU Specific Package)
+  86:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****       (+) DeInitialize the CRC MSP
+  87:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  88:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** @endverbatim
+ARM GAS  /tmp/ccrg7DL3.s 			page 3
+
+
+  89:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @{
+  90:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+  91:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  92:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+  93:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief  Initialize the CRC according to the specified
+  94:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *         parameters in the CRC_InitTypeDef and create the associated handle.
+  95:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  hcrc CRC handle
+  96:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @retval HAL status
+  97:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+  98:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** HAL_StatusTypeDef HAL_CRC_Init(CRC_HandleTypeDef *hcrc)
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** {
+ 100:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the CRC handle allocation */
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   if (hcrc == NULL)
+ 102:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     return HAL_ERROR;
+ 104:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 105:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 106:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the parameters */
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   assert_param(IS_CRC_ALL_INSTANCE(hcrc->Instance));
+ 108:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   if (hcrc->State == HAL_CRC_STATE_RESET)
+ 110:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 111:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     /* Allocate lock resource and initialize it */
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     hcrc->Lock = HAL_UNLOCKED;
+ 113:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     /* Init the low level hardware */
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     HAL_CRC_MspInit(hcrc);
+ 115:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 116:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 117:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Change CRC peripheral state */
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   hcrc->State = HAL_CRC_STATE_READY;
+ 119:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 120:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Return function status */
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   return HAL_OK;
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 123:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 124:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 125:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief  DeInitialize the CRC peripheral.
+ 126:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  hcrc CRC handle
+ 127:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @retval HAL status
+ 128:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 129:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** HAL_StatusTypeDef HAL_CRC_DeInit(CRC_HandleTypeDef *hcrc)
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** {
+ 131:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the CRC handle allocation */
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   if (hcrc == NULL)
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     return HAL_ERROR;
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 136:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the parameters */
+ 138:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   assert_param(IS_CRC_ALL_INSTANCE(hcrc->Instance));
+ 139:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 140:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the CRC peripheral state */
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   if (hcrc->State == HAL_CRC_STATE_BUSY)
+ 142:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 143:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     return HAL_BUSY;
+ 144:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 145:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ARM GAS  /tmp/ccrg7DL3.s 			page 4
+
+
+ 146:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Change CRC peripheral state */
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   hcrc->State = HAL_CRC_STATE_BUSY;
+ 148:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 149:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Reset CRC calculation unit */
+ 150:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   __HAL_CRC_DR_RESET(hcrc);
+ 151:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 152:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Reset IDR register content */
+ 153:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   CLEAR_BIT(hcrc->Instance->IDR, CRC_IDR_IDR);
+ 154:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 155:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* DeInit the low level hardware */
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   HAL_CRC_MspDeInit(hcrc);
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 158:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Change CRC peripheral state */
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   hcrc->State = HAL_CRC_STATE_RESET;
+ 160:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 161:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Process unlocked */
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   __HAL_UNLOCK(hcrc);
+ 163:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 164:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Return function status */
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   return HAL_OK;
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 167:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 168:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 169:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief  Initializes the CRC MSP.
+ 170:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  hcrc CRC handle
+ 171:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @retval None
+ 172:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 173:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** __weak void HAL_CRC_MspInit(CRC_HandleTypeDef *hcrc)
+ 174:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** {
+  28              		.loc 1 174 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 175:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Prevent unused argument(s) compilation warning */
+ 176:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   UNUSED(hcrc);
+  33              		.loc 1 176 3 view .LVU1
+ 177:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 178:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 179:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****             the HAL_CRC_MspInit can be implemented in the user file
+ 180:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****    */
+ 181:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+  34              		.loc 1 181 1 is_stmt 0 view .LVU2
+  35              		@ sp needed
+  36 0000 7047     		bx	lr
+  37              		.cfi_endproc
+  38              	.LFE57:
+  40              		.section	.text.HAL_CRC_Init,"ax",%progbits
+  41              		.align	1
+  42              		.global	HAL_CRC_Init
+  43              		.syntax unified
+  44              		.code	16
+  45              		.thumb_func
+  47              	HAL_CRC_Init:
+  48              	.LVL1:
+  49              	.LFB55:
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the CRC handle allocation */
+ARM GAS  /tmp/ccrg7DL3.s 			page 5
+
+
+  50              		.loc 1 99 1 is_stmt 1 view -0
+  51              		.cfi_startproc
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the CRC handle allocation */
+  54              		.loc 1 99 1 is_stmt 0 view .LVU4
+  55 0000 10B5     		push	{r4, lr}
+  56              	.LCFI0:
+  57              		.cfi_def_cfa_offset 8
+  58              		.cfi_offset 4, -8
+  59              		.cfi_offset 14, -4
+  60 0002 041E     		subs	r4, r0, #0
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+  61              		.loc 1 101 3 is_stmt 1 view .LVU5
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+  62              		.loc 1 101 6 is_stmt 0 view .LVU6
+  63 0004 0AD0     		beq	.L5
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  64              		.loc 1 107 3 is_stmt 1 view .LVU7
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+  65              		.loc 1 109 3 view .LVU8
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+  66              		.loc 1 109 11 is_stmt 0 view .LVU9
+  67 0006 4379     		ldrb	r3, [r0, #5]
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+  68              		.loc 1 109 6 view .LVU10
+  69 0008 002B     		cmp	r3, #0
+  70 000a 03D0     		beq	.L6
+  71              	.LVL2:
+  72              	.L4:
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  73              		.loc 1 118 3 is_stmt 1 view .LVU11
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  74              		.loc 1 118 15 is_stmt 0 view .LVU12
+  75 000c 0123     		movs	r3, #1
+  76 000e 6371     		strb	r3, [r4, #5]
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+  77              		.loc 1 121 3 is_stmt 1 view .LVU13
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+  78              		.loc 1 121 10 is_stmt 0 view .LVU14
+  79 0010 0020     		movs	r0, #0
+  80              	.L3:
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  81              		.loc 1 122 1 view .LVU15
+  82              		@ sp needed
+  83              	.LVL3:
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+  84              		.loc 1 122 1 view .LVU16
+  85 0012 10BD     		pop	{r4, pc}
+  86              	.LVL4:
+  87              	.L6:
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     /* Init the low level hardware */
+  88              		.loc 1 112 5 is_stmt 1 view .LVU17
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     /* Init the low level hardware */
+  89              		.loc 1 112 16 is_stmt 0 view .LVU18
+  90 0014 0371     		strb	r3, [r0, #4]
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ARM GAS  /tmp/ccrg7DL3.s 			page 6
+
+
+  91              		.loc 1 114 5 is_stmt 1 view .LVU19
+  92 0016 FFF7FEFF 		bl	HAL_CRC_MspInit
+  93              	.LVL5:
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+  94              		.loc 1 114 5 is_stmt 0 view .LVU20
+  95 001a F7E7     		b	.L4
+  96              	.LVL6:
+  97              	.L5:
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+  98              		.loc 1 103 12 view .LVU21
+  99 001c 0120     		movs	r0, #1
+ 100              	.LVL7:
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 101              		.loc 1 103 12 view .LVU22
+ 102 001e F8E7     		b	.L3
+ 103              		.cfi_endproc
+ 104              	.LFE55:
+ 106              		.section	.text.HAL_CRC_MspDeInit,"ax",%progbits
+ 107              		.align	1
+ 108              		.weak	HAL_CRC_MspDeInit
+ 109              		.syntax unified
+ 110              		.code	16
+ 111              		.thumb_func
+ 113              	HAL_CRC_MspDeInit:
+ 114              	.LVL8:
+ 115              	.LFB58:
+ 182:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 183:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief  DeInitialize the CRC MSP.
+ 185:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  hcrc CRC handle
+ 186:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @retval None
+ 187:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 188:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** __weak void HAL_CRC_MspDeInit(CRC_HandleTypeDef *hcrc)
+ 189:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** {
+ 116              		.loc 1 189 1 is_stmt 1 view -0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              		@ link register save eliminated.
+ 190:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Prevent unused argument(s) compilation warning */
+ 191:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   UNUSED(hcrc);
+ 121              		.loc 1 191 3 view .LVU24
+ 192:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 193:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* NOTE : This function should not be modified, when the callback is needed,
+ 194:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****             the HAL_CRC_MspDeInit can be implemented in the user file
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****    */
+ 196:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 122              		.loc 1 196 1 is_stmt 0 view .LVU25
+ 123              		@ sp needed
+ 124 0000 7047     		bx	lr
+ 125              		.cfi_endproc
+ 126              	.LFE58:
+ 128              		.section	.text.HAL_CRC_DeInit,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	HAL_CRC_DeInit
+ 131              		.syntax unified
+ 132              		.code	16
+ARM GAS  /tmp/ccrg7DL3.s 			page 7
+
+
+ 133              		.thumb_func
+ 135              	HAL_CRC_DeInit:
+ 136              	.LVL9:
+ 137              	.LFB56:
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the CRC handle allocation */
+ 138              		.loc 1 130 1 is_stmt 1 view -0
+ 139              		.cfi_startproc
+ 140              		@ args = 0, pretend = 0, frame = 0
+ 141              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Check the CRC handle allocation */
+ 142              		.loc 1 130 1 is_stmt 0 view .LVU27
+ 143 0000 10B5     		push	{r4, lr}
+ 144              	.LCFI1:
+ 145              		.cfi_def_cfa_offset 8
+ 146              		.cfi_offset 4, -8
+ 147              		.cfi_offset 14, -4
+ 148 0002 041E     		subs	r4, r0, #0
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 149              		.loc 1 132 3 is_stmt 1 view .LVU28
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 150              		.loc 1 132 6 is_stmt 0 view .LVU29
+ 151 0004 17D0     		beq	.L10
+ 138:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 152              		.loc 1 138 3 is_stmt 1 view .LVU30
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 153              		.loc 1 141 3 view .LVU31
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 154              		.loc 1 141 11 is_stmt 0 view .LVU32
+ 155 0006 4379     		ldrb	r3, [r0, #5]
+ 156 0008 D8B2     		uxtb	r0, r3
+ 157              	.LVL10:
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 158              		.loc 1 141 6 view .LVU33
+ 159 000a 022B     		cmp	r3, #2
+ 160 000c 12D0     		beq	.L9
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 161              		.loc 1 147 3 is_stmt 1 view .LVU34
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 162              		.loc 1 147 15 is_stmt 0 view .LVU35
+ 163 000e 0223     		movs	r3, #2
+ 164 0010 6371     		strb	r3, [r4, #5]
+ 150:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 165              		.loc 1 150 3 is_stmt 1 view .LVU36
+ 166 0012 2268     		ldr	r2, [r4]
+ 167 0014 9368     		ldr	r3, [r2, #8]
+ 168 0016 0121     		movs	r1, #1
+ 169 0018 0B43     		orrs	r3, r1
+ 170 001a 9360     		str	r3, [r2, #8]
+ 153:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 171              		.loc 1 153 3 view .LVU37
+ 172 001c 2268     		ldr	r2, [r4]
+ 173 001e 5368     		ldr	r3, [r2, #4]
+ 174 0020 FE31     		adds	r1, r1, #254
+ 175 0022 8B43     		bics	r3, r1
+ 176 0024 5360     		str	r3, [r2, #4]
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 177              		.loc 1 156 3 view .LVU38
+ARM GAS  /tmp/ccrg7DL3.s 			page 8
+
+
+ 178 0026 2000     		movs	r0, r4
+ 179 0028 FFF7FEFF 		bl	HAL_CRC_MspDeInit
+ 180              	.LVL11:
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 181              		.loc 1 159 3 view .LVU39
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 182              		.loc 1 159 15 is_stmt 0 view .LVU40
+ 183 002c 0023     		movs	r3, #0
+ 184 002e 6371     		strb	r3, [r4, #5]
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 185              		.loc 1 162 3 is_stmt 1 view .LVU41
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 186              		.loc 1 162 3 view .LVU42
+ 187 0030 2371     		strb	r3, [r4, #4]
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 188              		.loc 1 162 3 view .LVU43
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 189              		.loc 1 165 3 view .LVU44
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 190              		.loc 1 165 10 is_stmt 0 view .LVU45
+ 191 0032 0020     		movs	r0, #0
+ 192              	.L9:
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 193              		.loc 1 166 1 view .LVU46
+ 194              		@ sp needed
+ 195              	.LVL12:
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 196              		.loc 1 166 1 view .LVU47
+ 197 0034 10BD     		pop	{r4, pc}
+ 198              	.LVL13:
+ 199              	.L10:
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 200              		.loc 1 134 12 view .LVU48
+ 201 0036 0120     		movs	r0, #1
+ 202              	.LVL14:
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 203              		.loc 1 134 12 view .LVU49
+ 204 0038 FCE7     		b	.L9
+ 205              		.cfi_endproc
+ 206              	.LFE56:
+ 208              		.section	.text.HAL_CRC_Accumulate,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	HAL_CRC_Accumulate
+ 211              		.syntax unified
+ 212              		.code	16
+ 213              		.thumb_func
+ 215              	HAL_CRC_Accumulate:
+ 216              	.LVL15:
+ 217              	.LFB59:
+ 197:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 198:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @}
+ 200:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 201:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 202:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /** @defgroup CRC_Exported_Functions_Group2 Peripheral Control functions
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  *  @brief    management functions.
+ 204:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  *
+ARM GAS  /tmp/ccrg7DL3.s 			page 9
+
+
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** @verbatim
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****                       ##### Peripheral Control functions #####
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+ 209:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     [..]  This section provides functions allowing to:
+ 210:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****       (+) compute the 32-bit CRC value of a 32-bit data buffer
+ 211:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****           using combination of the previous CRC value and the new one.
+ 212:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****        [..]  or
+ 214:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 215:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****       (+) compute the 32-bit CRC value of a 32-bit data buffer
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****           independently of the previous CRC value.
+ 217:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 218:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** @endverbatim
+ 219:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @{
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 221:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 222:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 223:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief  Compute the 32-bit CRC value of a 32-bit data buffer
+ 224:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *         starting with the previously computed CRC as initialization value.
+ 225:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  hcrc CRC handle
+ 226:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  pBuffer pointer to the input data buffer.
+ 227:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  BufferLength input data buffer length (number of uint32_t words).
+ 228:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @retval uint32_t CRC (returned value LSBs for CRC shorter than 32 bits)
+ 229:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 230:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** uint32_t HAL_CRC_Accumulate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength)
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** {
+ 218              		.loc 1 231 1 is_stmt 1 view -0
+ 219              		.cfi_startproc
+ 220              		@ args = 0, pretend = 0, frame = 0
+ 221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 222              		.loc 1 231 1 is_stmt 0 view .LVU51
+ 223 0000 70B5     		push	{r4, r5, r6, lr}
+ 224              	.LCFI2:
+ 225              		.cfi_def_cfa_offset 16
+ 226              		.cfi_offset 4, -16
+ 227              		.cfi_offset 5, -12
+ 228              		.cfi_offset 6, -8
+ 229              		.cfi_offset 14, -4
+ 230 0002 0600     		movs	r6, r0
+ 232:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   uint32_t index;      /* CRC input data buffer index */
+ 231              		.loc 1 232 3 is_stmt 1 view .LVU52
+ 233:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   uint32_t temp = 0U;  /* CRC output (read from hcrc->Instance->DR register) */
+ 232              		.loc 1 233 3 view .LVU53
+ 233              	.LVL16:
+ 234:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 235:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Change CRC peripheral state */
+ 236:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   hcrc->State = HAL_CRC_STATE_BUSY;
+ 234              		.loc 1 236 3 view .LVU54
+ 235              		.loc 1 236 15 is_stmt 0 view .LVU55
+ 236 0004 0223     		movs	r3, #2
+ 237 0006 4371     		strb	r3, [r0, #5]
+ 237:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 238:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Enter Data to the CRC calculator */
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   for (index = 0U; index < BufferLength; index++)
+ 238              		.loc 1 239 3 is_stmt 1 view .LVU56
+ 239              	.LVL17:
+ARM GAS  /tmp/ccrg7DL3.s 			page 10
+
+
+ 240              		.loc 1 239 14 is_stmt 0 view .LVU57
+ 241 0008 0023     		movs	r3, #0
+ 242              		.loc 1 239 3 view .LVU58
+ 243 000a 04E0     		b	.L12
+ 244              	.LVL18:
+ 245              	.L13:
+ 240:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 241:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     hcrc->Instance->DR = pBuffer[index];
+ 246              		.loc 1 241 5 is_stmt 1 view .LVU59
+ 247              		.loc 1 241 9 is_stmt 0 view .LVU60
+ 248 000c 3468     		ldr	r4, [r6]
+ 249              		.loc 1 241 33 view .LVU61
+ 250 000e 9D00     		lsls	r5, r3, #2
+ 251 0010 6D58     		ldr	r5, [r5, r1]
+ 252              		.loc 1 241 24 view .LVU62
+ 253 0012 2560     		str	r5, [r4]
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 254              		.loc 1 239 47 is_stmt 1 discriminator 3 view .LVU63
+ 255 0014 0133     		adds	r3, r3, #1
+ 256              	.LVL19:
+ 257              	.L12:
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 258              		.loc 1 239 26 discriminator 1 view .LVU64
+ 259 0016 9342     		cmp	r3, r2
+ 260 0018 F8D3     		bcc	.L13
+ 242:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 243:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   temp = hcrc->Instance->DR;
+ 261              		.loc 1 243 3 view .LVU65
+ 262              		.loc 1 243 14 is_stmt 0 view .LVU66
+ 263 001a 3368     		ldr	r3, [r6]
+ 264              	.LVL20:
+ 265              		.loc 1 243 8 view .LVU67
+ 266 001c 1868     		ldr	r0, [r3]
+ 267              	.LVL21:
+ 244:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Change CRC peripheral state */
+ 246:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   hcrc->State = HAL_CRC_STATE_READY;
+ 268              		.loc 1 246 3 is_stmt 1 view .LVU68
+ 269              		.loc 1 246 15 is_stmt 0 view .LVU69
+ 270 001e 0123     		movs	r3, #1
+ 271 0020 7371     		strb	r3, [r6, #5]
+ 247:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 248:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Return the CRC computed value */
+ 249:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   return temp;
+ 272              		.loc 1 249 3 is_stmt 1 view .LVU70
+ 250:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 273              		.loc 1 250 1 is_stmt 0 view .LVU71
+ 274              		@ sp needed
+ 275              	.LVL22:
+ 276              		.loc 1 250 1 view .LVU72
+ 277 0022 70BD     		pop	{r4, r5, r6, pc}
+ 278              		.cfi_endproc
+ 279              	.LFE59:
+ 281              		.section	.text.HAL_CRC_Calculate,"ax",%progbits
+ 282              		.align	1
+ 283              		.global	HAL_CRC_Calculate
+ 284              		.syntax unified
+ARM GAS  /tmp/ccrg7DL3.s 			page 11
+
+
+ 285              		.code	16
+ 286              		.thumb_func
+ 288              	HAL_CRC_Calculate:
+ 289              	.LVL23:
+ 290              	.LFB60:
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 253:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief  Compute the 32-bit CRC value of a 32-bit data buffer
+ 254:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *         starting with hcrc->Instance->INIT as initialization value.
+ 255:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  hcrc CRC handle
+ 256:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  pBuffer pointer to the input data buffer.
+ 257:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  BufferLength input data buffer length (number of uint32_t words).
+ 258:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @retval uint32_t CRC (returned value LSBs for CRC shorter than 32 bits)
+ 259:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 260:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength)
+ 261:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** {
+ 291              		.loc 1 261 1 is_stmt 1 view -0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295              		.loc 1 261 1 is_stmt 0 view .LVU74
+ 296 0000 70B5     		push	{r4, r5, r6, lr}
+ 297              	.LCFI3:
+ 298              		.cfi_def_cfa_offset 16
+ 299              		.cfi_offset 4, -16
+ 300              		.cfi_offset 5, -12
+ 301              		.cfi_offset 6, -8
+ 302              		.cfi_offset 14, -4
+ 303 0002 0600     		movs	r6, r0
+ 262:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   uint32_t index;      /* CRC input data buffer index */
+ 304              		.loc 1 262 3 is_stmt 1 view .LVU75
+ 263:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   uint32_t temp = 0U;  /* CRC output (read from hcrc->Instance->DR register) */
+ 305              		.loc 1 263 3 view .LVU76
+ 306              	.LVL24:
+ 264:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 265:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Change CRC peripheral state */
+ 266:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   hcrc->State = HAL_CRC_STATE_BUSY;
+ 307              		.loc 1 266 3 view .LVU77
+ 308              		.loc 1 266 15 is_stmt 0 view .LVU78
+ 309 0004 0223     		movs	r3, #2
+ 310 0006 4371     		strb	r3, [r0, #5]
+ 267:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 268:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Reset CRC Calculation Unit (hcrc->Instance->INIT is
+ 269:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   *  written in hcrc->Instance->DR) */
+ 270:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   __HAL_CRC_DR_RESET(hcrc);
+ 311              		.loc 1 270 3 is_stmt 1 view .LVU79
+ 312 0008 0068     		ldr	r0, [r0]
+ 313              	.LVL25:
+ 314              		.loc 1 270 3 is_stmt 0 view .LVU80
+ 315 000a 8368     		ldr	r3, [r0, #8]
+ 316 000c 0124     		movs	r4, #1
+ 317 000e 2343     		orrs	r3, r4
+ 318 0010 8360     		str	r3, [r0, #8]
+ 271:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 272:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Enter 32-bit input data to the CRC calculator */
+ 273:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   for (index = 0U; index < BufferLength; index++)
+ 319              		.loc 1 273 3 is_stmt 1 view .LVU81
+ARM GAS  /tmp/ccrg7DL3.s 			page 12
+
+
+ 320              	.LVL26:
+ 321              		.loc 1 273 14 is_stmt 0 view .LVU82
+ 322 0012 0023     		movs	r3, #0
+ 323              		.loc 1 273 3 view .LVU83
+ 324 0014 04E0     		b	.L15
+ 325              	.LVL27:
+ 326              	.L16:
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 275:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     hcrc->Instance->DR = pBuffer[index];
+ 327              		.loc 1 275 5 is_stmt 1 view .LVU84
+ 328              		.loc 1 275 9 is_stmt 0 view .LVU85
+ 329 0016 3468     		ldr	r4, [r6]
+ 330              		.loc 1 275 33 view .LVU86
+ 331 0018 9D00     		lsls	r5, r3, #2
+ 332 001a 6D58     		ldr	r5, [r5, r1]
+ 333              		.loc 1 275 24 view .LVU87
+ 334 001c 2560     		str	r5, [r4]
+ 273:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 335              		.loc 1 273 47 is_stmt 1 discriminator 3 view .LVU88
+ 336 001e 0133     		adds	r3, r3, #1
+ 337              	.LVL28:
+ 338              	.L15:
+ 273:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   {
+ 339              		.loc 1 273 26 discriminator 1 view .LVU89
+ 340 0020 9342     		cmp	r3, r2
+ 341 0022 F8D3     		bcc	.L16
+ 276:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   }
+ 277:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   temp = hcrc->Instance->DR;
+ 342              		.loc 1 277 3 view .LVU90
+ 343              		.loc 1 277 14 is_stmt 0 view .LVU91
+ 344 0024 3368     		ldr	r3, [r6]
+ 345              	.LVL29:
+ 346              		.loc 1 277 8 view .LVU92
+ 347 0026 1868     		ldr	r0, [r3]
+ 348              	.LVL30:
+ 278:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 279:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Change CRC peripheral state */
+ 280:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   hcrc->State = HAL_CRC_STATE_READY;
+ 349              		.loc 1 280 3 is_stmt 1 view .LVU93
+ 350              		.loc 1 280 15 is_stmt 0 view .LVU94
+ 351 0028 0123     		movs	r3, #1
+ 352 002a 7371     		strb	r3, [r6, #5]
+ 281:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 282:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Return the CRC computed value */
+ 283:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   return temp;
+ 353              		.loc 1 283 3 is_stmt 1 view .LVU95
+ 284:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 354              		.loc 1 284 1 is_stmt 0 view .LVU96
+ 355              		@ sp needed
+ 356              	.LVL31:
+ 357              		.loc 1 284 1 view .LVU97
+ 358 002c 70BD     		pop	{r4, r5, r6, pc}
+ 359              		.cfi_endproc
+ 360              	.LFE60:
+ 362              		.section	.text.HAL_CRC_GetState,"ax",%progbits
+ 363              		.align	1
+ 364              		.global	HAL_CRC_GetState
+ARM GAS  /tmp/ccrg7DL3.s 			page 13
+
+
+ 365              		.syntax unified
+ 366              		.code	16
+ 367              		.thumb_func
+ 369              	HAL_CRC_GetState:
+ 370              	.LVL32:
+ 371              	.LFB61:
+ 285:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 286:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 287:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @}
+ 288:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 289:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 290:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /** @defgroup CRC_Exported_Functions_Group3 Peripheral State functions
+ 291:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  *  @brief    Peripheral State functions.
+ 292:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  *
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** @verbatim
+ 294:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+ 295:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****                       ##### Peripheral State functions #####
+ 296:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****  ===============================================================================
+ 297:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     [..]
+ 298:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****     This subsection permits to get in run-time the status of the peripheral.
+ 299:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 300:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** @endverbatim
+ 301:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @{
+ 302:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 303:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** 
+ 304:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** /**
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @brief  Return the CRC handle state.
+ 306:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @param  hcrc CRC handle
+ 307:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   * @retval HAL state
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   */
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** HAL_CRC_StateTypeDef HAL_CRC_GetState(CRC_HandleTypeDef *hcrc)
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** {
+ 372              		.loc 1 310 1 is_stmt 1 view -0
+ 373              		.cfi_startproc
+ 374              		@ args = 0, pretend = 0, frame = 0
+ 375              		@ frame_needed = 0, uses_anonymous_args = 0
+ 376              		@ link register save eliminated.
+ 311:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   /* Return CRC handle state */
+ 312:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c ****   return hcrc->State;
+ 377              		.loc 1 312 3 view .LVU99
+ 378              		.loc 1 312 14 is_stmt 0 view .LVU100
+ 379 0000 4079     		ldrb	r0, [r0, #5]
+ 380              	.LVL33:
+ 381              		.loc 1 312 14 view .LVU101
+ 382 0002 C0B2     		uxtb	r0, r0
+ 313:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_crc.c **** }
+ 383              		.loc 1 313 1 view .LVU102
+ 384              		@ sp needed
+ 385 0004 7047     		bx	lr
+ 386              		.cfi_endproc
+ 387              	.LFE61:
+ 389              		.text
+ 390              	.Letext0:
+ 391              		.file 2 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ 392              		.file 3 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 393              		.file 4 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_def.h"
+ 394              		.file 5 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_crc.h"
+ARM GAS  /tmp/ccrg7DL3.s 			page 14
+
+
+ARM GAS  /tmp/ccrg7DL3.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 py32f0xx_hal_crc.c
+     /tmp/ccrg7DL3.s:19     .text.HAL_CRC_MspInit:00000000 $t
+     /tmp/ccrg7DL3.s:25     .text.HAL_CRC_MspInit:00000000 HAL_CRC_MspInit
+     /tmp/ccrg7DL3.s:41     .text.HAL_CRC_Init:00000000 $t
+     /tmp/ccrg7DL3.s:47     .text.HAL_CRC_Init:00000000 HAL_CRC_Init
+     /tmp/ccrg7DL3.s:107    .text.HAL_CRC_MspDeInit:00000000 $t
+     /tmp/ccrg7DL3.s:113    .text.HAL_CRC_MspDeInit:00000000 HAL_CRC_MspDeInit
+     /tmp/ccrg7DL3.s:129    .text.HAL_CRC_DeInit:00000000 $t
+     /tmp/ccrg7DL3.s:135    .text.HAL_CRC_DeInit:00000000 HAL_CRC_DeInit
+     /tmp/ccrg7DL3.s:209    .text.HAL_CRC_Accumulate:00000000 $t
+     /tmp/ccrg7DL3.s:215    .text.HAL_CRC_Accumulate:00000000 HAL_CRC_Accumulate
+     /tmp/ccrg7DL3.s:282    .text.HAL_CRC_Calculate:00000000 $t
+     /tmp/ccrg7DL3.s:288    .text.HAL_CRC_Calculate:00000000 HAL_CRC_Calculate
+     /tmp/ccrg7DL3.s:363    .text.HAL_CRC_GetState:00000000 $t
+     /tmp/ccrg7DL3.s:369    .text.HAL_CRC_GetState:00000000 HAL_CRC_GetState
+
+NO UNDEFINED SYMBOLS

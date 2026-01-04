@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "J-Link",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "build/${workspaceFolderBasename}.elf",
+            "servertype": "jlink",
+            "device": "PY32F003x8", 
+            "svdFile": "CMSIS/Device/PY32F0xx/py32f003xx.svd",
+            "preLaunchTask": "Build",
+            "showDevDebugOutput":"none",
+            "gdbPath": "gdb-multiarch",
+            "interface": "swd",
+            "runToEntryPoint": "main"
+        }
+    ]
+}

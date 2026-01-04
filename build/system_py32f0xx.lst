@@ -1,0 +1,404 @@
+ARM GAS  /tmp/cc7tHlF7.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"system_py32f0xx.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c"
+  18              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
+  19              		.align	1
+  20              		.global	SystemCoreClockUpdate
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	SystemCoreClockUpdate:
+  26              	.LFB55:
+   1:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /**
+   2:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   ******************************************************************************
+   3:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   * @file    system_py32f0xx.c
+   4:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   * @author  MCU Application Team
+   5:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   * @Version V1.0.0
+   6:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   * @Date    2020-10-19
+   7:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   * @brief   CMSIS Cortex-M0+ Device Peripheral Access Layer System Source File.
+   8:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   ******************************************************************************
+   9:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   */
+  10:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  11:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #include "py32f0xx.h"
+  12:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  13:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #if !defined  (HSE_VALUE)
+  14:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #define HSE_VALUE    24000000U    /*!< Value of the External oscillator in Hz */
+  15:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #endif /* HSE_VALUE */
+  16:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  17:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #if !defined  (HSI_VALUE)
+  18:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #define HSI_VALUE  8000000U   /*!< Value of the Internal oscillator in Hz*/
+  19:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #endif /* HSI_VALUE */
+  20:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  21:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #if !defined  (LSI_VALUE)
+  22:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #define LSI_VALUE   32768U      /*!< Value of LSI in Hz*/
+  23:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #endif /* LSI_VALUE */
+  24:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  25:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #if !defined  (LSE_VALUE)
+  26:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #define LSE_VALUE  32768U      /*!< Value of LSE in Hz*/
+  27:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #endif /* LSE_VALUE */
+  28:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  29:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  30:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /************************* Miscellaneous Configuration ************************/
+  31:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /*!< Uncomment the following line if you need to relocate your vector Table in
+  32:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****      Internal SRAM. */
+ARM GAS  /tmp/cc7tHlF7.s 			page 2
+
+
+  33:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /* #define FORBID_VECT_TAB_MIGRATION */
+  34:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /* #define VECT_TAB_SRAM */
+  35:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #define VECT_TAB_OFFSET  0x00 /*!< Vector Table base offset field.
+  36:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****                                    This value must be a multiple of 0x100. */
+  37:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /******************************************************************************/
+  38:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /*----------------------------------------------------------------------------
+  39:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   Clock Variable definitions
+  40:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  *----------------------------------------------------------------------------*/
+  41:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /* This variable is updated in three ways:
+  42:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     1) by calling CMSIS function SystemCoreClockUpdate()
+  43:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     2) by calling HAL API function HAL_RCC_GetHCLKFreq()
+  44:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     3) each time HAL_RCC_ClockConfig() is called to configure the system clock frequency
+  45:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****        Note: If you use this function to configure the system clock; then there
+  46:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****              is no need to call the 2 first functions listed above, since SystemCoreClock
+  47:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****              variable is updated automatically.
+  48:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** */
+  49:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** uint32_t SystemCoreClock = HSI_VALUE;
+  50:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  51:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** const uint32_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+  52:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** const uint32_t APBPrescTable[8] =  {0, 0, 0, 0, 1, 2, 3, 4};
+  53:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** const uint32_t HSIFreqTable[8] = {4000000U, 8000000U, 16000000U, 22120000U, 24000000U, 4000000U, 40
+  54:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  55:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /*----------------------------------------------------------------------------
+  56:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   Clock functions
+  57:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  *----------------------------------------------------------------------------*/
+  58:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** void SystemCoreClockUpdate(void)             /* Get Core Clock Frequency      */
+  59:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** {
+  27              		.loc 1 59 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  60:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   uint32_t tmp;
+  32              		.loc 1 60 3 view .LVU1
+  61:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   uint32_t hsidiv;
+  33              		.loc 1 61 3 view .LVU2
+  62:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   uint32_t hsifs;
+  34              		.loc 1 62 3 view .LVU3
+  63:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  64:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   /* Get SYSCLK source -------------------------------------------------------*/
+  65:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   switch (RCC->CFGR & RCC_CFGR_SWS)
+  35              		.loc 1 65 3 view .LVU4
+  36              		.loc 1 65 14 is_stmt 0 view .LVU5
+  37 0000 154B     		ldr	r3, .L7
+  38 0002 9A68     		ldr	r2, [r3, #8]
+  39              		.loc 1 65 21 view .LVU6
+  40 0004 3823     		movs	r3, #56
+  41 0006 1340     		ands	r3, r2
+  42              		.loc 1 65 3 view .LVU7
+  43 0008 082B     		cmp	r3, #8
+  44 000a 10D0     		beq	.L2
+  45 000c 182B     		cmp	r3, #24
+  46 000e 1ED0     		beq	.L3
+  66:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   {
+  67:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   case RCC_CFGR_SWS_0:  /* HSE used as system clock */
+  68:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     SystemCoreClock = HSE_VALUE;
+  69:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+ARM GAS  /tmp/cc7tHlF7.s 			page 3
+
+
+  70:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  71:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   case (RCC_CFGR_SWS_1 | RCC_CFGR_SWS_0):  /* LSI used as system clock */
+  72:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     SystemCoreClock = LSI_VALUE;
+  73:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+  74:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #if defined(RCC_LSE_SUPPORT)
+  75:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   case RCC_CFGR_SWS_2:  /* LSE used as system clock */
+  76:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     SystemCoreClock = LSE_VALUE;
+  77:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+  78:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #endif
+  79:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #if defined(RCC_PLL_SUPPORT)
+  80:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   case RCC_CFGR_SWS_1:  /* PLL used as system clock */
+  81:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     if ((RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) == RCC_PLLCFGR_PLLSRC_HSI) /* HSI used as PLL clock sou
+  82:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     {
+  83:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****       hsifs = ((READ_BIT(RCC->ICSCR, RCC_ICSCR_HSI_FS)) >> RCC_ICSCR_HSI_FS_Pos);
+  84:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****       SystemCoreClock = 2 * (HSIFreqTable[hsifs]);
+  85:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     }
+  86:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     else   /* HSE used as PLL clock source */
+  87:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     {
+  88:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****       SystemCoreClock = 2 * HSE_VALUE;
+  89:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     }
+  90:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+  91:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #endif
+  92:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   case 0x00000000U:  /* HSI used as system clock */
+  93:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   default:                /* HSI used as system clock */
+  94:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     hsifs = ((READ_BIT(RCC->ICSCR, RCC_ICSCR_HSI_FS)) >> RCC_ICSCR_HSI_FS_Pos);
+  47              		.loc 1 94 5 is_stmt 1 view .LVU8
+  48              		.loc 1 94 15 is_stmt 0 view .LVU9
+  49 0010 1149     		ldr	r1, .L7
+  50 0012 4B68     		ldr	r3, [r1, #4]
+  51              		.loc 1 94 55 view .LVU10
+  52 0014 5B0B     		lsrs	r3, r3, #13
+  53              		.loc 1 94 11 view .LVU11
+  54 0016 0722     		movs	r2, #7
+  55 0018 1340     		ands	r3, r2
+  56              	.LVL0:
+  95:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     hsidiv = (1UL << ((READ_BIT(RCC->CR, RCC_CR_HSIDIV)) >> RCC_CR_HSIDIV_Pos));
+  57              		.loc 1 95 5 is_stmt 1 view .LVU12
+  58              		.loc 1 95 24 is_stmt 0 view .LVU13
+  59 001a 0968     		ldr	r1, [r1]
+  60              		.loc 1 95 58 view .LVU14
+  61 001c C90A     		lsrs	r1, r1, #11
+  62 001e 0A40     		ands	r2, r1
+  63              	.LVL1:
+  96:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     SystemCoreClock = (HSIFreqTable[hsifs] / hsidiv);
+  64              		.loc 1 96 5 is_stmt 1 view .LVU15
+  65              		.loc 1 96 36 is_stmt 0 view .LVU16
+  66 0020 0E49     		ldr	r1, .L7+4
+  67 0022 9B00     		lsls	r3, r3, #2
+  68              	.LVL2:
+  69              		.loc 1 96 36 view .LVU17
+  70 0024 5B58     		ldr	r3, [r3, r1]
+  71              		.loc 1 96 44 view .LVU18
+  72 0026 D340     		lsrs	r3, r3, r2
+  73              		.loc 1 96 21 view .LVU19
+  74 0028 0D4A     		ldr	r2, .L7+8
+  75              	.LVL3:
+  76              		.loc 1 96 21 view .LVU20
+ARM GAS  /tmp/cc7tHlF7.s 			page 4
+
+
+  77 002a 1360     		str	r3, [r2]
+  97:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+  78              		.loc 1 97 5 is_stmt 1 view .LVU21
+  79 002c 02E0     		b	.L5
+  80              	.LVL4:
+  81              	.L2:
+  68:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+  82              		.loc 1 68 5 view .LVU22
+  68:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+  83              		.loc 1 68 21 is_stmt 0 view .LVU23
+  84 002e 0C4B     		ldr	r3, .L7+8
+  85 0030 0C4A     		ldr	r2, .L7+12
+  86 0032 1A60     		str	r2, [r3]
+  69:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+  87              		.loc 1 69 5 is_stmt 1 view .LVU24
+  88              	.L5:
+  98:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   }
+  99:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   /* Compute HCLK clock frequency --------------------------------------------*/
+ 100:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   /* Get HCLK prescaler */
+ 101:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
+  89              		.loc 1 101 3 view .LVU25
+  90              		.loc 1 101 28 is_stmt 0 view .LVU26
+  91 0034 084B     		ldr	r3, .L7
+  92 0036 9A68     		ldr	r2, [r3, #8]
+  93              		.loc 1 101 52 view .LVU27
+  94 0038 120A     		lsrs	r2, r2, #8
+  95 003a 0F23     		movs	r3, #15
+  96 003c 1340     		ands	r3, r2
+  97              		.loc 1 101 7 view .LVU28
+  98 003e 0A4A     		ldr	r2, .L7+16
+  99 0040 9B00     		lsls	r3, r3, #2
+ 100 0042 9958     		ldr	r1, [r3, r2]
+ 101              	.LVL5:
+ 102:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   /* HCLK clock frequency */
+ 103:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   SystemCoreClock >>= tmp;
+ 102              		.loc 1 103 3 is_stmt 1 view .LVU29
+ 103              		.loc 1 103 19 is_stmt 0 view .LVU30
+ 104 0044 064A     		ldr	r2, .L7+8
+ 105 0046 1368     		ldr	r3, [r2]
+ 106 0048 CB40     		lsrs	r3, r3, r1
+ 107 004a 1360     		str	r3, [r2]
+ 104:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** }
+ 108              		.loc 1 104 1 view .LVU31
+ 109              		@ sp needed
+ 110 004c 7047     		bx	lr
+ 111              	.LVL6:
+ 112              	.L3:
+  72:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+ 113              		.loc 1 72 5 is_stmt 1 view .LVU32
+  72:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****     break;
+ 114              		.loc 1 72 21 is_stmt 0 view .LVU33
+ 115 004e 044B     		ldr	r3, .L7+8
+ 116 0050 8022     		movs	r2, #128
+ 117 0052 1202     		lsls	r2, r2, #8
+ 118 0054 1A60     		str	r2, [r3]
+  73:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #if defined(RCC_LSE_SUPPORT)
+ 119              		.loc 1 73 5 is_stmt 1 view .LVU34
+ARM GAS  /tmp/cc7tHlF7.s 			page 5
+
+
+ 120 0056 EDE7     		b	.L5
+ 121              	.L8:
+ 122              		.align	2
+ 123              	.L7:
+ 124 0058 00100240 		.word	1073876992
+ 125 005c 00000000 		.word	HSIFreqTable
+ 126 0060 00000000 		.word	SystemCoreClock
+ 127 0064 00366E01 		.word	24000000
+ 128 0068 00000000 		.word	AHBPrescTable
+ 129              		.cfi_endproc
+ 130              	.LFE55:
+ 132              		.section	.text.SystemInit,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	SystemInit
+ 135              		.syntax unified
+ 136              		.code	16
+ 137              		.thumb_func
+ 139              	SystemInit:
+ 140              	.LFB56:
+ 105:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+ 106:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** /**
+ 107:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  * Initialize the system
+ 108:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  *
+ 109:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  * @param  none
+ 110:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  * @return none
+ 111:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  *
+ 112:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  * @brief  Setup the microcontroller system.
+ 113:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  *         Initialize the System.
+ 114:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****  */
+ 115:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** void SystemInit(void)
+ 116:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** {
+ 141              		.loc 1 116 1 view -0
+ 142              		.cfi_startproc
+ 143              		@ args = 0, pretend = 0, frame = 0
+ 144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 145              		@ link register save eliminated.
+ 117:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   /* Set the HSI clock to 8MHz by default */
+ 118:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   RCC->ICSCR = (RCC->ICSCR & 0xFFFF0000) | (0x1 << 13) | *(uint32_t *)(0x1fff0f04);
+ 146              		.loc 1 118 3 view .LVU36
+ 147              		.loc 1 118 20 is_stmt 0 view .LVU37
+ 148 0000 0749     		ldr	r1, .L10
+ 149 0002 4B68     		ldr	r3, [r1, #4]
+ 150              		.loc 1 118 28 view .LVU38
+ 151 0004 1B0C     		lsrs	r3, r3, #16
+ 152 0006 1B04     		lsls	r3, r3, #16
+ 153              		.loc 1 118 56 view .LVU39
+ 154 0008 064A     		ldr	r2, .L10+4
+ 155 000a 1268     		ldr	r2, [r2]
+ 156 000c 1343     		orrs	r3, r2
+ 157 000e 8022     		movs	r2, #128
+ 158 0010 9201     		lsls	r2, r2, #6
+ 159 0012 1343     		orrs	r3, r2
+ 160              		.loc 1 118 14 view .LVU40
+ 161 0014 4B60     		str	r3, [r1, #4]
+ 119:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** 
+ 120:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   /* Configure the Vector Table location add offset address ------------------*/
+ 121:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #ifdef VECT_TAB_SRAM
+ARM GAS  /tmp/cc7tHlF7.s 			page 6
+
+
+ 122:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   SCB->VTOR = SRAM_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
+ 123:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #else
+ 124:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c ****   SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
+ 162              		.loc 1 124 3 is_stmt 1 view .LVU41
+ 163              		.loc 1 124 13 is_stmt 0 view .LVU42
+ 164 0016 044B     		ldr	r3, .L10+8
+ 165 0018 8022     		movs	r2, #128
+ 166 001a 1205     		lsls	r2, r2, #20
+ 167 001c 9A60     		str	r2, [r3, #8]
+ 125:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** #endif
+ 126:CMSIS/Device/PY32F0xx/Source/system_py32f0xx.c **** }
+ 168              		.loc 1 126 1 view .LVU43
+ 169              		@ sp needed
+ 170 001e 7047     		bx	lr
+ 171              	.L11:
+ 172              		.align	2
+ 173              	.L10:
+ 174 0020 00100240 		.word	1073876992
+ 175 0024 040FFF1F 		.word	536809220
+ 176 0028 00ED00E0 		.word	-536810240
+ 177              		.cfi_endproc
+ 178              	.LFE56:
+ 180              		.global	HSIFreqTable
+ 181              		.section	.rodata.HSIFreqTable,"a"
+ 182              		.align	2
+ 185              	HSIFreqTable:
+ 186 0000 00093D00 		.word	4000000
+ 187 0004 00127A00 		.word	8000000
+ 188 0008 0024F400 		.word	16000000
+ 189 000c 40865101 		.word	22120000
+ 190 0010 00366E01 		.word	24000000
+ 191 0014 00093D00 		.word	4000000
+ 192 0018 00093D00 		.word	4000000
+ 193 001c 00093D00 		.word	4000000
+ 194              		.global	APBPrescTable
+ 195              		.section	.rodata.APBPrescTable,"a"
+ 196              		.align	2
+ 199              	APBPrescTable:
+ 200 0000 00000000 		.word	0
+ 201 0004 00000000 		.word	0
+ 202 0008 00000000 		.word	0
+ 203 000c 00000000 		.word	0
+ 204 0010 01000000 		.word	1
+ 205 0014 02000000 		.word	2
+ 206 0018 03000000 		.word	3
+ 207 001c 04000000 		.word	4
+ 208              		.global	AHBPrescTable
+ 209              		.section	.rodata.AHBPrescTable,"a"
+ 210              		.align	2
+ 213              	AHBPrescTable:
+ 214 0000 00000000 		.word	0
+ 215 0004 00000000 		.word	0
+ 216 0008 00000000 		.word	0
+ 217 000c 00000000 		.word	0
+ 218 0010 00000000 		.word	0
+ 219 0014 00000000 		.word	0
+ 220 0018 00000000 		.word	0
+ARM GAS  /tmp/cc7tHlF7.s 			page 7
+
+
+ 221 001c 00000000 		.word	0
+ 222 0020 01000000 		.word	1
+ 223 0024 02000000 		.word	2
+ 224 0028 03000000 		.word	3
+ 225 002c 04000000 		.word	4
+ 226 0030 06000000 		.word	6
+ 227 0034 07000000 		.word	7
+ 228 0038 08000000 		.word	8
+ 229 003c 09000000 		.word	9
+ 230              		.global	SystemCoreClock
+ 231              		.section	.data.SystemCoreClock,"aw"
+ 232              		.align	2
+ 235              	SystemCoreClock:
+ 236 0000 00127A00 		.word	8000000
+ 237              		.text
+ 238              	.Letext0:
+ 239              		.file 2 "CMSIS/Include/core_cm0plus.h"
+ 240              		.file 3 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 241              		.file 4 "CMSIS/Device/PY32F0xx/Include/system_py32f0xx.h"
+ 242              		.file 5 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ARM GAS  /tmp/cc7tHlF7.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 system_py32f0xx.c
+     /tmp/cc7tHlF7.s:19     .text.SystemCoreClockUpdate:00000000 $t
+     /tmp/cc7tHlF7.s:25     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+     /tmp/cc7tHlF7.s:124    .text.SystemCoreClockUpdate:00000058 $d
+     /tmp/cc7tHlF7.s:185    .rodata.HSIFreqTable:00000000 HSIFreqTable
+     /tmp/cc7tHlF7.s:235    .data.SystemCoreClock:00000000 SystemCoreClock
+     /tmp/cc7tHlF7.s:213    .rodata.AHBPrescTable:00000000 AHBPrescTable
+     /tmp/cc7tHlF7.s:133    .text.SystemInit:00000000 $t
+     /tmp/cc7tHlF7.s:139    .text.SystemInit:00000000 SystemInit
+     /tmp/cc7tHlF7.s:174    .text.SystemInit:00000020 $d
+     /tmp/cc7tHlF7.s:182    .rodata.HSIFreqTable:00000000 $d
+     /tmp/cc7tHlF7.s:199    .rodata.APBPrescTable:00000000 APBPrescTable
+     /tmp/cc7tHlF7.s:196    .rodata.APBPrescTable:00000000 $d
+     /tmp/cc7tHlF7.s:210    .rodata.AHBPrescTable:00000000 $d
+     /tmp/cc7tHlF7.s:232    .data.SystemCoreClock:00000000 $d
+
+NO UNDEFINED SYMBOLS

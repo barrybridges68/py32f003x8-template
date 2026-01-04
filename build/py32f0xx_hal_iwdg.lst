@@ -1,0 +1,425 @@
+ARM GAS  /tmp/cc2xrZQ0.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"py32f0xx_hal_iwdg.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c"
+  18              		.section	.text.HAL_IWDG_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	HAL_IWDG_Init
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	HAL_IWDG_Init:
+  26              	.LVL0:
+  27              	.LFB55:
+   1:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /**
+   2:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   ******************************************************************************
+   3:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @file    py32f0xx_hal_iwdg.c
+   4:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @brief   IWDG HAL module driver.
+   6:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *          This file provides firmware functions to manage the following
+   7:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *          functionalities of the Independent Watchdog (IWDG) peripheral:
+   8:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *           + Initialization and Start functions
+   9:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *           + IO operation functions
+  10:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *
+  11:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   @verbatim
+  12:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   ==============================================================================
+  13:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****                     ##### IWDG Generic features #####
+  14:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   ==============================================================================
+  15:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   [..]
+  16:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (+) The IWDG can be started by either software or hardware (configurable
+  17:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         through option byte).
+  18:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  19:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (+) The IWDG is clocked by Low-Speed clock (LSI) and thus stays active even
+  20:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         if the main clock fails.
+  21:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  22:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (+) Once the IWDG is started, the LSI is forced ON and both can not be
+  23:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         disabled. The counter starts counting down from the reset value (0xFFF).
+  24:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         When it reaches the end of count value (0x000) a reset signal is
+  25:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         generated (IWDG reset).
+  26:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  27:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (+) Whenever the key value 0x0000 AAAA is written in the IWDG_KR register,
+  28:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         the IWDG_RLR value is reloaded in the counter and the watchdog reset is
+  29:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         prevented.
+  30:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  31:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (+) The IWDG is implemented in the VDD voltage domain that is still functional
+ARM GAS  /tmp/cc2xrZQ0.s 			page 2
+
+
+  32:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         in STOP and STANDBY mode (IWDG reset can wake-up from STANDBY).
+  33:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         IWDGRST flag in RCC_CSR register can be used to inform when an IWDG
+  34:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         reset occurs.
+  35:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  36:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (+) Debug mode : When the microcontroller enters debug mode (core halted),
+  37:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         the IWDG counter either continues to work normally or stops, depending
+  38:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         on DBG_IWDG_STOP configuration bit in DBG module, accessible through
+  39:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         __HAL_DBGMCU_FREEZE_IWDG() and __HAL_DBGMCU_UNFREEZE_IWDG() macros
+  40:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  41:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     [..] Min-max timeout value @32KHz (LSI): ~125us / ~32.7s
+  42:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****          The IWDG timeout may vary due to LSI frequency dispersion. PY32F0xx
+  43:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****          devices provide the capability to measure the LSI frequency (LSI clock
+  44:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****          connected internally to TIM5 CH4 input capture). The measured value
+  45:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****          can be used to have an IWDG timeout with an acceptable accuracy.
+  46:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  47:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****                      ##### How to use this driver #####
+  48:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   ==============================================================================
+  49:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   [..]
+  50:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (#) Use IWDG using HAL_IWDG_Init() function to :
+  51:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (++) Enable instance by writing Start keyword in IWDG_KEY register. LSI
+  52:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****            clock is forced ON and IWDG counter starts downcounting.
+  53:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (++) Enable write access to configuration register: IWDG_PR & IWDG_RLR.
+  54:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (++) Configure the IWDG prescaler and counter reload value. This reload
+  55:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****            value will be loaded in the IWDG counter each time the watchdog is
+  56:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****            reloaded, then the IWDG will start counting down from this value.
+  57:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (++) wait for status flags to be reset"
+  58:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  59:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     (#) Then the application program must refresh the IWDG counter at regular
+  60:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         intervals during normal operation to prevent an MCU reset, using
+  61:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****         HAL_IWDG_Refresh() function.
+  62:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  63:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****      *** IWDG HAL driver macros list ***
+  64:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****      ====================================
+  65:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****      [..]
+  66:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****        Below the list of most used macros in IWDG HAL driver:
+  67:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (+) __HAL_IWDG_START: Enable the IWDG peripheral
+  68:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (+) __HAL_IWDG_RELOAD_COUNTER: Reloads IWDG counter with value defined in
+  69:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****           the reload register
+  70:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  71:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   @endverbatim
+  72:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   ******************************************************************************
+  73:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @attention
+  74:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *
+  75:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+  76:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * All rights reserved.</center></h2>
+  77:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *
+  78:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  79:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * All rights reserved.</center></h2>
+  80:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *
+  81:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+  82:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * the "License"; You may not use this file except in compliance with the
+  83:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * License. You may obtain a copy of the License at:
+  84:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *                        opensource.org/licenses/BSD-3-Clause
+  85:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *
+  86:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   ******************************************************************************
+  87:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+  88:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ARM GAS  /tmp/cc2xrZQ0.s 			page 3
+
+
+  89:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Includes ------------------------------------------------------------------*/
+  90:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** #include "py32f0xx_hal.h"
+  91:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  92:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /** @addtogroup PY32F0xx_HAL_Driver
+  93:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @{
+  94:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+  95:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+  96:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** #ifdef HAL_IWDG_MODULE_ENABLED
+  97:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /** @defgroup IWDG IWDG
+  98:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @brief IWDG HAL module driver.
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @{
+ 100:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 102:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Private typedef -----------------------------------------------------------*/
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Private define ------------------------------------------------------------*/
+ 104:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /** @defgroup IWDG_Private_Defines IWDG Private Defines
+ 105:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @{
+ 106:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Status register need 5 RC LSI divided by prescaler clock to be updated. With
+ 108:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****    higher prescaler (256), and according to HSI variation, we need to wait at
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****    least 6 cycles so 48 ms. */
+ 110:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** #define HAL_IWDG_DEFAULT_TIMEOUT            48U
+ 111:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /**
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @}
+ 113:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 115:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Private macro -------------------------------------------------------------*/
+ 116:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Private variables ---------------------------------------------------------*/
+ 117:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Private function prototypes -----------------------------------------------*/
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /* Exported functions --------------------------------------------------------*/
+ 119:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 120:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /** @addtogroup IWDG_Exported_Functions
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @{
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 123:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 124:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /** @addtogroup IWDG_Exported_Functions_Group1
+ 125:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *  @brief     Initialization and Start functions.
+ 126:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *
+ 127:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** @verbatim
+ 128:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****  ===============================================================================
+ 129:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****           ##### Initialization and Start functions #####
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****  ===============================================================================
+ 131:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****  [..]  This section provides functions allowing to:
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (+) Initialize the IWDG according to the specified parameters in the
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****           IWDG_InitTypeDef of associated handle.
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (+) Once initialization is performed in HAL_IWDG_Init function, Watchdog
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****           is reloaded in order to exit function with correct time base.
+ 136:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** @endverbatim
+ 138:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @{
+ 139:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 140:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /**
+ 142:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @brief  Initialize the IWDG according to the specified parameters in the
+ 143:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *         IWDG_InitTypeDef and start watchdog. Before exiting function,
+ 144:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *         watchdog is refreshed in order to have correct time base.
+ 145:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @param  hiwdg  pointer to a IWDG_HandleTypeDef structure that contains
+ARM GAS  /tmp/cc2xrZQ0.s 			page 4
+
+
+ 146:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *                the configuration information for the specified IWDG module.
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @retval HAL status
+ 148:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 149:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** HAL_StatusTypeDef HAL_IWDG_Init(IWDG_HandleTypeDef *hiwdg)
+ 150:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** {
+  28              		.loc 1 150 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 150 1 is_stmt 0 view .LVU1
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+  40 0002 041E     		subs	r4, r0, #0
+ 151:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   uint32_t tickstart;
+  41              		.loc 1 151 3 is_stmt 1 view .LVU2
+ 152:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 153:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Check the IWDG handle allocation */
+ 154:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   if (hiwdg == NULL)
+  42              		.loc 1 154 3 view .LVU3
+  43              		.loc 1 154 6 is_stmt 0 view .LVU4
+  44 0004 1DD0     		beq	.L5
+ 155:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   {
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     return HAL_ERROR;
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   }
+ 158:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Check the parameters */
+ 160:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   assert_param(IS_IWDG_ALL_INSTANCE(hiwdg->Instance));
+  45              		.loc 1 160 3 is_stmt 1 view .LVU5
+ 161:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   assert_param(IS_IWDG_PRESCALER(hiwdg->Init.Prescaler));
+  46              		.loc 1 161 3 view .LVU6
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   assert_param(IS_IWDG_RELOAD(hiwdg->Init.Reload));
+  47              		.loc 1 162 3 view .LVU7
+ 163:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 164:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Enable IWDG. LSI requires ready */
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   __HAL_IWDG_START(hiwdg);
+  48              		.loc 1 165 3 view .LVU8
+  49 0006 0368     		ldr	r3, [r0]
+  50 0008 0F4A     		ldr	r2, .L8
+  51 000a 1A60     		str	r2, [r3]
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 167:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Enable write access to IWDG_PR and IWDG_RLR registers by writing 0x5555 in KR */
+ 168:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   IWDG_ENABLE_WRITE_ACCESS(hiwdg);
+  52              		.loc 1 168 3 view .LVU9
+  53 000c 0368     		ldr	r3, [r0]
+  54 000e 0F4A     		ldr	r2, .L8+4
+  55 0010 1A60     		str	r2, [r3]
+ 169:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 170:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Write to IWDG registers the Prescaler & Reload values to work with */
+ 171:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   hiwdg->Instance->PR = hiwdg->Init.Prescaler;
+  56              		.loc 1 171 3 view .LVU10
+  57              		.loc 1 171 8 is_stmt 0 view .LVU11
+  58 0012 0368     		ldr	r3, [r0]
+ARM GAS  /tmp/cc2xrZQ0.s 			page 5
+
+
+  59              		.loc 1 171 36 view .LVU12
+  60 0014 4268     		ldr	r2, [r0, #4]
+  61              		.loc 1 171 23 view .LVU13
+  62 0016 5A60     		str	r2, [r3, #4]
+ 172:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   hiwdg->Instance->RLR = hiwdg->Init.Reload;
+  63              		.loc 1 172 3 is_stmt 1 view .LVU14
+  64              		.loc 1 172 8 is_stmt 0 view .LVU15
+  65 0018 0368     		ldr	r3, [r0]
+  66              		.loc 1 172 37 view .LVU16
+  67 001a 8268     		ldr	r2, [r0, #8]
+  68              		.loc 1 172 24 view .LVU17
+  69 001c 9A60     		str	r2, [r3, #8]
+ 173:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 174:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Check pending flag, if previous update not done, return timeout */
+ 175:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   tickstart = HAL_GetTick();
+  70              		.loc 1 175 3 is_stmt 1 view .LVU18
+  71              		.loc 1 175 15 is_stmt 0 view .LVU19
+  72 001e FFF7FEFF 		bl	HAL_GetTick
+  73              	.LVL1:
+  74              		.loc 1 175 15 view .LVU20
+  75 0022 0500     		movs	r5, r0
+  76              	.LVL2:
+ 176:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 177:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Wait for register to be updated */
+ 178:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   while (hiwdg->Instance->SR != RESET)
+  77              		.loc 1 178 3 is_stmt 1 view .LVU21
+  78              	.L3:
+  79              		.loc 1 178 30 view .LVU22
+  80              		.loc 1 178 15 is_stmt 0 view .LVU23
+  81 0024 2368     		ldr	r3, [r4]
+  82              		.loc 1 178 25 view .LVU24
+  83 0026 DA68     		ldr	r2, [r3, #12]
+  84              		.loc 1 178 30 view .LVU25
+  85 0028 002A     		cmp	r2, #0
+  86 002a 06D0     		beq	.L7
+ 179:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   {
+ 180:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     if ((HAL_GetTick() - tickstart) > HAL_IWDG_DEFAULT_TIMEOUT)
+  87              		.loc 1 180 5 is_stmt 1 view .LVU26
+  88              		.loc 1 180 10 is_stmt 0 view .LVU27
+  89 002c FFF7FEFF 		bl	HAL_GetTick
+  90              	.LVL3:
+  91              		.loc 1 180 24 discriminator 1 view .LVU28
+  92 0030 401B     		subs	r0, r0, r5
+  93              		.loc 1 180 8 discriminator 1 view .LVU29
+  94 0032 3028     		cmp	r0, #48
+  95 0034 F6D9     		bls	.L3
+ 181:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     {
+ 182:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       return HAL_TIMEOUT;
+  96              		.loc 1 182 14 view .LVU30
+  97 0036 0320     		movs	r0, #3
+  98 0038 02E0     		b	.L2
+  99              	.L7:
+ 183:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****     }
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   }
+ 185:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Reload IWDG counter with value defined in the reload register */
+ 186:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   __HAL_IWDG_RELOAD_COUNTER(hiwdg);
+ 100              		.loc 1 186 3 is_stmt 1 view .LVU31
+ARM GAS  /tmp/cc2xrZQ0.s 			page 6
+
+
+ 101 003a 054A     		ldr	r2, .L8+8
+ 102 003c 1A60     		str	r2, [r3]
+ 187:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 188:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Return function status */
+ 189:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   return HAL_OK;
+ 103              		.loc 1 189 3 view .LVU32
+ 104              		.loc 1 189 10 is_stmt 0 view .LVU33
+ 105 003e 0020     		movs	r0, #0
+ 106              	.LVL4:
+ 107              	.L2:
+ 190:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** }
+ 108              		.loc 1 190 1 view .LVU34
+ 109              		@ sp needed
+ 110              	.LVL5:
+ 111              		.loc 1 190 1 view .LVU35
+ 112 0040 70BD     		pop	{r4, r5, r6, pc}
+ 113              	.LVL6:
+ 114              	.L5:
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   }
+ 115              		.loc 1 156 12 view .LVU36
+ 116 0042 0120     		movs	r0, #1
+ 117              	.LVL7:
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   }
+ 118              		.loc 1 156 12 view .LVU37
+ 119 0044 FCE7     		b	.L2
+ 120              	.L9:
+ 121 0046 C046     		.align	2
+ 122              	.L8:
+ 123 0048 CCCC0000 		.word	52428
+ 124 004c 55550000 		.word	21845
+ 125 0050 AAAA0000 		.word	43690
+ 126              		.cfi_endproc
+ 127              	.LFE55:
+ 129              		.section	.text.HAL_IWDG_Refresh,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	HAL_IWDG_Refresh
+ 132              		.syntax unified
+ 133              		.code	16
+ 134              		.thumb_func
+ 136              	HAL_IWDG_Refresh:
+ 137              	.LVL8:
+ 138              	.LFB56:
+ 191:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 192:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /**
+ 193:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @}
+ 194:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 196:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /** @addtogroup IWDG_Exported_Functions_Group2
+ 197:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *  @brief   IO operation functions
+ 198:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** @verbatim
+ 200:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****  ===============================================================================
+ 201:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****                       ##### IO operation functions #####
+ 202:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****  ===============================================================================
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****  [..]  This section provides functions allowing to:
+ 204:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****       (+) Refresh the IWDG.
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ARM GAS  /tmp/cc2xrZQ0.s 			page 7
+
+
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** @endverbatim
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @{
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 209:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 210:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** /**
+ 211:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @brief  Refresh the IWDG.
+ 212:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @param  hiwdg  pointer to a IWDG_HandleTypeDef structure that contains
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   *                the configuration information for the specified IWDG module.
+ 214:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   * @retval HAL status
+ 215:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   */
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** HAL_StatusTypeDef HAL_IWDG_Refresh(IWDG_HandleTypeDef *hiwdg)
+ 217:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** {
+ 139              		.loc 1 217 1 is_stmt 1 view -0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143              		@ link register save eliminated.
+ 218:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Reload IWDG counter with value defined in the reload register */
+ 219:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   __HAL_IWDG_RELOAD_COUNTER(hiwdg);
+ 144              		.loc 1 219 3 view .LVU39
+ 145 0000 0368     		ldr	r3, [r0]
+ 146 0002 024A     		ldr	r2, .L11
+ 147 0004 1A60     		str	r2, [r3]
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** 
+ 221:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   /* Return function status */
+ 222:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c ****   return HAL_OK;
+ 148              		.loc 1 222 3 view .LVU40
+ 223:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_iwdg.c **** }
+ 149              		.loc 1 223 1 is_stmt 0 view .LVU41
+ 150 0006 0020     		movs	r0, #0
+ 151              	.LVL9:
+ 152              		.loc 1 223 1 view .LVU42
+ 153              		@ sp needed
+ 154 0008 7047     		bx	lr
+ 155              	.L12:
+ 156 000a C046     		.align	2
+ 157              	.L11:
+ 158 000c AAAA0000 		.word	43690
+ 159              		.cfi_endproc
+ 160              	.LFE56:
+ 162              		.text
+ 163              	.Letext0:
+ 164              		.file 2 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ 165              		.file 3 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 166              		.file 4 "CMSIS/Device/PY32F0xx/Include/py32f0xx.h"
+ 167              		.file 5 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_def.h"
+ 168              		.file 6 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_iwdg.h"
+ 169              		.file 7 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal.h"
+ARM GAS  /tmp/cc2xrZQ0.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 py32f0xx_hal_iwdg.c
+     /tmp/cc2xrZQ0.s:19     .text.HAL_IWDG_Init:00000000 $t
+     /tmp/cc2xrZQ0.s:25     .text.HAL_IWDG_Init:00000000 HAL_IWDG_Init
+     /tmp/cc2xrZQ0.s:123    .text.HAL_IWDG_Init:00000048 $d
+     /tmp/cc2xrZQ0.s:130    .text.HAL_IWDG_Refresh:00000000 $t
+     /tmp/cc2xrZQ0.s:136    .text.HAL_IWDG_Refresh:00000000 HAL_IWDG_Refresh
+     /tmp/cc2xrZQ0.s:158    .text.HAL_IWDG_Refresh:0000000c $d
+
+UNDEFINED SYMBOLS
+HAL_GetTick

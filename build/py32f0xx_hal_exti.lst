@@ -1,0 +1,1628 @@
+ARM GAS  /tmp/ccCbjiDl.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"py32f0xx_hal_exti.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c"
+  18              		.section	.text.HAL_EXTI_SetConfigLine,"ax",%progbits
+  19              		.align	1
+  20              		.global	HAL_EXTI_SetConfigLine
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	HAL_EXTI_SetConfigLine:
+  26              	.LVL0:
+  27              	.LFB55:
+   1:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+   2:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   ******************************************************************************
+   3:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @file    py32f0xx_hal_exti.c
+   4:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @author  MCU Application Team
+   5:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief   EXTI HAL module driver.
+   6:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *          This file provides firmware functions to manage the following
+   7:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *          functionalities of the General Purpose Input/Output (EXTI) peripheral:
+   8:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *           + Initialization and de-initialization functions
+   9:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *           + IO operation functions
+  10:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *
+  11:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   @verbatim
+  12:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   ==============================================================================
+  13:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****                     ##### EXTI Peripheral features #####
+  14:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   ==============================================================================
+  15:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   [..]
+  16:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (+) Each Exti line can be configured within this driver.
+  17:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  18:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (+) Exti line can be configured in 3 different modes
+  19:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Interrupt
+  20:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Event
+  21:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Both of them
+  22:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  23:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (+) Configurable Exti lines can be configured with 3 different triggers
+  24:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Rising
+  25:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Falling
+  26:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Both of them
+  27:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  28:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (+) When set in interrupt mode, configurable Exti lines have two diffenrents
+  29:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         interrupt pending registers which allow to distinguish which transition
+  30:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         occurs:
+  31:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Rising edge pending interrupt
+ARM GAS  /tmp/ccCbjiDl.s 			page 2
+
+
+  32:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Falling
+  33:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  34:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (+) Exti lines 0 to 15 are linked to gpio pin number 0 to 15. Gpio port can
+  35:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         be selected throught multiplexer.
+  36:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  37:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****                      ##### How to use this driver #####
+  38:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   ==============================================================================
+  39:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   [..]
+  40:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  41:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (#) Configure the EXTI line using HAL_EXTI_SetConfigLine().
+  42:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Choose the interrupt line number by setting "Line" member from
+  43:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****              EXTI_ConfigTypeDef structure.
+  44:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Configure the interrupt and/or event mode using "Mode" member from
+  45:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****              EXTI_ConfigTypeDef structure.
+  46:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) For configurable lines, configure rising and/or falling trigger
+  47:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****              "Trigger" member from EXTI_ConfigTypeDef structure.
+  48:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) For Exti lines linked to gpio, choose gpio port using "GPIOSel"
+  49:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****              member from GPIO_InitTypeDef structure.
+  50:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  51:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (#) Get current Exti configuration of a dedicated line using
+  52:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         HAL_EXTI_GetConfigLine().
+  53:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Provide exiting handle as parameter.
+  54:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Provide pointer on EXTI_ConfigTypeDef structure as second parameter.
+  55:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  56:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (#) Clear Exti configuration of a dedicated line using HAL_EXTI_GetConfigLine().
+  57:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Provide exiting handle as parameter.
+  58:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  59:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (#) Register callback to treat Exti interrupts using HAL_EXTI_RegisterCallback().
+  60:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Provide exiting handle as first parameter.
+  61:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Provide which callback will be registered using one value from
+  62:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****              EXTI_CallbackIDTypeDef.
+  63:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****         (++) Provide callback function pointer.
+  64:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  65:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (#) Get interrupt pending bit using HAL_EXTI_GetPending().
+  66:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  67:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (#) Clear interrupt pending bit using HAL_EXTI_GetPending().
+  68:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  69:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     (#) Generate software interrupt using HAL_EXTI_GenerateSWI().
+  70:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  71:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   @endverbatim
+  72:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   ******************************************************************************
+  73:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @attention
+  74:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *
+  75:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * <h2><center>&copy; Copyright (c) Puya Semiconductor Co.
+  76:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * All rights reserved.</center></h2>
+  77:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *
+  78:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  79:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * All rights reserved.</center></h2>
+  80:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *
+  81:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+  82:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * the "License"; You may not use this file except in compliance with the
+  83:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * License. You may obtain a copy of the License at:
+  84:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *                        opensource.org/licenses/BSD-3-Clause
+  85:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *
+  86:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   ******************************************************************************
+  87:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+  88:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ARM GAS  /tmp/ccCbjiDl.s 			page 3
+
+
+  89:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /* Includes ------------------------------------------------------------------*/
+  90:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** #include "py32f0xx_hal.h"
+  91:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  92:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /** @addtogroup PY32F0xx_HAL_Driver
+  93:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @{
+  94:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+  95:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+  96:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /** @addtogroup EXTI
+  97:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @{
+  98:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+  99:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /** MISRA C:2012 deviation rule has been granted for following rule:
+ 100:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * Rule-18.1_b - Medium: Array `EXTICR' 1st subscript interval [0,7] may be out
+ 101:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * of bounds [0,3] in following API :
+ 102:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * HAL_EXTI_SetConfigLine
+ 103:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * HAL_EXTI_GetConfigLine
+ 104:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * HAL_EXTI_ClearConfigLine
+ 105:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 106:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 107:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** #ifdef HAL_EXTI_MODULE_ENABLED
+ 108:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 109:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /* Private typedef -----------------------------------------------------------*/
+ 110:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /* Private defines ------------------------------------------------------------*/
+ 111:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /** @defgroup EXTI_Private_Constants EXTI Private Constants
+ 112:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @{
+ 113:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 114:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** #define EXTI_MODE_OFFSET                    0x04u   /* 0x10: offset between CPU IMR/EMR registers *
+ 115:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** #define EXTI_CONFIG_OFFSET                  0x08u   /* 0x20: offset between CPU Rising/Falling conf
+ 116:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 117:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @}
+ 118:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 119:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 120:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /* Private macros ------------------------------------------------------------*/
+ 121:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /* Private variables ---------------------------------------------------------*/
+ 122:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /* Private function prototypes -----------------------------------------------*/
+ 123:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /* Exported functions --------------------------------------------------------*/
+ 124:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 125:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /** @addtogroup EXTI_Exported_Functions
+ 126:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @{
+ 127:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 128:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 129:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /** @addtogroup EXTI_Exported_Functions_Group1
+ 130:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****  *  @brief    Configuration functions
+ 131:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****  *
+ 132:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** @verbatim
+ 133:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****  ===============================================================================
+ 134:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****               ##### Configuration functions #####
+ 135:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****  ===============================================================================
+ 136:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 137:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** @endverbatim
+ 138:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @{
+ 139:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 140:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 141:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 142:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 143:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Set configuration of a dedicated Exti line.
+ 144:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 145:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  pExtiConfig Pointer on EXTI configuration to be set.
+ARM GAS  /tmp/ccCbjiDl.s 			page 4
+
+
+ 146:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval HAL Status.
+ 147:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 148:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** HAL_StatusTypeDef HAL_EXTI_SetConfigLine(EXTI_HandleTypeDef *hexti, EXTI_ConfigTypeDef *pExtiConfig
+ 149:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+  28              		.loc 1 149 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 149 1 is_stmt 0 view .LVU1
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+ 150:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t regval;
+  40              		.loc 1 150 3 is_stmt 1 view .LVU2
+ 151:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t linepos;
+  41              		.loc 1 151 3 view .LVU3
+ 152:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t maskline;
+  42              		.loc 1 152 3 view .LVU4
+ 153:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 154:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check null pointer */
+ 155:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((hexti == NULL) || (pExtiConfig == NULL))
+  43              		.loc 1 155 3 view .LVU5
+  44              		.loc 1 155 6 is_stmt 0 view .LVU6
+  45 0002 0028     		cmp	r0, #0
+  46 0004 56D0     		beq	.L11
+  47              		.loc 1 155 23 discriminator 1 view .LVU7
+  48 0006 0029     		cmp	r1, #0
+  49 0008 56D0     		beq	.L12
+ 156:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     return HAL_ERROR;
+ 158:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 159:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 160:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check parameters */
+ 161:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_LINE(pExtiConfig->Line));
+  50              		.loc 1 161 3 is_stmt 1 view .LVU8
+ 162:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_MODE(pExtiConfig->Mode));
+  51              		.loc 1 162 3 view .LVU9
+ 163:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 164:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Assign line number to handle */
+ 165:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   hexti->Line = pExtiConfig->Line;
+  52              		.loc 1 165 3 view .LVU10
+  53              		.loc 1 165 28 is_stmt 0 view .LVU11
+  54 000a 0A68     		ldr	r2, [r1]
+  55              		.loc 1 165 15 view .LVU12
+  56 000c 0260     		str	r2, [r0]
+ 166:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 167:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Compute line mask */
+ 168:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   linepos = (pExtiConfig->Line & EXTI_PIN_MASK);
+  57              		.loc 1 168 3 is_stmt 1 view .LVU13
+  58              		.loc 1 168 11 is_stmt 0 view .LVU14
+  59 000e 1F23     		movs	r3, #31
+  60 0010 1340     		ands	r3, r2
+  61              	.LVL1:
+ARM GAS  /tmp/ccCbjiDl.s 			page 5
+
+
+ 169:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   maskline = (1uL << linepos);
+  62              		.loc 1 169 3 is_stmt 1 view .LVU15
+  63              		.loc 1 169 12 is_stmt 0 view .LVU16
+  64 0012 0120     		movs	r0, #1
+  65              	.LVL2:
+  66              		.loc 1 169 12 view .LVU17
+  67 0014 9840     		lsls	r0, r0, r3
+  68              	.LVL3:
+ 170:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 171:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Configure triggers for configurable lines */
+ 172:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((pExtiConfig->Line & EXTI_CONFIG) != 0x00u)
+  69              		.loc 1 172 3 is_stmt 1 view .LVU18
+  70              		.loc 1 172 6 is_stmt 0 view .LVU19
+  71 0016 9401     		lsls	r4, r2, #6
+  72 0018 13D5     		bpl	.L3
+ 173:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 174:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     assert_param(IS_EXTI_TRIGGER(pExtiConfig->Trigger));
+  73              		.loc 1 174 5 is_stmt 1 view .LVU20
+ 175:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 176:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Configure rising trigger */
+ 177:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Mask or set line */
+ 178:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if ((pExtiConfig->Trigger & EXTI_TRIGGER_RISING) != 0x00u)
+  74              		.loc 1 178 5 view .LVU21
+  75              		.loc 1 178 21 is_stmt 0 view .LVU22
+  76 001a 8C68     		ldr	r4, [r1, #8]
+  77              		.loc 1 178 8 view .LVU23
+  78 001c E407     		lsls	r4, r4, #31
+  79 001e 22D5     		bpl	.L4
+ 179:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 180:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->RTSR |= maskline;
+  80              		.loc 1 180 7 is_stmt 1 view .LVU24
+  81              		.loc 1 180 11 is_stmt 0 view .LVU25
+  82 0020 264D     		ldr	r5, .L15
+  83 0022 2C68     		ldr	r4, [r5]
+  84              		.loc 1 180 18 view .LVU26
+  85 0024 0443     		orrs	r4, r0
+  86 0026 2C60     		str	r4, [r5]
+  87              	.L5:
+ 181:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 182:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     else
+ 183:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->RTSR &= ~maskline;
+ 185:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 186:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 187:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Configure falling trigger */
+ 188:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Mask or set line */
+ 189:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if ((pExtiConfig->Trigger & EXTI_TRIGGER_FALLING) != 0x00u)
+  88              		.loc 1 189 5 is_stmt 1 view .LVU27
+  89              		.loc 1 189 21 is_stmt 0 view .LVU28
+  90 0028 8C68     		ldr	r4, [r1, #8]
+  91              		.loc 1 189 8 view .LVU29
+  92 002a A407     		lsls	r4, r4, #30
+  93 002c 20D5     		bpl	.L6
+ 190:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 191:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->FTSR |= maskline;
+  94              		.loc 1 191 7 is_stmt 1 view .LVU30
+  95              		.loc 1 191 11 is_stmt 0 view .LVU31
+ARM GAS  /tmp/ccCbjiDl.s 			page 6
+
+
+  96 002e 234D     		ldr	r5, .L15
+  97 0030 6C68     		ldr	r4, [r5, #4]
+  98              		.loc 1 191 18 view .LVU32
+  99 0032 0443     		orrs	r4, r0
+ 100 0034 6C60     		str	r4, [r5, #4]
+ 101              	.L7:
+ 192:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 193:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     else
+ 194:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->FTSR &= ~maskline;
+ 196:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 197:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 198:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 199:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Configure gpio port selection in case of gpio exti line */
+ 200:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if ((pExtiConfig->Line & EXTI_GPIO) == EXTI_GPIO)
+ 102              		.loc 1 200 5 is_stmt 1 view .LVU33
+ 103              		.loc 1 200 21 is_stmt 0 view .LVU34
+ 104 0036 0C68     		ldr	r4, [r1]
+ 105              		.loc 1 200 28 view .LVU35
+ 106 0038 C025     		movs	r5, #192
+ 107 003a ED04     		lsls	r5, r5, #19
+ 108 003c 2C40     		ands	r4, r5
+ 109              		.loc 1 200 8 view .LVU36
+ 110 003e AC42     		cmp	r4, r5
+ 111 0040 1BD0     		beq	.L14
+ 112              	.LVL4:
+ 113              	.L3:
+ 201:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 202:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       assert_param(IS_EXTI_GPIO_PORT(pExtiConfig->GPIOSel));
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       assert_param(IS_EXTI_GPIO_PIN(linepos));
+ 204:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval = EXTI->EXTICR[linepos >> 2u];
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval |= (pExtiConfig->GPIOSel << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 209:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 210:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 211:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 212:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Configure interrupt mode : read current mode */
+ 213:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Mask or set line */
+ 214:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((pExtiConfig->Mode & EXTI_MODE_INTERRUPT) != 0x00u)
+ 114              		.loc 1 214 3 is_stmt 1 view .LVU37
+ 115              		.loc 1 214 19 is_stmt 0 view .LVU38
+ 116 0042 4B68     		ldr	r3, [r1, #4]
+ 117              		.loc 1 214 6 view .LVU39
+ 118 0044 DB07     		lsls	r3, r3, #31
+ 119 0046 28D5     		bpl	.L8
+ 215:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 216:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     EXTI->IMR |= maskline;
+ 120              		.loc 1 216 5 is_stmt 1 view .LVU40
+ 121              		.loc 1 216 9 is_stmt 0 view .LVU41
+ 122 0048 1C4C     		ldr	r4, .L15
+ 123 004a 8022     		movs	r2, #128
+ 124 004c A358     		ldr	r3, [r4, r2]
+ 125              		.loc 1 216 15 view .LVU42
+ 126 004e 0343     		orrs	r3, r0
+ 127 0050 A350     		str	r3, [r4, r2]
+ARM GAS  /tmp/ccCbjiDl.s 			page 7
+
+
+ 128              	.L9:
+ 217:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 218:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   else
+ 219:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     EXTI->IMR &= ~maskline;
+ 221:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 222:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 223:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Configure event mode : read current mode */
+ 224:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Mask or set line */
+ 225:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((pExtiConfig->Mode & EXTI_MODE_EVENT) != 0x00u)
+ 129              		.loc 1 225 3 is_stmt 1 view .LVU43
+ 130              		.loc 1 225 19 is_stmt 0 view .LVU44
+ 131 0052 4B68     		ldr	r3, [r1, #4]
+ 132              		.loc 1 225 6 view .LVU45
+ 133 0054 9B07     		lsls	r3, r3, #30
+ 134 0056 26D5     		bpl	.L10
+ 226:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 227:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     EXTI->EMR |= maskline;
+ 135              		.loc 1 227 5 is_stmt 1 view .LVU46
+ 136              		.loc 1 227 9 is_stmt 0 view .LVU47
+ 137 0058 1849     		ldr	r1, .L15
+ 138              	.LVL5:
+ 139              		.loc 1 227 9 view .LVU48
+ 140 005a 8422     		movs	r2, #132
+ 141 005c 8B58     		ldr	r3, [r1, r2]
+ 142              		.loc 1 227 15 view .LVU49
+ 143 005e 0343     		orrs	r3, r0
+ 144 0060 8B50     		str	r3, [r1, r2]
+ 228:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 229:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   else
+ 230:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     EXTI->EMR &= ~maskline;
+ 232:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 233:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 234:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   return HAL_OK;
+ 145              		.loc 1 234 10 view .LVU50
+ 146 0062 0020     		movs	r0, #0
+ 147              	.LVL6:
+ 148              	.L2:
+ 235:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 149              		.loc 1 235 1 view .LVU51
+ 150              		@ sp needed
+ 151 0064 70BD     		pop	{r4, r5, r6, pc}
+ 152              	.LVL7:
+ 153              	.L4:
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 154              		.loc 1 184 7 is_stmt 1 view .LVU52
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 155              		.loc 1 184 11 is_stmt 0 view .LVU53
+ 156 0066 154D     		ldr	r5, .L15
+ 157 0068 2C68     		ldr	r4, [r5]
+ 184:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 158              		.loc 1 184 18 view .LVU54
+ 159 006a 8443     		bics	r4, r0
+ 160 006c 2C60     		str	r4, [r5]
+ 161 006e DBE7     		b	.L5
+ 162              	.L6:
+ARM GAS  /tmp/ccCbjiDl.s 			page 8
+
+
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 163              		.loc 1 195 7 is_stmt 1 view .LVU55
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 164              		.loc 1 195 11 is_stmt 0 view .LVU56
+ 165 0070 124D     		ldr	r5, .L15
+ 166 0072 6C68     		ldr	r4, [r5, #4]
+ 195:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 167              		.loc 1 195 18 view .LVU57
+ 168 0074 8443     		bics	r4, r0
+ 169 0076 6C60     		str	r4, [r5, #4]
+ 170 0078 DDE7     		b	.L7
+ 171              	.L14:
+ 202:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       assert_param(IS_EXTI_GPIO_PIN(linepos));
+ 172              		.loc 1 202 7 is_stmt 1 view .LVU58
+ 203:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 173              		.loc 1 203 7 view .LVU59
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 174              		.loc 1 205 7 view .LVU60
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 175              		.loc 1 205 37 is_stmt 0 view .LVU61
+ 176 007a 9B08     		lsrs	r3, r3, #2
+ 177              	.LVL8:
+ 205:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 178              		.loc 1 205 14 view .LVU62
+ 179 007c 0F4D     		ldr	r5, .L15
+ 180 007e 1833     		adds	r3, r3, #24
+ 181 0080 9B00     		lsls	r3, r3, #2
+ 182 0082 5E59     		ldr	r6, [r3, r5]
+ 183              	.LVL9:
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval |= (pExtiConfig->GPIOSel << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 184              		.loc 1 206 7 is_stmt 1 view .LVU63
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval |= (pExtiConfig->GPIOSel << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 185              		.loc 1 206 76 is_stmt 0 view .LVU64
+ 186 0084 0324     		movs	r4, #3
+ 187 0086 2240     		ands	r2, r4
+ 188              	.LVL10:
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval |= (pExtiConfig->GPIOSel << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 189              		.loc 1 206 65 view .LVU65
+ 190 0088 D200     		lsls	r2, r2, #3
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval |= (pExtiConfig->GPIOSel << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 191              		.loc 1 206 38 view .LVU66
+ 192 008a 9440     		lsls	r4, r4, r2
+ 206:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval |= (pExtiConfig->GPIOSel << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 193              		.loc 1 206 14 view .LVU67
+ 194 008c A643     		bics	r6, r4
+ 195              	.LVL11:
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 196              		.loc 1 207 7 is_stmt 1 view .LVU68
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 197              		.loc 1 207 29 is_stmt 0 view .LVU69
+ 198 008e CC68     		ldr	r4, [r1, #12]
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 199              		.loc 1 207 39 view .LVU70
+ 200 0090 9440     		lsls	r4, r4, r2
+ 201 0092 2200     		movs	r2, r4
+ 207:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 202              		.loc 1 207 14 view .LVU71
+ARM GAS  /tmp/ccCbjiDl.s 			page 9
+
+
+ 203 0094 3243     		orrs	r2, r6
+ 204              	.LVL12:
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 205              		.loc 1 208 7 is_stmt 1 view .LVU72
+ 208:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 206              		.loc 1 208 35 is_stmt 0 view .LVU73
+ 207 0096 5A51     		str	r2, [r3, r5]
+ 208 0098 D3E7     		b	.L3
+ 209              	.LVL13:
+ 210              	.L8:
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 211              		.loc 1 220 5 is_stmt 1 view .LVU74
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 212              		.loc 1 220 9 is_stmt 0 view .LVU75
+ 213 009a 084C     		ldr	r4, .L15
+ 214 009c 8022     		movs	r2, #128
+ 215 009e A358     		ldr	r3, [r4, r2]
+ 220:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 216              		.loc 1 220 15 view .LVU76
+ 217 00a0 8343     		bics	r3, r0
+ 218 00a2 A350     		str	r3, [r4, r2]
+ 219 00a4 D5E7     		b	.L9
+ 220              	.L10:
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 221              		.loc 1 231 5 is_stmt 1 view .LVU77
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 222              		.loc 1 231 9 is_stmt 0 view .LVU78
+ 223 00a6 0549     		ldr	r1, .L15
+ 224              	.LVL14:
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 225              		.loc 1 231 9 view .LVU79
+ 226 00a8 8422     		movs	r2, #132
+ 227 00aa 8B58     		ldr	r3, [r1, r2]
+ 231:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 228              		.loc 1 231 15 view .LVU80
+ 229 00ac 8343     		bics	r3, r0
+ 230 00ae 8B50     		str	r3, [r1, r2]
+ 234:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 231              		.loc 1 234 10 view .LVU81
+ 232 00b0 0020     		movs	r0, #0
+ 233              	.LVL15:
+ 234:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 234              		.loc 1 234 10 view .LVU82
+ 235 00b2 D7E7     		b	.L2
+ 236              	.LVL16:
+ 237              	.L11:
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 238              		.loc 1 157 12 view .LVU83
+ 239 00b4 0120     		movs	r0, #1
+ 240              	.LVL17:
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 241              		.loc 1 157 12 view .LVU84
+ 242 00b6 D5E7     		b	.L2
+ 243              	.LVL18:
+ 244              	.L12:
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 245              		.loc 1 157 12 view .LVU85
+ARM GAS  /tmp/ccCbjiDl.s 			page 10
+
+
+ 246 00b8 0120     		movs	r0, #1
+ 247              	.LVL19:
+ 157:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 248              		.loc 1 157 12 view .LVU86
+ 249 00ba D3E7     		b	.L2
+ 250              	.L16:
+ 251              		.align	2
+ 252              	.L15:
+ 253 00bc 00180240 		.word	1073879040
+ 254              		.cfi_endproc
+ 255              	.LFE55:
+ 257              		.section	.text.HAL_EXTI_GetConfigLine,"ax",%progbits
+ 258              		.align	1
+ 259              		.global	HAL_EXTI_GetConfigLine
+ 260              		.syntax unified
+ 261              		.code	16
+ 262              		.thumb_func
+ 264              	HAL_EXTI_GetConfigLine:
+ 265              	.LVL20:
+ 266              	.LFB56:
+ 236:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 237:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 238:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Get configuration of a dedicated Exti line.
+ 239:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 240:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  pExtiConfig Pointer on structure to store Exti configuration.
+ 241:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval HAL Status.
+ 242:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 243:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** HAL_StatusTypeDef HAL_EXTI_GetConfigLine(EXTI_HandleTypeDef *hexti, EXTI_ConfigTypeDef *pExtiConfig
+ 244:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 267              		.loc 1 244 1 is_stmt 1 view -0
+ 268              		.cfi_startproc
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271              		.loc 1 244 1 is_stmt 0 view .LVU88
+ 272 0000 30B5     		push	{r4, r5, lr}
+ 273              	.LCFI1:
+ 274              		.cfi_def_cfa_offset 12
+ 275              		.cfi_offset 4, -12
+ 276              		.cfi_offset 5, -8
+ 277              		.cfi_offset 14, -4
+ 245:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t regval;
+ 278              		.loc 1 245 3 is_stmt 1 view .LVU89
+ 246:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t linepos;
+ 279              		.loc 1 246 3 view .LVU90
+ 247:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t maskline;
+ 280              		.loc 1 247 3 view .LVU91
+ 248:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 249:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check null pointer */
+ 250:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((hexti == NULL) || (pExtiConfig == NULL))
+ 281              		.loc 1 250 3 view .LVU92
+ 282              		.loc 1 250 6 is_stmt 0 view .LVU93
+ 283 0002 0028     		cmp	r0, #0
+ 284 0004 48D0     		beq	.L27
+ 285              		.loc 1 250 23 discriminator 1 view .LVU94
+ 286 0006 0029     		cmp	r1, #0
+ 287 0008 48D0     		beq	.L28
+ 251:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ARM GAS  /tmp/ccCbjiDl.s 			page 11
+
+
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     return HAL_ERROR;
+ 253:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 254:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 255:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check the parameter */
+ 256:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_LINE(hexti->Line));
+ 288              		.loc 1 256 3 is_stmt 1 view .LVU95
+ 257:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 258:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Store handle line number to configuration structure */
+ 259:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   pExtiConfig->Line = hexti->Line;
+ 289              		.loc 1 259 3 view .LVU96
+ 290              		.loc 1 259 28 is_stmt 0 view .LVU97
+ 291 000a 0568     		ldr	r5, [r0]
+ 292              		.loc 1 259 21 view .LVU98
+ 293 000c 0D60     		str	r5, [r1]
+ 260:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 261:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Compute line mask */
+ 262:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   linepos = (pExtiConfig->Line & EXTI_PIN_MASK);
+ 294              		.loc 1 262 3 is_stmt 1 view .LVU99
+ 295              		.loc 1 262 11 is_stmt 0 view .LVU100
+ 296 000e 1F24     		movs	r4, #31
+ 297 0010 2C40     		ands	r4, r5
+ 298              	.LVL21:
+ 263:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   maskline = (1uL << linepos);
+ 299              		.loc 1 263 3 is_stmt 1 view .LVU101
+ 300              		.loc 1 263 12 is_stmt 0 view .LVU102
+ 301 0012 0123     		movs	r3, #1
+ 302 0014 A340     		lsls	r3, r3, r4
+ 303              	.LVL22:
+ 264:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 265:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* 1] Get core mode : interrupt */
+ 266:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 267:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check if selected line is enable */
+ 268:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((EXTI->IMR & maskline) != 0x00u)
+ 304              		.loc 1 268 3 is_stmt 1 view .LVU103
+ 305              		.loc 1 268 12 is_stmt 0 view .LVU104
+ 306 0016 2248     		ldr	r0, .L30
+ 307              	.LVL23:
+ 308              		.loc 1 268 12 view .LVU105
+ 309 0018 8022     		movs	r2, #128
+ 310 001a 8258     		ldr	r2, [r0, r2]
+ 311              		.loc 1 268 6 view .LVU106
+ 312 001c 1342     		tst	r3, r2
+ 313 001e 23D0     		beq	.L19
+ 269:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 270:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->Mode = EXTI_MODE_INTERRUPT;
+ 314              		.loc 1 270 5 is_stmt 1 view .LVU107
+ 315              		.loc 1 270 23 is_stmt 0 view .LVU108
+ 316 0020 0122     		movs	r2, #1
+ 317 0022 4A60     		str	r2, [r1, #4]
+ 318              	.L20:
+ 271:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 272:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   else
+ 273:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->Mode = EXTI_MODE_NONE;
+ 275:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 276:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 277:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Get event mode */
+ARM GAS  /tmp/ccCbjiDl.s 			page 12
+
+
+ 278:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check if selected line is enable */
+ 279:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((EXTI->EMR & maskline) != 0x00u)
+ 319              		.loc 1 279 3 is_stmt 1 view .LVU109
+ 320              		.loc 1 279 12 is_stmt 0 view .LVU110
+ 321 0024 1E48     		ldr	r0, .L30
+ 322 0026 8422     		movs	r2, #132
+ 323 0028 8258     		ldr	r2, [r0, r2]
+ 324              		.loc 1 279 6 view .LVU111
+ 325 002a 1342     		tst	r3, r2
+ 326 002c 03D0     		beq	.L21
+ 280:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 281:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->Mode |= EXTI_MODE_EVENT;
+ 327              		.loc 1 281 5 is_stmt 1 view .LVU112
+ 328              		.loc 1 281 16 is_stmt 0 view .LVU113
+ 329 002e 4A68     		ldr	r2, [r1, #4]
+ 330              		.loc 1 281 23 view .LVU114
+ 331 0030 0220     		movs	r0, #2
+ 332 0032 0243     		orrs	r2, r0
+ 333 0034 4A60     		str	r2, [r1, #4]
+ 334              	.L21:
+ 282:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 283:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 284:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* 2] Get trigger for configurable lines : rising */
+ 285:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((pExtiConfig->Line & EXTI_CONFIG) != 0x00u)
+ 335              		.loc 1 285 3 is_stmt 1 view .LVU115
+ 336              		.loc 1 285 6 is_stmt 0 view .LVU116
+ 337 0036 AA01     		lsls	r2, r5, #6
+ 338 0038 29D5     		bpl	.L22
+ 286:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 287:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Check if configuration of selected line is enable */
+ 288:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if ((EXTI->RTSR & maskline) != 0x00u)
+ 339              		.loc 1 288 5 is_stmt 1 view .LVU117
+ 340              		.loc 1 288 14 is_stmt 0 view .LVU118
+ 341 003a 194A     		ldr	r2, .L30
+ 342 003c 1268     		ldr	r2, [r2]
+ 343              		.loc 1 288 8 view .LVU119
+ 344 003e 1342     		tst	r3, r2
+ 345 0040 15D0     		beq	.L23
+ 289:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 290:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->Trigger = EXTI_TRIGGER_RISING;
+ 346              		.loc 1 290 7 is_stmt 1 view .LVU120
+ 347              		.loc 1 290 28 is_stmt 0 view .LVU121
+ 348 0042 0122     		movs	r2, #1
+ 349 0044 8A60     		str	r2, [r1, #8]
+ 350              	.L24:
+ 291:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 292:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     else
+ 293:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 294:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->Trigger = EXTI_TRIGGER_NONE;
+ 295:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 296:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 297:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Get falling configuration */
+ 298:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Check if configuration of selected line is enable */
+ 299:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if ((EXTI->FTSR & maskline) != 0x00u)
+ 351              		.loc 1 299 5 is_stmt 1 view .LVU122
+ 352              		.loc 1 299 14 is_stmt 0 view .LVU123
+ 353 0046 164A     		ldr	r2, .L30
+ARM GAS  /tmp/ccCbjiDl.s 			page 13
+
+
+ 354 0048 5268     		ldr	r2, [r2, #4]
+ 355              		.loc 1 299 8 view .LVU124
+ 356 004a 1342     		tst	r3, r2
+ 357 004c 03D0     		beq	.L25
+ 300:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 301:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->Trigger |= EXTI_TRIGGER_FALLING;
+ 358              		.loc 1 301 7 is_stmt 1 view .LVU125
+ 359              		.loc 1 301 18 is_stmt 0 view .LVU126
+ 360 004e 8B68     		ldr	r3, [r1, #8]
+ 361              	.LVL24:
+ 362              		.loc 1 301 28 view .LVU127
+ 363 0050 0222     		movs	r2, #2
+ 364 0052 1343     		orrs	r3, r2
+ 365 0054 8B60     		str	r3, [r1, #8]
+ 366              	.L25:
+ 302:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 303:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 304:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Get Gpio port selection for gpio lines */
+ 305:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if ((pExtiConfig->Line & EXTI_GPIO) == EXTI_GPIO)
+ 367              		.loc 1 305 5 is_stmt 1 view .LVU128
+ 368              		.loc 1 305 28 is_stmt 0 view .LVU129
+ 369 0056 C022     		movs	r2, #192
+ 370 0058 D204     		lsls	r2, r2, #19
+ 371 005a 1540     		ands	r5, r2
+ 372              		.loc 1 305 8 view .LVU130
+ 373 005c 9542     		cmp	r5, r2
+ 374 005e 09D0     		beq	.L29
+ 306:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 307:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       assert_param(IS_EXTI_GPIO_PIN(linepos));
+ 308:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval = EXTI->EXTICR[linepos >> 2u];
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->GPIOSel = ((regval << (EXTI_EXTICR1_EXTI1_Pos * (3uL - (linepos & 0x03u)))) >> 2
+ 311:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 312:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     else
+ 313:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 314:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->GPIOSel = 0x00u;
+ 375              		.loc 1 314 7 is_stmt 1 view .LVU131
+ 376              		.loc 1 314 28 is_stmt 0 view .LVU132
+ 377 0060 0023     		movs	r3, #0
+ 378 0062 CB60     		str	r3, [r1, #12]
+ 315:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 316:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 317:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   else
+ 318:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 319:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* No Trigger selected */
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->Trigger = EXTI_TRIGGER_NONE;
+ 321:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->GPIOSel = 0x00u;
+ 322:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 323:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 324:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   return HAL_OK;
+ 379              		.loc 1 324 10 view .LVU133
+ 380 0064 0020     		movs	r0, #0
+ 381 0066 16E0     		b	.L18
+ 382              	.LVL25:
+ 383              	.L19:
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 384              		.loc 1 274 5 is_stmt 1 view .LVU134
+ARM GAS  /tmp/ccCbjiDl.s 			page 14
+
+
+ 274:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 385              		.loc 1 274 23 is_stmt 0 view .LVU135
+ 386 0068 0022     		movs	r2, #0
+ 387 006a 4A60     		str	r2, [r1, #4]
+ 388 006c DAE7     		b	.L20
+ 389              	.L23:
+ 294:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 390              		.loc 1 294 7 is_stmt 1 view .LVU136
+ 294:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 391              		.loc 1 294 28 is_stmt 0 view .LVU137
+ 392 006e 0022     		movs	r2, #0
+ 393 0070 8A60     		str	r2, [r1, #8]
+ 394 0072 E8E7     		b	.L24
+ 395              	.LVL26:
+ 396              	.L29:
+ 307:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 397              		.loc 1 307 7 is_stmt 1 view .LVU138
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->GPIOSel = ((regval << (EXTI_EXTICR1_EXTI1_Pos * (3uL - (linepos & 0x03u)))) >> 2
+ 398              		.loc 1 309 7 view .LVU139
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->GPIOSel = ((regval << (EXTI_EXTICR1_EXTI1_Pos * (3uL - (linepos & 0x03u)))) >> 2
+ 399              		.loc 1 309 37 is_stmt 0 view .LVU140
+ 400 0074 A308     		lsrs	r3, r4, #2
+ 309:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       pExtiConfig->GPIOSel = ((regval << (EXTI_EXTICR1_EXTI1_Pos * (3uL - (linepos & 0x03u)))) >> 2
+ 401              		.loc 1 309 14 view .LVU141
+ 402 0076 1833     		adds	r3, r3, #24
+ 403 0078 9B00     		lsls	r3, r3, #2
+ 404 007a 094A     		ldr	r2, .L30
+ 405 007c 9B58     		ldr	r3, [r3, r2]
+ 406              	.LVL27:
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 407              		.loc 1 310 7 is_stmt 1 view .LVU142
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 408              		.loc 1 310 73 is_stmt 0 view .LVU143
+ 409 007e 0322     		movs	r2, #3
+ 410 0080 A243     		bics	r2, r4
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 411              		.loc 1 310 66 view .LVU144
+ 412 0082 D200     		lsls	r2, r2, #3
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 413              		.loc 1 310 39 view .LVU145
+ 414 0084 9340     		lsls	r3, r3, r2
+ 415              	.LVL28:
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 416              		.loc 1 310 96 view .LVU146
+ 417 0086 1B0E     		lsrs	r3, r3, #24
+ 310:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 418              		.loc 1 310 28 view .LVU147
+ 419 0088 CB60     		str	r3, [r1, #12]
+ 420              		.loc 1 324 10 view .LVU148
+ 421 008a 0020     		movs	r0, #0
+ 422 008c 03E0     		b	.L18
+ 423              	.LVL29:
+ 424              	.L22:
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->GPIOSel = 0x00u;
+ 425              		.loc 1 320 5 is_stmt 1 view .LVU149
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->GPIOSel = 0x00u;
+ 426              		.loc 1 320 26 is_stmt 0 view .LVU150
+ARM GAS  /tmp/ccCbjiDl.s 			page 15
+
+
+ 427 008e 0023     		movs	r3, #0
+ 428              	.LVL30:
+ 320:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     pExtiConfig->GPIOSel = 0x00u;
+ 429              		.loc 1 320 26 view .LVU151
+ 430 0090 8B60     		str	r3, [r1, #8]
+ 321:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 431              		.loc 1 321 5 is_stmt 1 view .LVU152
+ 321:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 432              		.loc 1 321 26 is_stmt 0 view .LVU153
+ 433 0092 CB60     		str	r3, [r1, #12]
+ 434              		.loc 1 324 10 view .LVU154
+ 435 0094 0020     		movs	r0, #0
+ 436              	.LVL31:
+ 437              	.L18:
+ 325:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 438              		.loc 1 325 1 view .LVU155
+ 439              		@ sp needed
+ 440 0096 30BD     		pop	{r4, r5, pc}
+ 441              	.LVL32:
+ 442              	.L27:
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 443              		.loc 1 252 12 view .LVU156
+ 444 0098 0120     		movs	r0, #1
+ 445              	.LVL33:
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 446              		.loc 1 252 12 view .LVU157
+ 447 009a FCE7     		b	.L18
+ 448              	.LVL34:
+ 449              	.L28:
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 450              		.loc 1 252 12 view .LVU158
+ 451 009c 0120     		movs	r0, #1
+ 452              	.LVL35:
+ 252:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 453              		.loc 1 252 12 view .LVU159
+ 454 009e FAE7     		b	.L18
+ 455              	.L31:
+ 456              		.align	2
+ 457              	.L30:
+ 458 00a0 00180240 		.word	1073879040
+ 459              		.cfi_endproc
+ 460              	.LFE56:
+ 462              		.section	.text.HAL_EXTI_ClearConfigLine,"ax",%progbits
+ 463              		.align	1
+ 464              		.global	HAL_EXTI_ClearConfigLine
+ 465              		.syntax unified
+ 466              		.code	16
+ 467              		.thumb_func
+ 469              	HAL_EXTI_ClearConfigLine:
+ 470              	.LVL36:
+ 471              	.LFB57:
+ 326:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 327:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 328:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Clear whole configuration of a dedicated Exti line.
+ 329:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 330:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval HAL Status.
+ 331:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ARM GAS  /tmp/ccCbjiDl.s 			page 16
+
+
+ 332:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** HAL_StatusTypeDef HAL_EXTI_ClearConfigLine(EXTI_HandleTypeDef *hexti)
+ 333:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 472              		.loc 1 333 1 is_stmt 1 view -0
+ 473              		.cfi_startproc
+ 474              		@ args = 0, pretend = 0, frame = 0
+ 475              		@ frame_needed = 0, uses_anonymous_args = 0
+ 476              		.loc 1 333 1 is_stmt 0 view .LVU161
+ 477 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 478              	.LCFI2:
+ 479              		.cfi_def_cfa_offset 20
+ 480              		.cfi_offset 4, -20
+ 481              		.cfi_offset 5, -16
+ 482              		.cfi_offset 6, -12
+ 483              		.cfi_offset 7, -8
+ 484              		.cfi_offset 14, -4
+ 334:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t regval;
+ 485              		.loc 1 334 3 is_stmt 1 view .LVU162
+ 335:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t linepos;
+ 486              		.loc 1 335 3 view .LVU163
+ 336:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t maskline;
+ 487              		.loc 1 336 3 view .LVU164
+ 337:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 338:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check null pointer */
+ 339:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if (hexti == NULL)
+ 488              		.loc 1 339 3 view .LVU165
+ 489              		.loc 1 339 6 is_stmt 0 view .LVU166
+ 490 0002 0028     		cmp	r0, #0
+ 491 0004 2DD0     		beq	.L34
+ 340:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 341:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     return HAL_ERROR;
+ 342:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 343:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 344:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check the parameter */
+ 345:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_LINE(hexti->Line));
+ 492              		.loc 1 345 3 is_stmt 1 view .LVU167
+ 346:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 347:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* compute line mask */
+ 348:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   linepos = (hexti->Line & EXTI_PIN_MASK);
+ 493              		.loc 1 348 3 view .LVU168
+ 494              		.loc 1 348 19 is_stmt 0 view .LVU169
+ 495 0006 0568     		ldr	r5, [r0]
+ 496              		.loc 1 348 11 view .LVU170
+ 497 0008 1F22     		movs	r2, #31
+ 498 000a 2A40     		ands	r2, r5
+ 499              	.LVL37:
+ 349:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   maskline = (1uL << linepos);
+ 500              		.loc 1 349 3 is_stmt 1 view .LVU171
+ 501              		.loc 1 349 12 is_stmt 0 view .LVU172
+ 502 000c 0123     		movs	r3, #1
+ 503 000e 9340     		lsls	r3, r3, r2
+ 504              	.LVL38:
+ 350:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 351:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* 1] Clear interrupt mode */
+ 352:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   EXTI->IMR = (EXTI->IMR & ~maskline);
+ 505              		.loc 1 352 3 is_stmt 1 view .LVU173
+ 506              		.loc 1 352 20 is_stmt 0 view .LVU174
+ 507 0010 1649     		ldr	r1, .L38
+ARM GAS  /tmp/ccCbjiDl.s 			page 17
+
+
+ 508 0012 8026     		movs	r6, #128
+ 509 0014 8C59     		ldr	r4, [r1, r6]
+ 510              		.loc 1 352 28 view .LVU175
+ 511 0016 DF43     		mvns	r7, r3
+ 512              		.loc 1 352 26 view .LVU176
+ 513 0018 9C43     		bics	r4, r3
+ 514              		.loc 1 352 13 view .LVU177
+ 515 001a 8C51     		str	r4, [r1, r6]
+ 353:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 354:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* 2] Clear event mode */
+ 355:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   EXTI->EMR = (EXTI->EMR & ~maskline);
+ 516              		.loc 1 355 3 is_stmt 1 view .LVU178
+ 517              		.loc 1 355 20 is_stmt 0 view .LVU179
+ 518 001c 0436     		adds	r6, r6, #4
+ 519 001e 8C59     		ldr	r4, [r1, r6]
+ 520              		.loc 1 355 26 view .LVU180
+ 521 0020 9C43     		bics	r4, r3
+ 522              		.loc 1 355 13 view .LVU181
+ 523 0022 8C51     		str	r4, [r1, r6]
+ 356:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 357:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* 3] Clear triggers in case of configurable lines */
+ 358:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if ((hexti->Line & EXTI_CONFIG) != 0x00u)
+ 524              		.loc 1 358 3 is_stmt 1 view .LVU182
+ 525              		.loc 1 358 13 is_stmt 0 view .LVU183
+ 526 0024 0368     		ldr	r3, [r0]
+ 527              	.LVL39:
+ 528              		.loc 1 358 6 view .LVU184
+ 529 0026 9B01     		lsls	r3, r3, #6
+ 530 0028 1DD5     		bpl	.L35
+ 359:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 360:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     EXTI->RTSR = (EXTI->RTSR & ~maskline);
+ 531              		.loc 1 360 5 is_stmt 1 view .LVU185
+ 532              		.loc 1 360 23 is_stmt 0 view .LVU186
+ 533 002a 0B00     		movs	r3, r1
+ 534 002c 0968     		ldr	r1, [r1]
+ 535              		.loc 1 360 30 view .LVU187
+ 536 002e 3940     		ands	r1, r7
+ 537              		.loc 1 360 16 view .LVU188
+ 538 0030 1960     		str	r1, [r3]
+ 361:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     EXTI->FTSR = (EXTI->FTSR & ~maskline);
+ 539              		.loc 1 361 5 is_stmt 1 view .LVU189
+ 540              		.loc 1 361 23 is_stmt 0 view .LVU190
+ 541 0032 5968     		ldr	r1, [r3, #4]
+ 542              		.loc 1 361 30 view .LVU191
+ 543 0034 3940     		ands	r1, r7
+ 544              		.loc 1 361 16 view .LVU192
+ 545 0036 5960     		str	r1, [r3, #4]
+ 362:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 363:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Get Gpio port selection for gpio lines */
+ 364:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if ((hexti->Line & EXTI_GPIO) == EXTI_GPIO)
+ 546              		.loc 1 364 5 is_stmt 1 view .LVU193
+ 547              		.loc 1 364 15 is_stmt 0 view .LVU194
+ 548 0038 0368     		ldr	r3, [r0]
+ 549              		.loc 1 364 22 view .LVU195
+ 550 003a C021     		movs	r1, #192
+ 551 003c C904     		lsls	r1, r1, #19
+ 552 003e 0B40     		ands	r3, r1
+ARM GAS  /tmp/ccCbjiDl.s 			page 18
+
+
+ 553              		.loc 1 364 8 view .LVU196
+ 554 0040 8B42     		cmp	r3, r1
+ 555 0042 01D0     		beq	.L37
+ 365:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 366:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       assert_param(IS_EXTI_GPIO_PIN(linepos));
+ 367:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval = EXTI->EXTICR[linepos >> 2u];
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 370:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 371:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 372:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 373:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 374:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   return HAL_OK;
+ 556              		.loc 1 374 10 view .LVU197
+ 557 0044 0020     		movs	r0, #0
+ 558              	.LVL40:
+ 559              		.loc 1 374 10 view .LVU198
+ 560 0046 0FE0     		b	.L33
+ 561              	.LVL41:
+ 562              	.L37:
+ 366:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 563              		.loc 1 366 7 is_stmt 1 view .LVU199
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 564              		.loc 1 368 7 view .LVU200
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 565              		.loc 1 368 37 is_stmt 0 view .LVU201
+ 566 0048 9208     		lsrs	r2, r2, #2
+ 567              	.LVL42:
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 568              		.loc 1 368 14 view .LVU202
+ 569 004a 0848     		ldr	r0, .L38
+ 570              	.LVL43:
+ 368:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       regval &= ~(EXTI_EXTICR1_EXTI0 << (EXTI_EXTICR1_EXTI1_Pos * (linepos & 0x03u)));
+ 571              		.loc 1 368 14 view .LVU203
+ 572 004c 1832     		adds	r2, r2, #24
+ 573 004e 9200     		lsls	r2, r2, #2
+ 574 0050 1158     		ldr	r1, [r2, r0]
+ 575              	.LVL44:
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 576              		.loc 1 369 7 is_stmt 1 view .LVU204
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 577              		.loc 1 369 76 is_stmt 0 view .LVU205
+ 578 0052 0323     		movs	r3, #3
+ 579 0054 1D40     		ands	r5, r3
+ 580              	.LVL45:
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 581              		.loc 1 369 65 view .LVU206
+ 582 0056 ED00     		lsls	r5, r5, #3
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 583              		.loc 1 369 38 view .LVU207
+ 584 0058 AB40     		lsls	r3, r3, r5
+ 369:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       EXTI->EXTICR[linepos >> 2u] = regval;
+ 585              		.loc 1 369 14 view .LVU208
+ 586 005a 9943     		bics	r1, r3
+ 587              	.LVL46:
+ 370:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 588              		.loc 1 370 7 is_stmt 1 view .LVU209
+ARM GAS  /tmp/ccCbjiDl.s 			page 19
+
+
+ 370:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 589              		.loc 1 370 35 is_stmt 0 view .LVU210
+ 590 005c 1150     		str	r1, [r2, r0]
+ 591              		.loc 1 374 10 view .LVU211
+ 592 005e 0020     		movs	r0, #0
+ 593 0060 02E0     		b	.L33
+ 594              	.LVL47:
+ 595              	.L34:
+ 341:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 596              		.loc 1 341 12 view .LVU212
+ 597 0062 0120     		movs	r0, #1
+ 598              	.LVL48:
+ 341:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 599              		.loc 1 341 12 view .LVU213
+ 600 0064 00E0     		b	.L33
+ 601              	.LVL49:
+ 602              	.L35:
+ 603              		.loc 1 374 10 view .LVU214
+ 604 0066 0020     		movs	r0, #0
+ 605              	.LVL50:
+ 606              	.L33:
+ 375:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 607              		.loc 1 375 1 view .LVU215
+ 608              		@ sp needed
+ 609 0068 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 610              	.L39:
+ 611 006a C046     		.align	2
+ 612              	.L38:
+ 613 006c 00180240 		.word	1073879040
+ 614              		.cfi_endproc
+ 615              	.LFE57:
+ 617              		.section	.text.HAL_EXTI_RegisterCallback,"ax",%progbits
+ 618              		.align	1
+ 619              		.global	HAL_EXTI_RegisterCallback
+ 620              		.syntax unified
+ 621              		.code	16
+ 622              		.thumb_func
+ 624              	HAL_EXTI_RegisterCallback:
+ 625              	.LVL51:
+ 626              	.LFB58:
+ 376:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 377:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 378:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Register callback for a dedicated Exti line.
+ 379:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 380:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  CallbackID User callback identifier.
+ 381:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *         This parameter can be one of @arg @ref EXTI_CallbackIDTypeDef values.
+ 382:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  pPendingCbfn function pointer to be stored as callback.
+ 383:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval HAL Status.
+ 384:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 385:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** HAL_StatusTypeDef HAL_EXTI_RegisterCallback(EXTI_HandleTypeDef *hexti, EXTI_CallbackIDTypeDef Callb
+ 386:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 627              		.loc 1 386 1 is_stmt 1 view -0
+ 628              		.cfi_startproc
+ 629              		@ args = 0, pretend = 0, frame = 0
+ 630              		@ frame_needed = 0, uses_anonymous_args = 0
+ 631              		@ link register save eliminated.
+ 387:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   HAL_StatusTypeDef status = HAL_OK;
+ARM GAS  /tmp/ccCbjiDl.s 			page 20
+
+
+ 632              		.loc 1 387 3 view .LVU217
+ 388:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 389:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   switch (CallbackID)
+ 633              		.loc 1 389 3 view .LVU218
+ 634 0000 0029     		cmp	r1, #0
+ 635 0002 02D1     		bne	.L42
+ 390:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 391:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   case  HAL_EXTI_COMMON_CB_ID:
+ 392:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     hexti->PendingCallback = pPendingCbfn;
+ 636              		.loc 1 392 5 view .LVU219
+ 637              		.loc 1 392 28 is_stmt 0 view .LVU220
+ 638 0004 4260     		str	r2, [r0, #4]
+ 393:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     break;
+ 639              		.loc 1 393 5 is_stmt 1 view .LVU221
+ 387:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 640              		.loc 1 387 21 is_stmt 0 view .LVU222
+ 641 0006 0800     		movs	r0, r1
+ 642              	.LVL52:
+ 643              	.L41:
+ 394:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 395:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   default:
+ 396:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     status = HAL_ERROR;
+ 397:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     break;
+ 398:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 399:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 400:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   return status;
+ 644              		.loc 1 400 3 is_stmt 1 view .LVU223
+ 401:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 645              		.loc 1 401 1 is_stmt 0 view .LVU224
+ 646              		@ sp needed
+ 647 0008 7047     		bx	lr
+ 648              	.LVL53:
+ 649              	.L42:
+ 396:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     break;
+ 650              		.loc 1 396 12 view .LVU225
+ 651 000a 0120     		movs	r0, #1
+ 652              	.LVL54:
+ 396:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     break;
+ 653              		.loc 1 396 12 view .LVU226
+ 654 000c FCE7     		b	.L41
+ 655              		.cfi_endproc
+ 656              	.LFE58:
+ 658              		.section	.text.HAL_EXTI_GetHandle,"ax",%progbits
+ 659              		.align	1
+ 660              		.global	HAL_EXTI_GetHandle
+ 661              		.syntax unified
+ 662              		.code	16
+ 663              		.thumb_func
+ 665              	HAL_EXTI_GetHandle:
+ 666              	.LVL55:
+ 667              	.LFB59:
+ 402:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 403:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 404:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Store line number as handle private field.
+ 405:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 406:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  ExtiLine Exti line number.
+ 407:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *         This parameter can be from 0 to @ref EXTI_LINE_NB.
+ARM GAS  /tmp/ccCbjiDl.s 			page 21
+
+
+ 408:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval HAL Status.
+ 409:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 410:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** HAL_StatusTypeDef HAL_EXTI_GetHandle(EXTI_HandleTypeDef *hexti, uint32_t ExtiLine)
+ 411:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 668              		.loc 1 411 1 is_stmt 1 view -0
+ 669              		.cfi_startproc
+ 670              		@ args = 0, pretend = 0, frame = 0
+ 671              		@ frame_needed = 0, uses_anonymous_args = 0
+ 672              		@ link register save eliminated.
+ 412:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check the parameters */
+ 413:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_LINE(ExtiLine));
+ 673              		.loc 1 413 3 view .LVU228
+ 414:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 415:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check null pointer */
+ 416:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if (hexti == NULL)
+ 674              		.loc 1 416 3 view .LVU229
+ 675              		.loc 1 416 6 is_stmt 0 view .LVU230
+ 676 0000 0028     		cmp	r0, #0
+ 677 0002 02D0     		beq	.L45
+ 417:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 418:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     return HAL_ERROR;
+ 419:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 420:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   else
+ 421:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 422:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Store line number as handle private field */
+ 423:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     hexti->Line = ExtiLine;
+ 678              		.loc 1 423 5 is_stmt 1 view .LVU231
+ 679              		.loc 1 423 17 is_stmt 0 view .LVU232
+ 680 0004 0160     		str	r1, [r0]
+ 424:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 425:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     return HAL_OK;
+ 681              		.loc 1 425 5 is_stmt 1 view .LVU233
+ 682              		.loc 1 425 12 is_stmt 0 view .LVU234
+ 683 0006 0020     		movs	r0, #0
+ 684              	.LVL56:
+ 685              	.L44:
+ 426:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 427:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 686              		.loc 1 427 1 view .LVU235
+ 687              		@ sp needed
+ 688 0008 7047     		bx	lr
+ 689              	.LVL57:
+ 690              	.L45:
+ 418:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 691              		.loc 1 418 12 view .LVU236
+ 692 000a 0120     		movs	r0, #1
+ 693              	.LVL58:
+ 418:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 694              		.loc 1 418 12 view .LVU237
+ 695 000c FCE7     		b	.L44
+ 696              		.cfi_endproc
+ 697              	.LFE59:
+ 699              		.section	.text.HAL_EXTI_IRQHandler,"ax",%progbits
+ 700              		.align	1
+ 701              		.global	HAL_EXTI_IRQHandler
+ 702              		.syntax unified
+ 703              		.code	16
+ARM GAS  /tmp/ccCbjiDl.s 			page 22
+
+
+ 704              		.thumb_func
+ 706              	HAL_EXTI_IRQHandler:
+ 707              	.LVL59:
+ 708              	.LFB60:
+ 428:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 429:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 430:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @}
+ 431:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 432:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 433:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /** @addtogroup EXTI_Exported_Functions_Group2
+ 434:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *  @brief EXTI IO functions.
+ 435:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *
+ 436:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** @verbatim
+ 437:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****  ===============================================================================
+ 438:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****                        ##### IO operation functions #####
+ 439:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****  ===============================================================================
+ 440:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 441:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** @endverbatim
+ 442:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @{
+ 443:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 444:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 445:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 446:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Handle EXTI interrupt request.
+ 447:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 448:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval none.
+ 449:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 450:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** void HAL_EXTI_IRQHandler(EXTI_HandleTypeDef *hexti)
+ 451:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 709              		.loc 1 451 1 is_stmt 1 view -0
+ 710              		.cfi_startproc
+ 711              		@ args = 0, pretend = 0, frame = 0
+ 712              		@ frame_needed = 0, uses_anonymous_args = 0
+ 713              		.loc 1 451 1 is_stmt 0 view .LVU239
+ 714 0000 10B5     		push	{r4, lr}
+ 715              	.LCFI3:
+ 716              		.cfi_def_cfa_offset 8
+ 717              		.cfi_offset 4, -8
+ 718              		.cfi_offset 14, -4
+ 452:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t regval;
+ 719              		.loc 1 452 3 is_stmt 1 view .LVU240
+ 453:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t maskline;
+ 720              		.loc 1 453 3 view .LVU241
+ 454:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 455:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Compute line mask */
+ 456:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   maskline = (1uL << (hexti->Line & EXTI_PIN_MASK));
+ 721              		.loc 1 456 3 view .LVU242
+ 722              		.loc 1 456 28 is_stmt 0 view .LVU243
+ 723 0002 0368     		ldr	r3, [r0]
+ 724              		.loc 1 456 35 view .LVU244
+ 725 0004 1F22     		movs	r2, #31
+ 726 0006 1A40     		ands	r2, r3
+ 727              		.loc 1 456 12 view .LVU245
+ 728 0008 0123     		movs	r3, #1
+ 729 000a 9340     		lsls	r3, r3, r2
+ 730              	.LVL60:
+ 457:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 458:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Get pending bit  */
+ARM GAS  /tmp/ccCbjiDl.s 			page 23
+
+
+ 459:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   regval = (EXTI->PR & maskline);
+ 731              		.loc 1 459 3 is_stmt 1 view .LVU246
+ 732              		.loc 1 459 17 is_stmt 0 view .LVU247
+ 733 000c 054A     		ldr	r2, .L48
+ 734 000e D268     		ldr	r2, [r2, #12]
+ 735              	.LVL61:
+ 460:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   if (regval != 0x00u)
+ 736              		.loc 1 460 3 is_stmt 1 view .LVU248
+ 737              		.loc 1 460 6 is_stmt 0 view .LVU249
+ 738 0010 1342     		tst	r3, r2
+ 739 0012 05D0     		beq	.L46
+ 461:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   {
+ 462:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Clear pending bit */
+ 463:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     EXTI->PR = maskline;
+ 740              		.loc 1 463 5 is_stmt 1 view .LVU250
+ 741              		.loc 1 463 14 is_stmt 0 view .LVU251
+ 742 0014 034A     		ldr	r2, .L48
+ 743              	.LVL62:
+ 744              		.loc 1 463 14 view .LVU252
+ 745 0016 D360     		str	r3, [r2, #12]
+ 464:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 465:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     /* Call callback */
+ 466:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     if (hexti->PendingCallback != NULL)
+ 746              		.loc 1 466 5 is_stmt 1 view .LVU253
+ 747              		.loc 1 466 14 is_stmt 0 view .LVU254
+ 748 0018 4368     		ldr	r3, [r0, #4]
+ 749              	.LVL63:
+ 750              		.loc 1 466 8 view .LVU255
+ 751 001a 002B     		cmp	r3, #0
+ 752 001c 00D0     		beq	.L46
+ 467:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     {
+ 468:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****       hexti->PendingCallback();
+ 753              		.loc 1 468 7 is_stmt 1 view .LVU256
+ 754 001e 9847     		blx	r3
+ 755              	.LVL64:
+ 756              	.L46:
+ 469:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****     }
+ 470:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   }
+ 471:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 757              		.loc 1 471 1 is_stmt 0 view .LVU257
+ 758              		@ sp needed
+ 759 0020 10BD     		pop	{r4, pc}
+ 760              	.L49:
+ 761 0022 C046     		.align	2
+ 762              	.L48:
+ 763 0024 00180240 		.word	1073879040
+ 764              		.cfi_endproc
+ 765              	.LFE60:
+ 767              		.section	.text.HAL_EXTI_GetPending,"ax",%progbits
+ 768              		.align	1
+ 769              		.global	HAL_EXTI_GetPending
+ 770              		.syntax unified
+ 771              		.code	16
+ 772              		.thumb_func
+ 774              	HAL_EXTI_GetPending:
+ 775              	.LVL65:
+ 776              	.LFB61:
+ARM GAS  /tmp/ccCbjiDl.s 			page 24
+
+
+ 472:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 473:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 474:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Get interrupt pending bit of a dedicated line.
+ 475:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 476:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  Edge Specify which pending edge as to be checked.
+ 477:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *         This parameter can be one of the following values:
+ 478:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *           @arg @ref EXTI_TRIGGER_RISING_FALLING
+ 479:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *         This parameter is kept for compatibility with other series.
+ 480:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval 1 if interrupt is pending else 0.
+ 481:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 482:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** uint32_t HAL_EXTI_GetPending(EXTI_HandleTypeDef *hexti, uint32_t Edge)
+ 483:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 777              		.loc 1 483 1 is_stmt 1 view -0
+ 778              		.cfi_startproc
+ 779              		@ args = 0, pretend = 0, frame = 0
+ 780              		@ frame_needed = 0, uses_anonymous_args = 0
+ 781              		@ link register save eliminated.
+ 484:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t regval;
+ 782              		.loc 1 484 3 view .LVU259
+ 485:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t linepos;
+ 783              		.loc 1 485 3 view .LVU260
+ 486:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t maskline;
+ 784              		.loc 1 486 3 view .LVU261
+ 487:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 488:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check parameters */
+ 489:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_LINE(hexti->Line));
+ 785              		.loc 1 489 3 view .LVU262
+ 490:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_CONFIG_LINE(hexti->Line));
+ 786              		.loc 1 490 3 view .LVU263
+ 491:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_PENDING_EDGE(Edge));
+ 787              		.loc 1 491 3 view .LVU264
+ 492:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 493:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Compute line mask */
+ 494:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   linepos = (hexti->Line & EXTI_PIN_MASK);
+ 788              		.loc 1 494 3 view .LVU265
+ 789              		.loc 1 494 19 is_stmt 0 view .LVU266
+ 790 0000 0268     		ldr	r2, [r0]
+ 791              		.loc 1 494 11 view .LVU267
+ 792 0002 1F23     		movs	r3, #31
+ 793 0004 1340     		ands	r3, r2
+ 794              	.LVL66:
+ 495:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   maskline = (1uL << linepos);
+ 795              		.loc 1 495 3 is_stmt 1 view .LVU268
+ 796              		.loc 1 495 12 is_stmt 0 view .LVU269
+ 797 0006 0120     		movs	r0, #1
+ 798              	.LVL67:
+ 799              		.loc 1 495 12 view .LVU270
+ 800 0008 9840     		lsls	r0, r0, r3
+ 801              	.LVL68:
+ 496:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 497:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* return 1 if bit is set else 0 */
+ 498:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   regval = ((EXTI->PR & maskline) >> linepos);
+ 802              		.loc 1 498 3 is_stmt 1 view .LVU271
+ 803              		.loc 1 498 18 is_stmt 0 view .LVU272
+ 804 000a 024A     		ldr	r2, .L51
+ 805 000c D268     		ldr	r2, [r2, #12]
+ 806              		.loc 1 498 23 view .LVU273
+ARM GAS  /tmp/ccCbjiDl.s 			page 25
+
+
+ 807 000e 1040     		ands	r0, r2
+ 808              	.LVL69:
+ 809              		.loc 1 498 10 view .LVU274
+ 810 0010 D840     		lsrs	r0, r0, r3
+ 811              	.LVL70:
+ 499:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   return regval;
+ 812              		.loc 1 499 3 is_stmt 1 view .LVU275
+ 500:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 813              		.loc 1 500 1 is_stmt 0 view .LVU276
+ 814              		@ sp needed
+ 815 0012 7047     		bx	lr
+ 816              	.L52:
+ 817              		.align	2
+ 818              	.L51:
+ 819 0014 00180240 		.word	1073879040
+ 820              		.cfi_endproc
+ 821              	.LFE61:
+ 823              		.section	.text.HAL_EXTI_ClearPending,"ax",%progbits
+ 824              		.align	1
+ 825              		.global	HAL_EXTI_ClearPending
+ 826              		.syntax unified
+ 827              		.code	16
+ 828              		.thumb_func
+ 830              	HAL_EXTI_ClearPending:
+ 831              	.LVL71:
+ 832              	.LFB62:
+ 501:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 502:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 503:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Clear interrupt pending bit of a dedicated line.
+ 504:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 505:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  Edge Specify which pending edge as to be clear.
+ 506:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *         This parameter can be one of the following values:
+ 507:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *           @arg @ref EXTI_TRIGGER_RISING_FALLING
+ 508:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   *         This parameter is kept for compatibility with other series.
+ 509:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval None.
+ 510:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 511:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** void HAL_EXTI_ClearPending(EXTI_HandleTypeDef *hexti)
+ 512:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 833              		.loc 1 512 1 is_stmt 1 view -0
+ 834              		.cfi_startproc
+ 835              		@ args = 0, pretend = 0, frame = 0
+ 836              		@ frame_needed = 0, uses_anonymous_args = 0
+ 837              		@ link register save eliminated.
+ 513:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t maskline;
+ 838              		.loc 1 513 3 view .LVU278
+ 514:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 515:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check parameters */
+ 516:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_LINE(hexti->Line));
+ 839              		.loc 1 516 3 view .LVU279
+ 517:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_CONFIG_LINE(hexti->Line));
+ 840              		.loc 1 517 3 view .LVU280
+ 518:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 519:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Compute line mask */
+ 520:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   maskline = (1uL << (hexti->Line & EXTI_PIN_MASK));
+ 841              		.loc 1 520 3 view .LVU281
+ 842              		.loc 1 520 28 is_stmt 0 view .LVU282
+ 843 0000 0368     		ldr	r3, [r0]
+ARM GAS  /tmp/ccCbjiDl.s 			page 26
+
+
+ 844              		.loc 1 520 35 view .LVU283
+ 845 0002 1F22     		movs	r2, #31
+ 846 0004 1A40     		ands	r2, r3
+ 847              		.loc 1 520 12 view .LVU284
+ 848 0006 0123     		movs	r3, #1
+ 849 0008 9340     		lsls	r3, r3, r2
+ 850              	.LVL72:
+ 521:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 522:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Clear Pending bit */
+ 523:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   EXTI->PR =  maskline;
+ 851              		.loc 1 523 3 is_stmt 1 view .LVU285
+ 852              		.loc 1 523 12 is_stmt 0 view .LVU286
+ 853 000a 014A     		ldr	r2, .L54
+ 854 000c D360     		str	r3, [r2, #12]
+ 524:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 855              		.loc 1 524 1 view .LVU287
+ 856              		@ sp needed
+ 857 000e 7047     		bx	lr
+ 858              	.L55:
+ 859              		.align	2
+ 860              	.L54:
+ 861 0010 00180240 		.word	1073879040
+ 862              		.cfi_endproc
+ 863              	.LFE62:
+ 865              		.section	.text.HAL_EXTI_GenerateSWI,"ax",%progbits
+ 866              		.align	1
+ 867              		.global	HAL_EXTI_GenerateSWI
+ 868              		.syntax unified
+ 869              		.code	16
+ 870              		.thumb_func
+ 872              	HAL_EXTI_GenerateSWI:
+ 873              	.LVL73:
+ 874              	.LFB63:
+ 525:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 526:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** /**
+ 527:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @brief  Generate a software interrupt for a dedicated line.
+ 528:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @param  hexti Exti handle.
+ 529:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   * @retval None.
+ 530:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   */
+ 531:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** void HAL_EXTI_GenerateSWI(EXTI_HandleTypeDef *hexti)
+ 532:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** {
+ 875              		.loc 1 532 1 is_stmt 1 view -0
+ 876              		.cfi_startproc
+ 877              		@ args = 0, pretend = 0, frame = 0
+ 878              		@ frame_needed = 0, uses_anonymous_args = 0
+ 879              		@ link register save eliminated.
+ 533:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   uint32_t maskline;
+ 880              		.loc 1 533 3 view .LVU289
+ 534:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 535:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Check parameters */
+ 536:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_LINE(hexti->Line));
+ 881              		.loc 1 536 3 view .LVU290
+ 537:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   assert_param(IS_EXTI_CONFIG_LINE(hexti->Line));
+ 882              		.loc 1 537 3 view .LVU291
+ 538:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 539:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Compute line mask */
+ 540:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   maskline = (1uL << (hexti->Line & EXTI_PIN_MASK));
+ARM GAS  /tmp/ccCbjiDl.s 			page 27
+
+
+ 883              		.loc 1 540 3 view .LVU292
+ 884              		.loc 1 540 28 is_stmt 0 view .LVU293
+ 885 0000 0368     		ldr	r3, [r0]
+ 886              		.loc 1 540 35 view .LVU294
+ 887 0002 1F22     		movs	r2, #31
+ 888 0004 1A40     		ands	r2, r3
+ 889              		.loc 1 540 12 view .LVU295
+ 890 0006 0123     		movs	r3, #1
+ 891 0008 9340     		lsls	r3, r3, r2
+ 892              	.LVL74:
+ 541:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** 
+ 542:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   /* Generate Software interrupt */
+ 543:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c ****   EXTI->SWIER = maskline;
+ 893              		.loc 1 543 3 is_stmt 1 view .LVU296
+ 894              		.loc 1 543 15 is_stmt 0 view .LVU297
+ 895 000a 014A     		ldr	r2, .L57
+ 896 000c 9360     		str	r3, [r2, #8]
+ 544:PY32F0xx_HAL_Driver/Src/py32f0xx_hal_exti.c **** }
+ 897              		.loc 1 544 1 view .LVU298
+ 898              		@ sp needed
+ 899 000e 7047     		bx	lr
+ 900              	.L58:
+ 901              		.align	2
+ 902              	.L57:
+ 903 0010 00180240 		.word	1073879040
+ 904              		.cfi_endproc
+ 905              	.LFE63:
+ 907              		.text
+ 908              	.Letext0:
+ 909              		.file 2 "CMSIS/Device/PY32F0xx/Include/py32f003x8.h"
+ 910              		.file 3 "/usr/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h"
+ 911              		.file 4 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_def.h"
+ 912              		.file 5 "PY32F0xx_HAL_Driver/Inc/py32f0xx_hal_exti.h"
+ARM GAS  /tmp/ccCbjiDl.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 py32f0xx_hal_exti.c
+     /tmp/ccCbjiDl.s:19     .text.HAL_EXTI_SetConfigLine:00000000 $t
+     /tmp/ccCbjiDl.s:25     .text.HAL_EXTI_SetConfigLine:00000000 HAL_EXTI_SetConfigLine
+     /tmp/ccCbjiDl.s:253    .text.HAL_EXTI_SetConfigLine:000000bc $d
+     /tmp/ccCbjiDl.s:258    .text.HAL_EXTI_GetConfigLine:00000000 $t
+     /tmp/ccCbjiDl.s:264    .text.HAL_EXTI_GetConfigLine:00000000 HAL_EXTI_GetConfigLine
+     /tmp/ccCbjiDl.s:458    .text.HAL_EXTI_GetConfigLine:000000a0 $d
+     /tmp/ccCbjiDl.s:463    .text.HAL_EXTI_ClearConfigLine:00000000 $t
+     /tmp/ccCbjiDl.s:469    .text.HAL_EXTI_ClearConfigLine:00000000 HAL_EXTI_ClearConfigLine
+     /tmp/ccCbjiDl.s:613    .text.HAL_EXTI_ClearConfigLine:0000006c $d
+     /tmp/ccCbjiDl.s:618    .text.HAL_EXTI_RegisterCallback:00000000 $t
+     /tmp/ccCbjiDl.s:624    .text.HAL_EXTI_RegisterCallback:00000000 HAL_EXTI_RegisterCallback
+     /tmp/ccCbjiDl.s:659    .text.HAL_EXTI_GetHandle:00000000 $t
+     /tmp/ccCbjiDl.s:665    .text.HAL_EXTI_GetHandle:00000000 HAL_EXTI_GetHandle
+     /tmp/ccCbjiDl.s:700    .text.HAL_EXTI_IRQHandler:00000000 $t
+     /tmp/ccCbjiDl.s:706    .text.HAL_EXTI_IRQHandler:00000000 HAL_EXTI_IRQHandler
+     /tmp/ccCbjiDl.s:763    .text.HAL_EXTI_IRQHandler:00000024 $d
+     /tmp/ccCbjiDl.s:768    .text.HAL_EXTI_GetPending:00000000 $t
+     /tmp/ccCbjiDl.s:774    .text.HAL_EXTI_GetPending:00000000 HAL_EXTI_GetPending
+     /tmp/ccCbjiDl.s:819    .text.HAL_EXTI_GetPending:00000014 $d
+     /tmp/ccCbjiDl.s:824    .text.HAL_EXTI_ClearPending:00000000 $t
+     /tmp/ccCbjiDl.s:830    .text.HAL_EXTI_ClearPending:00000000 HAL_EXTI_ClearPending
+     /tmp/ccCbjiDl.s:861    .text.HAL_EXTI_ClearPending:00000010 $d
+     /tmp/ccCbjiDl.s:866    .text.HAL_EXTI_GenerateSWI:00000000 $t
+     /tmp/ccCbjiDl.s:872    .text.HAL_EXTI_GenerateSWI:00000000 HAL_EXTI_GenerateSWI
+     /tmp/ccCbjiDl.s:903    .text.HAL_EXTI_GenerateSWI:00000010 $d
+
+NO UNDEFINED SYMBOLS
